@@ -19,7 +19,6 @@ const client = new ApolloClient({
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode><ApolloProvider client={client}>
-    
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -27,6 +26,5 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           <Route path="/courses" element={<Courses />} />
         </Routes>
       </BrowserRouter>
-    
   </ApolloProvider></React.StrictMode>
 );
