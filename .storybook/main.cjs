@@ -1,17 +1,20 @@
-const {
-  mergeConfig
-} = require("vite");
+const { mergeConfig } = require("vite");
 module.exports = {
   stories: ["../src/**/*.stories.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
-  addons: ["@storybook/addon-links", "@storybook/addon-essentials", "@storybook/addon-interactions", "@storybook/preset-scss"],
+  addons: [
+    "@storybook/addon-links",
+    "@storybook/addon-essentials",
+    "@storybook/addon-interactions",
+    "@storybook/preset-scss",
+  ],
 
   framework: {
     name: "@storybook/react-vite",
-    options: {}
+    options: {},
   },
 
   features: {
-    storyStoreV7: true
+    storyStoreV7: true,
   },
 
   async viteFinal(config) {
@@ -21,12 +24,12 @@ module.exports = {
       resolve: (await import("../vite.config.js")).default.resolve,
       // Add dependencies to pre-optimization
       optimizeDeps: {
-        include: ["storybook-dark-mode"]
-      }
+        include: ["storybook-dark-mode"],
+      },
     });
   },
 
   docs: {
-    autodocs: true
-  }
+    autodocs: true,
+  },
 };
