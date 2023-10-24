@@ -50,7 +50,7 @@ const Form = ({
     <form className={formClassname} onSubmit={onSubmit}>
       <Label labelClassname="test" labelText="Name (* Required)">
         <SingleLineTextInput
-          inputClassnames={{ label: "test", input: "test", error: "test" }}
+          inputClassname={"test"}
           placeholder="Your Name"
           inputId="name"
           ariaLabel="Your name should be inputted here."
@@ -65,7 +65,7 @@ const Form = ({
 
       <Label labelClassname="test" labelText="Email (* Required)">
         <SingleLineTextInput
-          inputClassnames={{ label: "test", input: "test", error: "test" }}
+          inputClassname={"test"}
           placeholder="Your Email"
           inputId="email"
           ariaLabel="Your Email address should be inputted here."
@@ -80,7 +80,7 @@ const Form = ({
 
       <Label labelClassname="test" labelText="Subject (* Required)">
         <SingleLineTextInput
-          inputClassnames={{ label: "test", input: "test", error: "test" }}
+          inputClassname={"test"}
           placeholder="Subject"
           inputId="subject"
           ariaLabel="Your email's subject line should be inputted here."

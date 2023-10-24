@@ -1,18 +1,14 @@
 import { useForm } from "react-hook-form";
 
 const SingleLineTextInput = ({
-  inputClassnames,
+  inputClassname,
   placeholder,
   inputId,
   ariaLabel,
   type,
   name,
 }: {
-  inputClassnames: {
-    label: string;
-    input: string;
-    error: string;
-  };
+  inputClassname: string;
   placeholder: string;
   inputId: string;
   ariaLabel: string;
@@ -24,7 +20,7 @@ const SingleLineTextInput = ({
   return (
     <>
       <input
-        className={inputClassnames.input}
+        className={inputClassname}
         placeholder={placeholder}
         type={type}
         aria-label={ariaLabel}
