@@ -13,6 +13,9 @@ dist
 storybook-static
 dist-ssr
 *.local
+yarn.lock
+.yarn.yml
+.yarn
 
 # Editor directories and files
 .vscode/*
