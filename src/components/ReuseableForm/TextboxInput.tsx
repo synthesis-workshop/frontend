@@ -1,6 +1,18 @@
-import { useForm } from "react-hook-form";
+import { Path, RegisterOptions, UseFormRegister } from "react-hook-form";
 
-const TextboxInput = ({
+interface Props<TFormValues extends Record<string, unknown>> {
+  textboxClassname: string;
+  placeholder: string;
+  ariaLabel: string;
+  id: string;
+  rows: number;
+  cols: number;
+  name: Path<TFormValues>;
+  rules: RegisterOptions;
+  register: UseFormRegister<TFormValues>;
+}
+
+const TextboxInput = <TFormValues extends Record<string, unknown>>({
   textboxClassname,
   placeholder,
   ariaLabel,
@@ -8,17 +20,9 @@ const TextboxInput = ({
   rows,
   cols,
   name,
-}: {
-  textboxClassname: string;
-  placeholder: string;
-  ariaLabel: string;
-  id: string;
-  rows: number;
-  cols: number;
-  name: string;
-}) => {
-  const { register } = useForm();
-
+  rules,
+  register,
+}: Props<TFormValues>) => {
   return (
     <>
       <textarea
@@ -28,7 +32,7 @@ const TextboxInput = ({
         aria-label={ariaLabel}
         rows={rows}
         cols={cols}
-        {...register(name)}
+        {...(register && register(name, rules))}
       />
     </>
   );

@@ -1,22 +1,26 @@
-import { useForm } from "react-hook-form";
+import { Path, RegisterOptions, UseFormRegister } from "react-hook-form";
 
-const SingleLineTextInput = ({
+type Props<TFormValues extends Record<string, unknown>> = {
+  inputClassname: string;
+  placeholder: string;
+  inputId: string;
+  ariaLabel: string;
+  type: string;
+  name: Path<TFormValues>;
+  rules: RegisterOptions;
+  register: UseFormRegister<TFormValues>;
+};
+
+const SingleLineTextInput = <TFormValues extends Record<string, unknown>>({
   inputClassname,
   placeholder,
   inputId,
   ariaLabel,
   type,
   name,
-}: {
-  inputClassname: string;
-  placeholder: string;
-  inputId: string;
-  ariaLabel: string;
-  type: string;
-  name: string;
-}) => {
-  const { register } = useForm();
-
+  register,
+  rules,
+}: Props<TFormValues>): JSX.Element => {
   return (
     <>
       <input
@@ -25,7 +29,7 @@ const SingleLineTextInput = ({
         type={type}
         aria-label={ariaLabel}
         id={inputId}
-        {...register(name)}
+        {...(register && register(name, rules))}
       />
     </>
   );

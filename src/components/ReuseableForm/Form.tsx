@@ -1,124 +1,145 @@
-import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import * as yup from "yup";
 import Button from "./Button";
+import * as inputRules from "./InputRules";
 import Label from "./Label";
 import SingleLineTextInput from "./SingleLineTextInput";
 import TextboxInput from "./TextboxInput";
 
-//Add/remove so that you have the fields and requirements needed.
-const schema = yup
-  .object({
-    name: yup
-      .string()
-      .min(2, "Minimum length is 2 characters")
-      .max(30, "Maximum length is 30 characters")
-      .required("This field is required"),
-    email: yup
-      .string()
-      .email("Enter a valid email")
-      .required("This field is required"),
-    subject: yup
-      .string()
-      .min(8, "Minimum length is 8 characters")
-      .max(100, "Maximum length is 100 characters")
-      .required("This field is required"),
-    message: yup
-      .string()
-      .min(100, "Minimum length is 100 characters")
-      .required("This field is required"),
-  })
-  .required();
+//Change this object to have the inputs name and the type of data it takes.
+type FormFields = {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+};
 
-const Form = ({
-  formClassname,
-  errorClassname,
-}: {
+interface Props {
   formClassname: string;
   errorClassname: string;
+  buttonText: string;
+}
+
+const Form: React.FC<Props> = ({
+  formClassname,
+  errorClassname,
+  buttonText,
 }) => {
   const {
     handleSubmit,
-    formState: { errors, isValid },
-  } = useForm({ resolver: yupResolver(schema) });
+    register,
+    formState: { errors },
+  } = useForm<FormFields>();
 
   //Checks to make sure that all FormData has the correct type, edit as needed.
   const onSubmit = handleSubmit((data) => console.log(data));
 
-  //All strings/classNames defined as "test" are placeholders, please replace them with your classNames.
+  //Object of TailWindCSS classes
+  const formClasses = {
+    inNeedOfClass: `Fill in this object with TailWindCSS classes such as formContainer: "w-[1000px] etc etc"`,
+  };
+
+  //All inputs will need their id & name attributes changed to fit your needs.
+  //Make sure the names match up with whatever you put in the FormFields object.
   return (
     <form className={formClassname} onSubmit={onSubmit}>
-      <Label labelClassname="test" labelText="Name (* Required)">
-        <SingleLineTextInput
-          inputClassname={"test"}
-          placeholder="Your Name"
-          inputId="name"
-          ariaLabel="Your name should be inputted here."
-          type="text"
-          name="name"
-        />
-      </Label>
-      {/*Errors can be moved around as required.*/}
-      {errors.name?.message && (
-        <span className={errorClassname}>{errors.name?.message}</span>
-      )}
+      <div className={formClasses.inNeedOfClass}>
+        <Label
+          labelClassname={formClasses.inNeedOfClass}
+          labelText="Insert label here"
+        >
+          <>
+            <SingleLineTextInput
+              inputClassname={formClasses.inNeedOfClass}
+              placeholder="Insert placeholder here"
+              inputId="name"
+              ariaLabel="Your aria-label should be inputted here."
+              type="text"
+              name="name"
+              register={register}
+              rules={inputRules.nameRules}
+            />
+            {/*Errors can be moved around as required.*/}
+            {errors.name?.message && (
+              <span className={errorClassname}>{errors.name?.message}</span>
+            )}
+          </>
+        </Label>
 
-      <Label labelClassname="test" labelText="Email (* Required)">
-        <SingleLineTextInput
-          inputClassname={"test"}
-          placeholder="Your Email"
-          inputId="email"
-          ariaLabel="Your Email address should be inputted here."
-          type="text"
-          name="email"
-        />
+        <Label
+          labelClassname={formClasses.inNeedOfClass}
+          labelText="Insert label here"
+        >
+          <>
+            <SingleLineTextInput
+              inputClassname={formClasses.inNeedOfClass}
+              placeholder="Insert placeholder here"
+              inputId="email"
+              ariaLabel="Your aria-label should be inputted here."
+              type="text"
+              name="email"
+              register={register}
+              rules={inputRules.emailRules}
+            />
+            {/*Errors can be moved around as required.*/}
+            {errors.email?.message && (
+              <span className={errorClassname}>{errors.email?.message}</span>
+            )}
+          </>
+        </Label>
+      </div>
+      <Label
+        labelClassname={formClasses.inNeedOfClass}
+        labelText="Insert label here"
+      >
+        <>
+          <SingleLineTextInput
+            inputClassname={formClasses.inNeedOfClass}
+            placeholder="Insert placeholder here"
+            inputId="subject"
+            ariaLabel="Your aria-label should be inputted here."
+            type="text"
+            name="subject"
+            register={register}
+            rules={inputRules.subjectRules}
+          />
+          {/*Errors can be moved around as required.*/}
+          {errors.subject?.message && (
+            <span className={errorClassname}>{errors.subject?.message}</span>
+          )}
+        </>
       </Label>
-      {/*Errors can be moved around as required.*/}
-      {errors.email?.message && (
-        <span className={errorClassname}>{errors.email?.message}</span>
-      )}
 
-      <Label labelClassname="test" labelText="Subject (* Required)">
-        <SingleLineTextInput
-          inputClassname={"test"}
-          placeholder="Subject"
-          inputId="subject"
-          ariaLabel="Your email's subject line should be inputted here."
-          type="text"
-          name="subject"
-        />
+      <Label
+        labelClassname={formClasses.inNeedOfClass}
+        labelText="Insert label here"
+      >
+        <>
+          <TextboxInput
+            textboxClassname={formClasses.inNeedOfClass}
+            placeholder="Insert placeholder here"
+            ariaLabel="Your aria-label should be inputted here."
+            id="message"
+            rows={10}
+            cols={100}
+            name="message"
+            rules={inputRules.messageRules}
+            register={register}
+          />
+          {/*Errors can be moved around as required.*/}
+          {errors.message?.message && (
+            <span className={errorClassname}>{errors.message?.message}</span>
+          )}
+        </>
       </Label>
-      {/*Errors can be moved around as required.*/}
-      {errors.subject?.message && (
-        <span className={errorClassname}>{errors.subject?.message}</span>
-      )}
-
-      <Label labelClassname="test" labelText="Message (* Required)">
-        <TextboxInput
-          textboxClassname="test"
-          placeholder="Message"
-          ariaLabel="The content of your email should be inputted here."
-          id="message"
-          rows={10}
-          cols={100}
-          name="message"
-        />
-      </Label>
-      {/*Errors can be moved around as required.*/}
-      {errors.message?.message && (
-        <span className={errorClassname}>{errors.message?.message}</span>
-      )}
 
       <Button
-        buttonClassname="test"
+        buttonClassname={formClasses.inNeedOfClass}
         type="submit"
         ariaLabel="Submit"
-        isValid={isValid}
-        buttonText="Send Message"
-        onClick={() => {
-          onSubmit();
-        }}
-      />
+        onClick={onSubmit}
+      >
+        {buttonText}
+      </Button>
     </form>
   );
 };

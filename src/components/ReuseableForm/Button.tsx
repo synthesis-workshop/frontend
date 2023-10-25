@@ -1,19 +1,19 @@
-const Button = ({
-  buttonClassname,
-  type,
-  ariaLabel,
-  isValid,
-  buttonText,
-  onClick,
-}: {
+interface Props {
   buttonClassname: string;
   type: "button" | "submit" | "reset" | undefined;
   ariaLabel: string;
-  isValid: boolean;
-  buttonText: string;
   onClick:
     | ((event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void)
     | undefined;
+  children?: React.ReactNode;
+}
+
+const Button: React.FC<Props> = ({
+  buttonClassname,
+  type,
+  ariaLabel,
+  onClick,
+  children,
 }) => {
   return (
     <>
@@ -21,10 +21,9 @@ const Button = ({
         className={buttonClassname}
         type={type}
         aria-label={ariaLabel}
-        disabled={!isValid}
         onClick={onClick}
       >
-        {buttonText}
+        {children}
       </button>
     </>
   );
