@@ -14,7 +14,7 @@ storybook-static
 dist-ssr
 *.local
 yarn.lock
-.yarn.yml
+.yarnrc.yml
 .yarn
 
 # Editor directories and files
