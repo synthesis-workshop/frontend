@@ -40,11 +40,11 @@ npm run test
 Contributors are not allowed to commit directly to `main`. This rule is enforced using git hooks. Instead, you must create a new branch off of `main` using the following naming pattern:
 
 ```
-Pattern:"/^(master|main|develop){1}$|^(feature|fix|hotfix|release)\/.+$/g"
+Pattern:"/^(master|main|develop){1}$|^(feature|fix|hotfix|release)\/.+$/g"git branch
 ```
 
 Example:
-`feature/my-dev-task`
+`feature/my-dev-task
 
 ### Commit messages
 
