@@ -1,6 +1,6 @@
 import React from "react";
 
-interface TeamMemberProps {
+export interface TeamMemberProps {
   name: string;
   position: string;
   imageUrl?: string;
@@ -32,6 +32,3 @@ export const TeamMember: React.FC<TeamMemberProps> = ({
     </div>
   );
 };
-
-// Example usage:
-// <TeamMember name="Dr. Matthew Horwitz" position="Founder and Editor-in-chief" imageUrl="https://via.placeholder.com/80x108" />

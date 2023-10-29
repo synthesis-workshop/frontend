@@ -1,0 +1,12 @@
+{
+  "folders": [
+	{
+		"path": "../../.."
+	},
+	{
+		"name": "backend",
+		"path": "../../../../../synthesis_backend/backend"
+	}
+],
+  "settings": {}
+}
