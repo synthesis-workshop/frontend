@@ -5,13 +5,13 @@ import {  Bars3BottomRightIcon, XMarkIcon } from '@heroicons/react/24/solid'
 
 const activeClassName = "selected navlink";
 const activeStyleCallback = ({ isActive }: { isActive: boolean }) =>
-  isActive ? activeClassName : "navlink";
+  isActive ? activeClassName : "flex flex-row font-medium text-base leading-5 m-3' ";
 
 const NavLinks = () => {
   return (
     <>
-    <div className="flex flex-row">
-    <div className=" flex flex-row font-medium text-base items-center leading-5">
+    {/* <div className="flex flex-row space-x-32 "> */}
+    <div className='flex flex-row m-3'>
     <NavLink to="/Posters" className={activeStyleCallback}>
         Posters
       </NavLink>
@@ -29,7 +29,7 @@ const NavLinks = () => {
         Publication
       </NavLink>
       </div>
-      <div className='m-3 mx-4 my-6 md:my-0 font-semibold '>
+      <div className='flex flex-row items-stretch'>
       <NavLink to="/Downloads" className={activeStyleCallback}>
         Downloads
       </NavLink>
@@ -40,7 +40,8 @@ const NavLinks = () => {
         Abouts
       </NavLink>
       </div>
-      </div>
+      {/* </div> */}
+     
     </>
   );
 };
@@ -57,10 +58,10 @@ const Nav = () => {
 
   return (
     <>
-      <nav className="flex items-center overflow-hidden">
-        <div className=" w-full flex justify-between m-3">
+      <nav className="flex items-center w-full flex justify-between font-semibold">
+        {/* <div className=" w-full flex justify-between font-semibold"> */}
           <NavLinks />
-        </div>
+        {/* </div> */}
       
         <div className="flex w-[75px] justify-end md:hidden">
           <button onClick={toggleNavbar}>{isOpen ? <XMarkIcon /> : <Bars3BottomRightIcon />}</button>

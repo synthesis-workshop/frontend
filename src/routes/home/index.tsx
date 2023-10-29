@@ -19,7 +19,7 @@ export const Home = () => {
         
     // ];
     return (
-        <div className="bg-gray-600 h-screen">
+        <div className="bg-gray-600 h-screen shadow-md w-full fixed top-0 left-0">
             <Header/>
              {/* <HeaderNav /> */}
              {/* <GlobalHeader brandName="Synthesis Workshop"  navItems={items} /> */}
