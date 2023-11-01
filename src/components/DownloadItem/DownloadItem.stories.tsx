@@ -9,5 +9,5 @@ export default meta;
 type Story = StoryObj<typeof DownloadItem>;
 
 export const Primary: Story = {
-    render: () => <DownloadItem />
+    render: () => <DownloadItem title="Title goes here" lastUpdated={2023}/>
 }
