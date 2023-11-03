@@ -11,12 +11,12 @@ type PosterCardProps = {
 // Tailwind CSS baseline. Will be updated as it is integrated
 
 const tailwindClasses = {
-  posterCard: "w-[553px] flex flex-wrap bg-primary font-text text-secondary ",
-  image: "rounded w-full h-[311px] bg-accent",
-  bioWrapper: "w-[474px] h-[73px] my-5 leading-tight ",
+  posterCard: "w-full flex flex-wrap bg-primary font-text text-secondary",
+  image: "rounded w-full  bg-accent",
+  bioWrapper: "w-full my-5 leading-tight ",
   title: "text-[20px]",
   author:
-    "text-white/80 text-[14px] mt-2 flex-nowrap text-ellipsis overflow-hidden ",
+    "text-white/80 text-[14px] mt-2 flex-nowrap text-ellipsis overflow-hidden line-clamp-1",
   button:
     "w-full h-[56px] py-[9px] px-[32px] rounded-lg border-2 border-solid text-[18px]",
 };
