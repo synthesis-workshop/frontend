@@ -6,6 +6,9 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
+.pnp.cjs
+.pnp.loader.mjs
+yarn.lock
 
 node_modules
 dist
