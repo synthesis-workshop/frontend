@@ -6,10 +6,6 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
-//import "./footer.css";
-import "./footer1024.css";
-import "./footer375.css";
-import "./footer768.css";
 
 export const Footer = () => {
   return (
