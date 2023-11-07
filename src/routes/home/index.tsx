@@ -10,7 +10,7 @@ export const Home = () => {
   return (
     <div>
       here
-      <ExpandableSection itemConfig={p} count={5}></ExpandableSection>
+      <ExpandableSection itemConfig={p} count={10}></ExpandableSection>
     </div>
   );
 };
