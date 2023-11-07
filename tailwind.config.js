@@ -24,6 +24,9 @@ export default {
         "57px": "57px",
         "1400px": "1400px",
       },
+      transitionDuration: {
+        2000: "2000ms",
+      },
     },
   },
   plugins: [],

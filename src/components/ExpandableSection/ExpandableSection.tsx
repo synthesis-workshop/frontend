@@ -23,8 +23,6 @@ export const ExpandableSection = (
 
   const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-  // const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
   const updateItems = (counter) => {
     // it slices the array based on the number of items to show
     // the array is just representation it should be array of nodeComponents
@@ -53,15 +51,15 @@ export const ExpandableSection = (
     <div
       className={`flex flex-col justify-between items-center p-3 text-white min-h-200px w-1400px rounded-xl relative bg-yellow-950`}
     >
-      <div className={`${props?.itemConfig["secondaryTop"]}`}>
-        {/* change to this with storybook */}
-        {/* <div
-        className={`flex flex-col justify-between items-center bg-secondary text-black min-h-200px w-1200px rounded-xl relative`}
-      > */}
+      {/* <div className={`${props?.itemConfig["secondaryTop"]}`}> */}
+      {/* change to this with storybook */}
+      <div
+        className={`flex flex-col justify-between items-center bg-secondary transition duration-2000 ease-out text-black min-h-200px w-1200px rounded-xl relative`}
+      >
         {/* Dont forget to add the wrapping for flex views */}
         {rows.map((row) => {
           return (
-            <div key={row} className="bg-lime-600 w-500px h-500px">
+            <div key={row} className="bg-lime-600 w-500px h-100px">
               {row}
             </div>
           );
