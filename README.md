@@ -52,7 +52,7 @@ If your commit message does not conform to the correct pattern, you will receive
 
 ```
   ************* Invalid Git Commit Message **************
-  commit message: Added husky git hooks
+  commit message: Added husky some git hooks
   correct format: <type>[scope]: <subject>
   example: docs: update README to add developer tips
 
