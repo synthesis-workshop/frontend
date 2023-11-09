@@ -1,9 +1,9 @@
 import { useForm } from "react-hook-form";
-import Button from "./Button";
+import { Button } from "./Button";
 import * as inputRules from "./InputRules";
-import Label from "./Label";
-import SingleLineTextInput from "./SingleLineTextInput";
-import TextboxInput from "./TextboxInput";
+import { Label } from "./Label";
+import { SingleLineTextInput } from "./SingleLineTextInput";
+import { TextboxInput } from "./TextboxInput";
 
 //Change this object to have the inputs name and the type of data it takes.
 type FormFields = {
@@ -19,7 +19,7 @@ interface Props {
   buttonText: string;
 }
 
-const Form: React.FC<Props> = ({
+export const Form: React.FC<Props> = ({
   formClassname,
   errorClassname,
   buttonText,
@@ -143,5 +143,3 @@ const Form: React.FC<Props> = ({
     </form>
   );
 };
-
-export default Form;

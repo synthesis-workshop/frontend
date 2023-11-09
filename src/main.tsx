@@ -3,9 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "../src/global/default.css";
-import {
-  Courses, Episodes, Home
-} from "./routes";
+import { Courses, Episodes, Home } from "./routes";
 
 const client = new ApolloClient({
   uri:
@@ -18,7 +16,8 @@ const client = new ApolloClient({
 });
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode><ApolloProvider client={client}>
+  <React.StrictMode>
+    <ApolloProvider client={client}>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -26,5 +25,6 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           <Route path="/courses" element={<Courses />} />
         </Routes>
       </BrowserRouter>
-  </ApolloProvider></React.StrictMode>
+    </ApolloProvider>
+  </React.StrictMode>
 );

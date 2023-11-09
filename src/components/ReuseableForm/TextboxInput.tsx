@@ -12,7 +12,7 @@ interface Props<TFormValues extends Record<string, unknown>> {
   register: UseFormRegister<TFormValues>;
 }
 
-const TextboxInput = <TFormValues extends Record<string, unknown>>({
+export const TextboxInput = <TFormValues extends Record<string, unknown>>({
   textboxClassname,
   placeholder,
   ariaLabel,
@@ -37,5 +37,3 @@ const TextboxInput = <TFormValues extends Record<string, unknown>>({
     </>
   );
 };
-
-export default TextboxInput;

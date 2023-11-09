@@ -11,7 +11,9 @@ type Props<TFormValues extends Record<string, unknown>> = {
   register: UseFormRegister<TFormValues>;
 };
 
-const SingleLineTextInput = <TFormValues extends Record<string, unknown>>({
+export const SingleLineTextInput = <
+  TFormValues extends Record<string, unknown>
+>({
   inputClassname,
   placeholder,
   inputId,
@@ -34,5 +36,3 @@ const SingleLineTextInput = <TFormValues extends Record<string, unknown>>({
     </>
   );
 };
-
-export default SingleLineTextInput;

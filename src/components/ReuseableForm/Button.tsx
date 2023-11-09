@@ -8,7 +8,7 @@ interface Props {
   children?: React.ReactNode;
 }
 
-const Button: React.FC<Props> = ({
+export const Button: React.FC<Props> = ({
   buttonClassname,
   type,
   ariaLabel,
@@ -28,5 +28,3 @@ const Button: React.FC<Props> = ({
     </>
   );
 };
-
-export default Button;

@@ -4,7 +4,11 @@ interface Props {
   children: JSX.Element;
 }
 
-const Label: React.FC<Props> = ({ labelClassname, labelText, children }) => {
+export const Label: React.FC<Props> = ({
+  labelClassname,
+  labelText,
+  children,
+}) => {
   return (
     <>
       <label className={labelClassname}>
@@ -14,5 +18,3 @@ const Label: React.FC<Props> = ({ labelClassname, labelText, children }) => {
     </>
   );
 };
-
-export default Label;

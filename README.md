@@ -30,8 +30,8 @@ npm run test
 
 ## Deployments
 
-- [Production](TBD)
-- [Storybook](TBD)
+- [Production](http://synthesis-workshop.com.s3-website-us-east-1.amazonaws.com/)
+- [Storybook](http://storybook.synthesis-workshop.com.s3-website-us-east-1.amazonaws.com/)
 
 ## Contributing
 
@@ -93,4 +93,4 @@ This project uses the following key libraries
 
 ## Deployment
 
-The project is configured to deploy automatically using GitHub Actions whenever a commit is made to `main`. This workflow is triggered by merging a Pull Request. After the workflow runs, you can visit the deployed site here: URL_TBD
+The project is configured to deploy automatically using GitHub Actions whenever a commit is made to `main`. This workflow is triggered by merging a Pull Request. After the workflow runs, you can visit the deployed site here: http://synthesis-workshop.com.s3-website-us-east-1.amazonaws.com/
