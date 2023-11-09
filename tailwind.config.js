@@ -10,6 +10,8 @@ export default {
         blue: "#575AA4",
         pink: "#94498C",
         yellow: "#B6A362",
+        white: "#FFFFFF",
+        footerText: "#ffffffcc",
       },
     },
     fontFamily: {
