@@ -13,7 +13,9 @@ export const Home = () => {
   return (
     <div>
       here
-      <ExpandableSection itemConfig={p}></ExpandableSection>
+      <ExpandableSection itemConfig={p}>
+        <div>aywa</div>
+      </ExpandableSection>
     </div>
   );
 };

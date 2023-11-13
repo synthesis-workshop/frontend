@@ -49,17 +49,19 @@ export const ExpandableSection = (
   return (
     // this first dev needs to chage based on what option you will use for the interior divs maybe we will need to add configuration for this as well later
     <div
-      className={`flex flex-col justify-between items-center p-3 text-white min-h-200px w-1400px rounded-xl relative bg-yellow-950`}
+      className={`flex flex-col justify-between items-center p-3 text-white min-h-200px w-1400px rounded-xl relative bg-greyBg`}
     >
       {/* <div className={`${props?.itemConfig["secondaryTop"]}`}> */}
       {/* change to this with storybook */}
       <div
-        className={`flex flex-col justify-between items-center bg-secondary transition duration-2000 ease-out text-black min-h-200px w-1200px rounded-xl relative`}
+        className={`flex flex-col justify-between items-center bg-secondary text-black min-h-200px w-1200px rounded-xl relative`}
       >
-        {/* Dont forget to add the wrapping for flex views */}
+        {/* where children should be called */}
+        {/* {props?.children} */}
+        {/* Dont forget to add the wrapping for flex views "here it's implemented in Itemconfig for diffrent styles"*/}
         {rows.map((row) => {
           return (
-            <div key={row} className="bg-lime-600 w-500px h-100px">
+            <div key={row} className="bg-primary w-500px h-100px">
               {row}
             </div>
           );
@@ -81,7 +83,6 @@ export const ExpandableSection = (
       ) : (
         <div></div>
       )}
-      {props?.children}
     </div>
   );
 };
