@@ -1,5 +1,10 @@
 // routes/home/index.tsx
+import EpisodesSection from "../../components/episodes-section/episodes-section";
 
 export const Home = () => {
-  return <div>This is the home page</div>;
+  return (
+    <div>
+      <EpisodesSection></EpisodesSection>
+    </div>
+  );
 };
