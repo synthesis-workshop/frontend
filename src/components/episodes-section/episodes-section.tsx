@@ -1,11 +1,9 @@
 import { useEffect, useState, type PropsWithChildren } from "react";
-// import {useWindowDimensions} from 'react-native';
-// import {Dimensions} from 'react';
 import { useMediaQuery } from "react-responsive";
 import { Link } from "react-router-dom";
 
 interface EpisodesSection {
-  card: number[];
+  cards: React.ReactElement[];
 }
 
 // cards should be array of [Card Object]
@@ -15,10 +13,10 @@ const EpisodesSection = (props: PropsWithChildren<EpisodesSection>) => {
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 450px)" });
   const [cardsArray, setCardsArray] = useState([]);
   useEffect(() => {
-    props.card.length > 3
-      ? setCardsArray(props.card.slice(0, 3).map((card) => card))
-      : setCardsArray(props.card);
-  }, [props.card]);
+    props.cards.length > 3
+      ? setCardsArray(props.cards.slice(0, 3).map((card) => card))
+      : setCardsArray(props.cards);
+  }, [props.cards]);
 
   return (
     <div className={`flex flex-col items-center bg-whitegrey`}>
@@ -51,7 +49,7 @@ const EpisodesSection = (props: PropsWithChildren<EpisodesSection>) => {
                 </div>
               );
             })
-          : props.card.map((card) => {
+          : props.cards.map((card) => {
               return (
                 <div className="h-360px sm:w-343px md:w-358px lg:w-301px xl:w-387px rounded-xl bg-primary text-white">
                   {card}
