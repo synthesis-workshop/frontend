@@ -1,6 +1,7 @@
-import React from "react";
+import cx from "classnames";
+import { Button } from "../button";
 
-interface PublicationCard {
+interface PublicationCardProps {
   section: string;
   title: string;
   subtitle: string;
@@ -10,7 +11,7 @@ interface PublicationCard {
   doi: string;
 }
 
-const PublicationCard: React.FC<PublicationCard> = ({
+export const PublicationCard = ({
   section,
   title,
   subtitle,
@@ -18,9 +19,9 @@ const PublicationCard: React.FC<PublicationCard> = ({
   date,
   category,
   doi,
-}) => {
+}: PublicationCardProps) => {
   return (
-    <div className="bg-white p-4 rounded shadow-md">
+    <div className={cx("bg-white p-4 rounded shadow-md", section)}>
       <div className="mb-4">
         <span className="text-gray-600">{section}</span>
       </div>
@@ -31,10 +32,10 @@ const PublicationCard: React.FC<PublicationCard> = ({
       <p className="text-gray-600 mb-2">Category: {category}</p>
       <p className="text-gray-600 mb-2">DOI: {doi}</p>
       <a href="#" className="text-blue-600 hover:underline">
-        Read the Full Article
+        <Button className="w-full" variant="secondary">
+          Read the Full Article ↗
+        </Button>
       </a>
     </div>
   );
 };
-
-export default PublicationCard;
