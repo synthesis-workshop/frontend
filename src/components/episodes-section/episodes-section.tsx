@@ -1,38 +1,63 @@
-// import type { PropsWithChildren } from "react";
+import { useEffect, useState, type PropsWithChildren } from "react";
+// import {useWindowDimensions} from 'react-native';
+// import {Dimensions} from 'react';
+import { useMediaQuery } from "react-responsive";
 import { Link } from "react-router-dom";
 
-interface Card {
-  name: string;
-}
-
 interface EpisodesSection {
-  card: Card;
+  card: number[];
 }
 
+// cards should be array of [Card Object]
 // get cards and slice it to first 6 on big screens and to first 3 on mobile
 
-const numbers = [1, 2, 3, 4, 5, 6];
+const EpisodesSection = (props: PropsWithChildren<EpisodesSection>) => {
+  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 450px)" });
+  const [cardsArray, setCardsArray] = useState([]);
+  useEffect(() => {
+    props.card.length > 3
+      ? setCardsArray(props.card.slice(0, 3).map((card) => card))
+      : setCardsArray(props.card);
+  }, [props.card]);
 
-const EpisodesSection = () => {
   return (
-    <div className={`flex flex-col w-1202px h-899px bg-whitegrey`}>
+    <div className={`flex flex-col items-center bg-whitegrey`}>
       {/* title and dropdowns */}
-      <div className="flex flex-row justify-between pb-32px">
-        {/* title */}
+      <div
+        className={`flex flex-col md:gap-12px md:w-728px md:flex-row lg:w-944px xl:w-1202px justify-between items-center pb-32px`}
+      >
         <div>
-          <p className="f-title">Explore our episodes</p>
+          <p className="md:w-282px font-title text-3xl w-343px h-35px">
+            Explore our episodes
+          </p>
         </div>
-        {/* dropdowns */}
-        <div className="flex flex-row justify-end f-text h-35px w-410px">
-          <button className="w-148px h-35px">Category:All</button>
-          <button className="w-246px h-35px">Sort:Date added ascending</button>
+        <div className="flex flex-col md:flex-row text-base items-center font-text">
+          {/* <div></div> */}
+          <button className="w-343px md:w-148px text-base h-35px font-text">
+            Category: All
+          </button>
+          <button className="w-343px md:w-246px font-text text-base h-35px">
+            Sort: Date added ascending
+          </button>
         </div>
       </div>
       {/* cards */}
-      <div className="flex flex-row flex-wrap content-center items-center gap-20px">
-        {numbers.map((card) => {
-          return <div className="w-387px h-360px bg-primary">{card}</div>;
-        })}
+      <div className="flex flex-row flex-wrap justify-center gap-20px">
+        {isTabletOrMobile
+          ? cardsArray.map((card) => {
+              return (
+                <div className="h-360px sm:w-343px md:w-358px lg:w-301px xl:w-387px rounded-xl bg-primary text-white">
+                  {card}
+                </div>
+              );
+            })
+          : props.card.map((card) => {
+              return (
+                <div className="h-360px sm:w-343px md:w-358px lg:w-301px xl:w-387px rounded-xl bg-primary text-white">
+                  {card}
+                </div>
+              );
+            })}
       </div>
       {/* button */}
       <div className="flex justify-center pt-40px">

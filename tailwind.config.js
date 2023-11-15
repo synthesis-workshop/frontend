@@ -2,6 +2,7 @@
 export default {
   content: ["./index.html", "./src/**/*.{html,js,jsx,ts,tsx}"],
   theme: {
+    screens: { sm: "375px", md: "768px", lg: "1024px", xl: "1280px" },
     extend: {
       colors: {
         primary: "#3A3C46",
@@ -13,11 +14,17 @@ export default {
         whitegrey: "#F0F0F0",
       },
       spacing: {
-        "20px": "20px",
         "1202px": "1202px",
         "899px": "899px",
+        "343px": "343px",
+        "358px": "358px",
+        "301px": "301px",
+        "20px": "20px",
         "360px": "360px",
+        "728px": "728px",
         "387px": "387px",
+        "282px": "282px",
+        "944px": "944px",
         "32px": "32px",
         "410px": "410px",
         "35px": "35px",
@@ -27,27 +34,10 @@ export default {
         "222px": "222px",
         "52px": "52px",
       },
-      // height: {
-      //   "500px": "500px",
-      //   "200px": "200px",
-      //   "1202px": "1202px",
-      //   "276px": "276px",
-      //   "100px": "100px",
-      //   "57px": "57px",
-      //   "899px": "899px",
-      //   "360px": "360px",
-      //   "20px": "20px",
-      // },
-      // width: {
-      //   "500px": "500px",
-      //   "200px": "200px",
-      //   "1202px": "1202px",
-      //   "276px": "276px",
-      //   "100px": "100px",
-      //   "57px": "57px",
-      //   "899px": "899px",
-      //   "387px": "387px",
-      // },
+      fontSize: {
+        "32px": "32px",
+        "16px": "16px",
+      },
     },
     fontFamily: {
       text: ["Inter", "Helvetica", "Arial", "sans"],
