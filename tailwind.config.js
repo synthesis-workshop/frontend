@@ -13,10 +13,13 @@ export default {
         white: "#FFFFFF",
         footerText: "#ffffffcc",
       },
-    },
-    fontFamily: {
-      text: ["Inter", "Helvetica", "Arial", "sans"],
-      title: ["Esteban", "cursive"],
+      fontFamily: {
+        text: ["Inter", "Helvetica", "Arial", "sans"],
+        title: ["Esteban", "cursive"],
+      },
+      fontSize: {
+        "card-title": "28px",
+      },
     },
     screens: {
       sm: { min: "375px", max: "767px" },
