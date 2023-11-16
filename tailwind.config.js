@@ -11,7 +11,6 @@ export default {
         pink: "#94498C",
         yellow: "#B6A362",
         white: "#FFFFFF",
-        footerText: "#ffffffcc",
       },
       fontFamily: {
         text: ["Inter", "Helvetica", "Arial", "sans"],
