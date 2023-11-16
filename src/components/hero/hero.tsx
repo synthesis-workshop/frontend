@@ -7,23 +7,29 @@ import greyBlur from "../../assets/grey-blur.png";
 
 export interface HeroProps {
   className?: string;  
-  videoCount: string;
-  viewsCount: string;
-  guestsCount: string;
-  subCount: string;
+  videoCount: number;
+  viewsCount: number;
+  guestsCount: number;
+  subscriberCount: number;
   
 }
 
 export const Hero: React.FC<HeroProps> = ({
   className,
-    
-    videoCount,
-    viewsCount,
-    guestsCount,
-    subCount, 
-   
-
+  videoCount,
+  viewsCount,
+  guestsCount,
+  subscriberCount, 
 }) => {
+
+    const formatNumber = (number) => {
+        if (number >= 1000) {
+          return (number / 1000).toFixed(1) + "K";
+        } else {
+          return number.toString();
+        }
+      };    
+
   return (
     <div className={cx("flex flex-col bg-primary relative w-screen", className)}>
         <div className="flex flex-col items-center pt-[152px] text-center mx-4 md:mx-10">
@@ -43,19 +49,19 @@ export const Hero: React.FC<HeroProps> = ({
             <div className="text-white/80 font-text text-lg pt-[25px] max-w-[650px] pb-[131px]">Synthesis Workshop was started as a series of YouTube podcasts on organic chemistry and is growing into an educational online project</div>
             <div className="flex flex-wrap gap-10 md:gap-20 bg-white rounded-3xl w-[343px] md:w-11/12 absolute -bottom-[220px] md:-bottom-[80px] py-8 md:py-10 text-center justify-center">
                 <div className="flex flex-col gap-1 w-[121px] md:w-auto">
-                    <div className="text-primary text-3xl font-medium font-text">{videoCount}</div>
+                    <div className="text-primary text-3xl font-medium font-text">{formatNumber(videoCount)}+</div>
                     <div className="text-primary/80 pt-3 font-text">Videos</div>
                 </div>
                 <div className="flex flex-col gap-1 w-[121px] md:w-auto">
-                    <div className="text-primary text-3xl font-medium font-text">{viewsCount}</div>
+                    <div className="text-primary text-3xl font-medium font-text">{formatNumber(viewsCount)}+</div>
                     <div className="text-primary/80 pt-3  font-text">Total Views</div>
                 </div>
                 <div className="flex flex-col gap-1 w-[121px] md:w-auto">
-                    <div className="text-primary text-3xl font-medium font-text">{guestsCount}</div>
+                    <div className="text-primary text-3xl font-medium font-text">{formatNumber(guestsCount)}+</div>
                     <div className="text-primary/80 pt-3 font-text">Featured Guests</div>
                 </div>
                 <div className="flex flex-col gap-1 w-[121px] md:w-auto">
-                    <div className="text-primary text-3xl font-medium font-text">{subCount}</div>
+                    <div className="text-primary text-3xl font-medium font-text">{formatNumber(subscriberCount)}+</div>
                     <div className="text-primary/80 pt-3 font-text ">Subscribers</div>
                 </div>
             </div>

@@ -13,9 +13,9 @@ type Story = StoryObj<typeof Hero>;
 
 export const Default: Story = {
   args: {
-    videoCount: "140+",
-    viewsCount: "275.9K+",
-    guestsCount: "97+",
-    subCount: "9.20K+",
+    videoCount: 140,
+    viewsCount: 275000,
+    guestsCount: 97,
+    subscriberCount: 9210,
   },
 };
