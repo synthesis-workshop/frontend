@@ -4,29 +4,33 @@ import flaskURL from "../../assets/flask1-blue.png";
 import greyBlur from "../../assets/grey-blur.png";
 import purpleBlur from "../../assets/purple-blur.png";
 import { kFormat } from "../../utils";
+import { useQuery } from "@apollo/client";
+import { GET_STATS } from "../../graphql/index.js";
 
 export interface HeroProps {
   className?: string;
-  videoCount: number;
-  viewsCount: number;
-  guestsCount: number;
-  subscriberCount: number;
 }
 
 export const Hero: React.FC<HeroProps> = ({
   className,
-  videoCount,
-  viewsCount,
-  guestsCount,
-  subscriberCount,
 }) => {
+  const { loading, error, data } = useQuery(GET_STATS);
+
+  if (loading) return `Loading...`;
+  if (error) return `Error! ${error}`;
+
+  const videoCount = data.meta.videoCount;
+  const viewsCount = data.meta.viewsCount;
+  const guestsCount = data.meta.guestsCount;
+  const subscriberCount = data.meta.subscriberCount;
+  
   return (
     <div
       className={cx("flex flex-col bg-primary relative w-screen", className)}
     >
       <div className="flex flex-col items-center pt-[152px] text-center mx-4 md:mx-10">
         <img
-          className="absolute h-[407px] lg:h-[398px] md:h-[347px] w-[248px] lg:w-[654px] md:w-[577px] -bottom-[68px] -left-[100px]  "
+          className="absolute h-[407px] lg:h-[398px] md:h-[347px] w-[248px] lg:w-[654px] md:w-[577px] -bottom-[68px] -left-[100px]"
           src={purpleBlur}
           alt=""
         />
