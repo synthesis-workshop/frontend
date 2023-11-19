@@ -12,12 +12,15 @@ export default {
         yellow: "#B6A362",
       },
       backgroundImage: {
-        'playvideoButton': "url('./src/assets/images/play_button_000.svg')"
+        playvideoButton: "url('./src/assets/images/play_button_000.svg')",
       },
     },
     fontFamily: {
       text: ["Inter", "Helvetica", "Arial", "sans"],
       title: ["Esteban", "cursive"],
+    },
+    fontSize: {
+      "card-title": "28px",
     },
   },
   plugins: [],
