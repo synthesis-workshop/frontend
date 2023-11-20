@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { EpisodeCategory } from "../../types";
-import { NextVideoCard } from ".";
+import { VideoCard } from ".";
 
 
 
-const meta: Meta<typeof NextVideoCard> = {
-  component: NextVideoCard,
-  title: "Components/NextVideoCard",
+const meta: Meta<typeof VideoCard> = {
+  component: VideoCard,
+  title: "Components/VideoCard",
   argTypes: {
     title: {
       control: { type: "text" },

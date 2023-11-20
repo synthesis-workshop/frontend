@@ -11,7 +11,7 @@ interface Props {
   runtime: string;
 }
 
-export const NextVideoCard = ({
+export const VideoCard = ({
   title,
   episodeNumber,
   category,
