@@ -1,4 +1,3 @@
-import cx from "classnames";
 import { Button } from "../button";
 import { Card } from "../card";
 
@@ -24,7 +23,7 @@ export const PublicationCard = ({
   link,
 }: PublicationCardProps) => {
   return (
-    <Card variant="light" className={cx("", className)}>
+    <Card variant="light" className={className}>
       <div className="flex justify-between">
         <div className="max-w-[680px]">
           <h2 className="text-2xl font-medium mb-3">{title}</h2>
