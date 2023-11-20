@@ -13,6 +13,7 @@ export default {
         yellow: "#B6A362",
         whitegrey: "#F0F0F0",
       },
+      // TODO: These spacing values should all go away, please remove
       spacing: {
         "1202px": "1202px",
         "899px": "899px",
@@ -33,10 +34,6 @@ export default {
         "40px": "40px",
         "222px": "222px",
         "52px": "52px",
-      },
-      fontSize: {
-        "32px": "32px",
-        "16px": "16px",
       },
       fontSize: {
         "card-title": "28px",
