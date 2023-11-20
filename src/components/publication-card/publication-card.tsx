@@ -1,41 +1,55 @@
 import cx from "classnames";
 import { Button } from "../button";
+import { Card } from "../card";
 
 interface PublicationCardProps {
-  section: string;
+  className?: string;
   title: string;
-  subtitle: string;
+  description: string;
   author: string;
-  date: string;
-  category: string;
+  publishedDate: string;
+  publisher: string;
   doi: string;
+  link: string;
 }
 
 export const PublicationCard = ({
-  section,
+  className,
   title,
-  subtitle,
+  description,
   author,
-  date,
-  category,
+  publishedDate,
+  publisher,
   doi,
+  link,
 }: PublicationCardProps) => {
   return (
-    <div className={cx("bg-white p-4 rounded shadow-md", section)}>
-      <div className="mb-4">
-        <span className="text-gray-600">{section}</span>
+    <Card variant="light" className={cx("", className)}>
+      <div className="flex justify-between">
+        <div className="max-w-[680px]">
+          <h2 className="text-2xl font-medium mb-3">{title}</h2>
+          <p className="text-primary mb-8">{description}</p>
+        </div>
+        <a href={link} target="_blank" className="hidden lg:block">
+          <Button>Read the Full Article ↗</Button>
+        </a>
       </div>
-      <h2 className="text-xl font-semibold">{title}</h2>
-      <p className="text-gray-600 mb-2">{subtitle}</p>
-      <p className="text-gray-600 mb-2">Author: {author}</p>
-      <p className="text-gray-600 mb-2">Date: {date}</p>
-      <p className="text-gray-600 mb-2">Category: {category}</p>
-      <p className="text-gray-600 mb-2">DOI: {doi}</p>
-      <a href="#" className="text-blue-600 hover:underline">
-        <Button className="w-full" variant="secondary">
-          Read the Full Article ↗
-        </Button>
+      <div className="flex flex-wrap gap-x-3 gap-y-1 text-primary/80">
+        <p>By: {author}</p>
+        <span>|</span>
+        <p>Published: {publishedDate}</p>
+        <span>|</span>
+        <p>In: {publisher}</p>
+        <span>|</span>
+        <p>DOI: {doi}</p>
+      </div>
+      <a
+        href={link}
+        target="_blank"
+        className="lg:hidden mt-5 m-auto sm:mr-0 sm:ml-auto"
+      >
+        <Button>Read the Full Article ↗</Button>
       </a>
-    </div>
+    </Card>
   );
 };
