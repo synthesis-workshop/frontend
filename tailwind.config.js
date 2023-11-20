@@ -11,9 +11,6 @@ export default {
         pink: "#94498C",
         yellow: "#B6A362",
       },
-      backgroundImage: {
-        playvideoButton: "url('./src/assets/images/play_button_000.svg')",
-      },
     },
     fontFamily: {
       text: ["Inter", "Helvetica", "Arial", "sans"],
