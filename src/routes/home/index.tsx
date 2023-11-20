@@ -1,10 +1,10 @@
 // routes/home/index.tsx
-
-import { Hero } from "../../components";
-
+import { Hero } from "./hero";
 
 export const Home = () => {
-  return <div>
-    <Hero />
-  </div>;
+  return (
+    <div>
+      <Hero />
+    </div>
+  );
 };
