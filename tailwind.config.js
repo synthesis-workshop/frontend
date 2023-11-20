@@ -38,13 +38,13 @@ export default {
         "32px": "32px",
         "16px": "16px",
       },
-      backgroundImage: {
-        'playvideoButton': "url('./src/assets/images/play_button_000.svg')"
-      },
     },
     fontFamily: {
       text: ["Inter", "Helvetica", "Arial", "sans"],
       title: ["Esteban", "cursive"],
+    },
+    fontSize: {
+      "card-title": "28px",
     },
   },
   plugins: [],
