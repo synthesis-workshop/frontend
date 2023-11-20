@@ -38,13 +38,13 @@ export default {
         "32px": "32px",
         "16px": "16px",
       },
+      fontSize: {
+        "card-title": "28px",
+      },
     },
     fontFamily: {
       text: ["Inter", "Helvetica", "Arial", "sans"],
       title: ["Esteban", "cursive"],
-    },
-    fontSize: {
-      "card-title": "28px",
     },
   },
   plugins: [],

@@ -2,6 +2,7 @@
 import { EpisodeCard } from "../../components";
 import { EpisodeCategory } from "../../types";
 import EpisodesSection from "./episodes-section";
+import { Hero } from "./hero";
 
 export const Home = () => {
   const cards: React.ReactElement[] = [
@@ -50,6 +51,7 @@ export const Home = () => {
   ];
   return (
     <div>
+      <Hero />
       <EpisodesSection cards={cards}></EpisodesSection>
       {/* <div className=" sm:text-green md:text-pink lg:text-blue xl:text-yellow"> */}
       {/* Ahmed */}
