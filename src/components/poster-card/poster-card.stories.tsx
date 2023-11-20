@@ -10,7 +10,7 @@ export default meta;
 
 type Story = StoryObj<typeof PosterCard>;
 
-export const Base: Story = {
+export const Default: Story = {
   args: {
     title:
       "NaTMP Catalyzed Perdeuteration of Unactivated Arenes via Hydrogen Isotope Exchange",
