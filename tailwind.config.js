@@ -11,13 +11,13 @@ export default {
         pink: "#94498C",
         yellow: "#B6A362",
       },
-      fontFamily: {
-        text: ["Inter", "Helvetica", "Arial", "sans"],
-        title: ["Esteban", "cursive"],
-      },
-      fontSize: {
-        "card-title": "28px",
-      },
+    },
+    fontFamily: {
+      text: ["Inter", "Helvetica", "Arial", "sans"],
+      title: ["Esteban", "cursive"],
+    },
+    fontSize: {
+      "card-title": "28px",
     },
   },
   plugins: [],
