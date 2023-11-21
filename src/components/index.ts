@@ -6,4 +6,5 @@ export * from "./poster-card";
 export * from "./problem-set-card";
 export * from "./publication-card";
 export * from "./team-member";
+export * from "./video-card";
 export * from "./video-player";
