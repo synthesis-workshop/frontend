@@ -2,7 +2,7 @@ import { Button } from "../button";
 import { Form } from "../reusable-form/Form";
 import { SingleLineTextInput } from "../reusable-form/SingleLineTextInput";
 
-export const Searchbar = ({ props: SingleLineTextInputProps }) => {
+export const Searchbar = () => {
   return (
     <div>
       <Form formClassname="searchbar__form">
