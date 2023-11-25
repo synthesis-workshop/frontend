@@ -21,9 +21,12 @@
   "dependencies": {
     "-": "^0.0.1",
     "@apollo/client": "^3.8.5",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
     "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^2.0.18",
     "@keystone-6/document-renderer": "^1.1.2",
+    "@mui/material": "^5.14.18",
     "class-variance-authority": "^0.7.0",
     "classnames": "^2.3.2",
     "graphql": "^16.8.1",
