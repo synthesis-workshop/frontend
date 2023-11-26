@@ -23,6 +23,7 @@
     "@apollo/client": "^3.8.5",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@fortawesome/fontawesome-svg-core": "^6.4.2",
     "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^2.0.18",
     "@keystone-6/document-renderer": "^1.1.2",
