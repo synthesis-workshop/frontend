@@ -71,16 +71,12 @@ export const EpisodesSection = () => {
           <p className=" font-title text-3xl sm:pb-5">Explore our episodes</p>
         </div>
         <div className="font-text flex md:flex-row gap-4 md:pb-0 sm:pb-8 sm:flex-col">
-          {/* <button className="text-base font-text">Category: All</button> */}
           <Example
             title={"Category"}
             list={CategoryList}
             changeMenu={changeCategory}
           />
           <Example title={"Sort"} list={SortList} changeMenu={changeSort} />
-          {/* <button className="font-text text-base ">
-            Sort: Date added ascending
-          </button> */}
         </div>
       </div>
       {loading ? (
