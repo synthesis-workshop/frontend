@@ -38,10 +38,10 @@ export const EpisodeCard = ({
         "pb-0 pr-0 pt-5 pl-5 cursor-pointer"
       )}
     >
-      <h1 className="text-white text-card-title leading-8 font-title font-normal mb-5">
+      <h1 className="text-white text-card-title leading-8 font-title font-normal h-2/6">
         {title}
       </h1>
-      <div className="flex flex-col gap-6 bg-white rounded-tl-xl px-3 py-4">
+      <div className="flex flex-col gap-6 bg-white rounded-tl-xl px-3 py-4 h-4/6 justify-between">
         <p className="text-base leading-5 text-ellipsis overflow-hidden text-primary line-clamp-5">
           <DocumentRenderer document={description.document} />
         </p>
