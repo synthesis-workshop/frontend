@@ -1,7 +1,7 @@
 import { Listbox, Transition } from "@headlessui/react";
-import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
+import { CheckIcon } from "@heroicons/react/20/solid";
 import { Fragment, PropsWithChildren, useState } from "react";
-
+import arrow from "../../images/caret-down-solid.svg";
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
@@ -36,8 +36,9 @@ export const Example = ({
                 </span>
               </span>
               <span className="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
-                <ChevronUpDownIcon
-                  className="h-5 w-5 text-gray-400"
+                <img
+                  src={arrow}
+                  className="h-3 w-3 text-gray-400"
                   aria-hidden="true"
                 />
               </span>
