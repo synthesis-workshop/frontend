@@ -7,9 +7,15 @@ export default {
     extend: {
       colors: {
         primary: "#3A3C46",
-        secondary: "#FFFFFF",
         accent: "#F6C825",
         greyBg: "#F0F0F0",
+        green: "#4FA161",
+        blue: "#575AA4",
+        pink: "#94498C",
+        yellow: "#B6A362",
+      },
+      fontSize: {
+        "card-title": "28px",
       },
       fontFamily: {
         text: ["Inter", "Helvetica", "Arial", "sans"],

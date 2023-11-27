@@ -2,7 +2,7 @@ import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import "../src/global/default.css";
+import "./global/default.css";
 import { Courses, Episodes, Home } from "./routes";
 
 const client = new ApolloClient({
@@ -26,5 +26,5 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         </Routes>
       </BrowserRouter>
     </ApolloProvider>
-  </React.StrictMode>,
+  </React.StrictMode>
 );
