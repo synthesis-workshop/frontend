@@ -17,11 +17,7 @@ interface Props {
   title: string;
 }
 
-export const Example = ({
-  list,
-  changeMenu,
-  title,
-}: PropsWithChildren<Props>) => {
+export const Menu = ({ list, changeMenu, title }: PropsWithChildren<Props>) => {
   const [selected, setSelected] = useState(list[0]);
   // fun;
   return (
@@ -107,4 +103,4 @@ export const Example = ({
   );
 };
 
-export default Example;
+export default Menu;

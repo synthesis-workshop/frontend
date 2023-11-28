@@ -4,7 +4,7 @@ import { useMediaQuery } from "react-responsive";
 import { Link } from "react-router-dom";
 import { Episode, OrderDirection } from "../../__generated__/graphql";
 import { EpisodeCard, Loading } from "../../components";
-import Example from "../../components/menu/menu";
+import Menu from "../../components/drop-down-menu/drop-down-menu";
 import { GET_EPISODES } from "../../graphql";
 
 const CategoryList = [
@@ -71,12 +71,12 @@ export const EpisodesSection = () => {
           <p className=" font-title text-3xl sm:pb-5">Explore our episodes</p>
         </div>
         <div className="font-text flex md:flex-row gap-4 md:pb-0 sm:pb-8 sm:flex-col">
-          <Example
+          <Menu
             title={"Category"}
             list={CategoryList}
             changeMenu={changeCategory}
           />
-          <Example title={"Sort"} list={SortList} changeMenu={changeSort} />
+          <Menu title={"Sort"} list={SortList} changeMenu={changeSort} />
         </div>
       </div>
       {loading ? (
