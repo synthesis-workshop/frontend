@@ -4,7 +4,7 @@ import { ProblemSets } from "./problem-sets";
 
 export const Home = () => {
   return (
-    <div>
+    <div className="w-screen">
       <Hero />
       <ProblemSets />
     </div>
