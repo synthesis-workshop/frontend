@@ -21,7 +21,7 @@ export const Hero: React.FC = () => {
   );
 
   return (
-    <div className="bg-primary relative w-screen mb-[238px]">
+    <div className="bg-primary relative mb-[238px]">
       <img
         className="absolute h-[407px] lg:h-[398px] md:h-[347px] w-[248px] lg:w-[654px] md:w-[577px] bottom-0 -left-[100px]"
         src={purpleBlur}
