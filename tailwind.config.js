@@ -1,6 +1,10 @@
+import HeadlessTailwindPlugin from "@headlessui/tailwindcss";
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{html,js,jsx,ts,tsx}"],
+  mode: "jit",
+  purge: ["./public/**/*.html", "./src/**/*.{js,jsx,ts,tsx,vue}"],
   theme: {
     extend: {
       colors: {
@@ -14,11 +18,11 @@ export default {
       fontSize: {
         "card-title": "28px",
       },
-    },
-    fontFamily: {
-      text: ["Inter", "Helvetica", "Arial", "sans"],
-      title: ["Esteban", "cursive"],
+      fontFamily: {
+        text: ["Inter", "Helvetica", "Arial", "sans"],
+        title: ["Esteban", "cursive"],
+      },
     },
   },
-  plugins: [],
+  plugins: [HeadlessTailwindPlugin({ prefix: "ui" })],
 };

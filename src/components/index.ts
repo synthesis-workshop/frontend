@@ -1,6 +1,7 @@
 export * from "./button";
 export * from "./card";
 export * from "./download-item";
+export * from "./expandable-section";
 export * from "./loading";
 export * from "./poster-card";
 export * from "./problem-set-card";
