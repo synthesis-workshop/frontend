@@ -15,7 +15,7 @@ export const TeamMember: React.FC<TeamMemberProps> = ({
   imageUrl,
 }) => {
   return (
-    <div className={cx("flex items-center gap-5 p-2", className)}>
+    <div className={cx("flex items-center gap-5 box-border p-2", className)}>
       <img
         className="w-20 h-20 rounded-full object-cover"
         src={imageUrl || "https://via.placeholder.com/80x108"}
