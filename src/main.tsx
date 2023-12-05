@@ -3,7 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./global/default.css";
-import { Courses, Episodes, Home } from "./routes";
+import { Courses, Episodes, Home, ProblemSetsPage } from "./routes";
 
 const client = new ApolloClient({
   uri:
@@ -23,6 +23,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           <Route path="/" element={<Home />} />
           <Route path="/episodes" element={<Episodes />} />
           <Route path="/courses" element={<Courses />} />
+          <Route path="/problem-sets" element={<ProblemSetsPage />} />
         </Routes>
       </BrowserRouter>
     </ApolloProvider>
