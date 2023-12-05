@@ -2,7 +2,6 @@ import { useQuery } from "@apollo/client";
 import React from "react";
 import { Loading, Button, ProblemSetCard } from "../../components";
 import { GET_PROBLEM_SETS } from "../../graphql/index.js";
-import { Link } from "react-router-dom";
 
 
 export const ProblemSets: React.FC = () => {
@@ -13,15 +12,12 @@ export const ProblemSets: React.FC = () => {
       orderBy: {
         downloadCount: "desc",
       },
-      take: isMobile ? 3 : 6,
+      take: isMobile ? 6 : 18,
     },
   });
 
   return (
-    <div className="bg-white/80 mx-auto w-[343px] md:w-11/12 max-w-[1280px] flex flex-col items-center">
-      <div className="">
-        <h2 className="font-title text-[32px] mb-3">Problem Sets</h2>
-        <p className="font-text text-lg mb-8 text-primary/80 md:max-w-xl">Problem sets are small tasks in PDF format that will help you to practice and understand concepts of our episodes</p>
+    <div className="bg-white/80 mx-2 w-screen max-w-[1280px] items-center">
         <div className="flex flex-col items-center">
           
           {loading ? (
@@ -33,12 +29,11 @@ export const ProblemSets: React.FC = () => {
               ))}
               </div>
           )}
-          <Link to="/problem-sets">
-          <Button className="mt-10" variant="primary">Show All Problem Sets</Button>
-          </Link>
+          <Button className="mt-10" variant="primary">Show More Problem Sets</Button>
         </div>
-      </div>
     </div>
   );
 };
+
+
 
