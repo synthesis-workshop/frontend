@@ -1,11 +1,10 @@
-import React from "react";
-import { useQuery } from "@apollo/client";
+
 import { Loading, Button, ProblemSetCard } from "../../components";
 
 
 
 export const Episodes = () => {
-  const isMobile = window.innerWidth < 768;
+  
 
   
 
