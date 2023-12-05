@@ -1,5 +1,6 @@
 import cx from "classnames";
 import type { PropsWithChildren } from "react";
+import { twMerge } from "tailwind-merge";
 
 interface Props {
   variant?: "dark" | "light";
@@ -13,10 +14,12 @@ export const Card = ({
 }: PropsWithChildren<Props>) => {
   return (
     <article
-      className={cx(
-        variant === "dark" ? "bg-primary" : "bg-white",
-        "flex flex-col p-5 rounded-xl relative",
-        className
+      className={twMerge(
+        cx(
+          variant === "dark" ? "bg-primary" : "bg-white",
+          "flex flex-col p-5 rounded-xl relative",
+          className,
+        ),
       )}
     >
       {children}
