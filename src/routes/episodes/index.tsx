@@ -7,14 +7,7 @@ import { Loading, Button, ProblemSetCard } from "../../components";
 export const Episodes = () => {
   const isMobile = window.innerWidth < 768;
 
-  const { loading, data } = useQuery(GET_PROBLEM_SETS,{
-    variables: {
-      orderBy: {
-        downloadCount: "desc",
-      },
-      take: isMobile ? 3 : 6,
-    },
-  });
+  
 
 
   return <div className="bg-grey mx-auto w-[343px] md:w-11/12 max-w-[1280px] flex flex-col items-center">
