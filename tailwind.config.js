@@ -6,6 +6,7 @@ export default {
   mode: "jit",
   purge: ["./public/**/*.html", "./src/**/*.{js,jsx,ts,tsx,vue}"],
   theme: {
+    screens: { sm: "375px", md: "768px", lg: "1024px", xl: "1280px" },
     extend: {
       colors: {
         primary: "#3A3C46",
