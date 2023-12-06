@@ -4,7 +4,7 @@ import { Hero } from "./hero";
 
 export const Home = () => {
   return (
-    <div className="h-screen flex flex-col items-center">
+    <div className="flex flex-col items-center bg-black/[.06]">
       <Hero />
       <EpisodesSection />
     </div>

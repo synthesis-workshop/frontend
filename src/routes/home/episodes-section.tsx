@@ -1,9 +1,10 @@
 import { useQuery } from "@apollo/client";
+import cx from "classnames";
 import { useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import { Link } from "react-router-dom";
 import { Episode, OrderDirection } from "../../__generated__/graphql";
-import { EpisodeCard, Loading } from "../../components";
+import { Button, EpisodeCard, Loading } from "../../components";
 import Menu from "../../components/drop-down-menu/drop-down-menu";
 import { GET_EPISODES } from "../../graphql";
 
@@ -63,14 +64,17 @@ export const EpisodesSection = () => {
   });
 
   return (
-    <div className={`pt-36 max-w-[1280px] mx-10`}>
+    <div className="flex flex-col max-w-[1280px] mt-[238px] md:mt-[167px] mx-4 md:mx-5">
       <div
-        className={`w-full flex md:flex-row justify-between md:pt-1 md:items-start sm:items-center sm:flex-col sm:pt-36`}
+        className={cx(
+          "w-full flex flex-col justify-between items-center pb-8 gap-5",
+          "md:flex-row md:items-start md:gap-0",
+        )}
       >
-        <div>
-          <p className=" font-title text-3xl sm:pb-5">Explore our episodes</p>
-        </div>
-        <div className="font-text flex md:flex-row gap-4 md:pb-0 sm:pb-8 sm:flex-col">
+        <h2 className="font-title text-primary text-3xl">
+          Explore our episodes
+        </h2>
+        <div className="font-text flex md:flex-row gap-4 sm:flex-col">
           <Menu
             title={"Category"}
             list={CategoryList}
@@ -86,20 +90,15 @@ export const EpisodesSection = () => {
       ) : (
         <>
           <div
-            className={`grid lg:grid-cols-3 lg:gap-5 auto-rows-[360px] md:grid-cols-2 md:gap-3 sm:grid-cols-1`}
+            className={`grid lg:grid-cols-3 lg:gap-5 auto-rows-[360px] gap-5 md:grid-cols-2 md:gap-3 sm:grid-cols-1`}
           >
             {data?.episodes?.map(({ id, ...episode }) => (
               <EpisodeCard key={id} {...(episode as Required<Episode>)} />
             ))}
           </div>
-          {/* button */}
-          <div className="flex justify-center pt-10">
-            <Link to="/episodes">
-              <button className="border-2 border-primary rounded-lg w-56 h-13">
-                Show All Episodes
-              </button>
-            </Link>
-          </div>
+          <Link to="/episodes" className="mt-10 mx-auto">
+            <Button>Show All Episodes</Button>
+          </Link>
         </>
       )}
     </div>
