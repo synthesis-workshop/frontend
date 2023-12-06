@@ -1,4 +1,6 @@
 import { PlayIcon } from "@heroicons/react/24/solid";
+import type { DocumentRendererProps } from "@keystone-6/document-renderer";
+import { DocumentRenderer } from "@keystone-6/document-renderer";
 import cx from "classnames";
 import flaskBlue from "../../images/flask-blue.svg";
 import flaskGreen from "../../images/flask-green.svg";
@@ -9,9 +11,9 @@ import { Card } from "../card";
 
 interface Props {
   title: string;
-  description: string;
+  description: DocumentRendererProps;
   episodeNumber: number;
-  category: EpisodeCategory;
+  category: string;
   runtime: string;
 }
 
@@ -33,15 +35,15 @@ export const EpisodeCard = ({
           "bg-gradient-to-r hover:from-primary hover:to-pink",
         category === EpisodeCategory.CULTURE_OF_CHEMISTRY &&
           "bg-gradient-to-r hover:from-primary hover:to-yellow",
-        "pb-0 pr-0 pt-5 pl-5 cursor-pointer"
+        "pb-0 pr-0 pt-5 pl-5 cursor-pointer",
       )}
     >
-      <h1 className="text-white text-card-title leading-8 font-title font-normal mb-5">
+      <h1 className="text-white text-card-title leading-8 font-title font-normal h-2/6">
         {title}
       </h1>
-      <div className="flex flex-col gap-6 bg-white rounded-tl-xl px-3 py-4">
+      <div className="flex flex-col gap-6 bg-white rounded-tl-xl rounded-br-xl px-3 py-4 h-4/6 justify-between">
         <p className="text-base leading-5 text-ellipsis overflow-hidden text-primary line-clamp-5">
-          {description}
+          <DocumentRenderer document={description.document} />
         </p>
 
         <div className="flex flex-row justify-between items-center text-sm text-primary/80">
