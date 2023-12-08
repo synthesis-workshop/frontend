@@ -1,5 +1,4 @@
 import { PlayIcon } from "@heroicons/react/24/solid";
-import type { DocumentRendererProps } from "@keystone-6/document-renderer";
 import { DocumentRenderer } from "@keystone-6/document-renderer";
 import cx from "classnames";
 import flaskBlue from "../../images/flask-blue.svg";
@@ -8,14 +7,7 @@ import flaskPink from "../../images/flask-pink.svg";
 import flaskYellow from "../../images/flask-yellow.svg";
 import { EpisodeCategory } from "../../types";
 import { Card } from "../card";
-
-interface Props {
-  title: string;
-  description: DocumentRendererProps;
-  episodeNumber: number;
-  category: string;
-  runtime: string;
-}
+import { Episode } from "../../__generated__/graphql";
 
 export const EpisodeCard = ({
   title,
@@ -23,7 +15,7 @@ export const EpisodeCard = ({
   episodeNumber,
   category,
   runtime,
-}: Props) => {
+}: Episode) => {
   return (
     <Card
       className={cx(
@@ -43,7 +35,7 @@ export const EpisodeCard = ({
       </h1>
       <div className="flex flex-col gap-6 bg-white rounded-tl-xl rounded-br-xl px-3 py-4 h-4/6 justify-between">
         <p className="text-base leading-5 text-ellipsis overflow-hidden text-primary line-clamp-5">
-          <DocumentRenderer document={description.document} />
+          <DocumentRenderer document={description?.document} />
         </p>
 
         <div className="flex flex-row justify-between items-center text-sm text-primary/80">
