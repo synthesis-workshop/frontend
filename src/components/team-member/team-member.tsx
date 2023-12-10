@@ -18,7 +18,7 @@ export const TeamMember: React.FC<TeamMemberProps> = ({
   return (
     <div
       className={cx(
-        "flex items-center gap-5 box-border p-2 max-h-24",
+        "flex items-center gap-5 box-border p-2 max-h-24 cursor-pointer hover:bg-white",
         className
       )}
     >
