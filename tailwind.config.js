@@ -18,6 +18,7 @@ export default {
       },
       fontSize: {
         "card-title": "28px",
+        "section-title": "32px"
       },
       fontFamily: {
         text: ["Inter", "Helvetica", "Arial", "sans"],
