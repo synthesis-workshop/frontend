@@ -36,10 +36,8 @@ export const ProblemSets: React.FC = () => {
               <ProblemSetCard key={problemSet.id} problemSet={problemSet} />
             ))}
           </div>
-          <Link to="/problem-sets">
-            <Button className="mt-10 mx-auto" variant="primary">
-              Show All Problem Sets
-            </Button>
+          <Link to="/problem-sets" className="mt-10 mx-auto">
+            <Button variant="primary">Show All Problem Sets</Button>
           </Link>
         </>
       )}

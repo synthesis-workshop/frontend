@@ -12,7 +12,20 @@ const client = new ApolloClient({
       ? //created environment variables must be prefixed by VITE
         "https://synthesis-workshop-backend-97f537f332bd.herokuapp.com/api/graphql"
       : "http://localhost:8080/api/graphql",
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache({
+    typePolicies: {
+      Query: {
+        fields: {
+          problemSets: {
+            keyArgs: ["orderBy", "take"],
+            merge(existing = [], incoming) {
+              return [...existing, ...incoming];
+            },
+          },
+        },
+      },
+    },
+  }),
 });
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
