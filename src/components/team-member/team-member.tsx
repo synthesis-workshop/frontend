@@ -21,6 +21,7 @@ export const TeamMember: React.FC<TeamMemberProps> = ({
         "flex items-center gap-5 box-border p-2 max-h-24 cursor-pointer hover:bg-white",
         className
       )}
+      onClick={() => console.log({ name })}
     >
       <img
         className="w-20 h-20 rounded-full object-cover"
