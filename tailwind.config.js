@@ -2,6 +2,7 @@
 export default {
   content: ["./index.html", "./src/**/*.{html,js,jsx,ts,tsx}"],
   theme: {
+    screens: { sm: "375px", md: "768px", lg: "1024px", xl: "1280px" },
     extend: {
       colors: {
         primary: "#3A3C46",
@@ -10,6 +11,8 @@ export default {
         blue: "#575AA4",
         pink: "#94498C",
         yellow: "#B6A362",
+        grey: "#F0F0F0",
+        white: "#FFFFFF",
       },
       fontSize: {
         "card-title": "28px",

@@ -1,126 +1,71 @@
-// import { TeamMemberProps } from "../../components";
-
+import { useQuery } from "@apollo/client";
 import { TeamMember } from "../../components";
-
-// create data
-// const data: TeamMemberProps[] = [
-//   {
-//     className: "first",
-//     name: "Dr. Matthew Horwitz",
-//     title: "Founder and Editor-in-chief",
-//   },
-//   {
-//     className: "third",
-//     name: "2",
-//     title: "Founder and Editor-in-chief",
-//   },
-//   {
-//     className: "second",
-//     name: "3",
-//     title: "Founder and Editor-in-chief",
-//   },
-//   {
-//     className: "first",
-//     name: "4",
-//     title: "Founder and Editor-in-chief",
-//   },
-//   {
-//     className: "first",
-//     name: "5",
-//     title: "Founder and Editor-in-chief",
-//   },
-//   {
-//     className: "third",
-//     name: "6",
-//     title: "Founder and Editor-in-chief",
-//   },
-//   {
-//     className: "first",
-//     name: "7",
-//     title: "Founder and Editor-in-chief",
-//   },
-//   {
-//     className: "third",
-//     name: "8",
-//     title: "Founder and Editor-in-chief",
-//   },
-// ];
-
-const data = [
-  {
-    className: "first",
-    name: "Dr. Matthew Horwitz",
-    title: "Founder and Editor-in-chief",
-  },
-  {
-    className: "third",
-    name: "2",
-    title: "Founder and Editor-in-chief",
-  },
-  {
-    className: "second",
-    name: "3",
-    title: "Founder and Editor-in-chief",
-  },
-  {
-    className: "first",
-    name: "4",
-    title: "Founder and Editor-in-chief",
-  },
-  {
-    className: "first",
-    name: "5",
-    title: "Founder and Editor-in-chief",
-  },
-  {
-    className: "third",
-    name: "6",
-    title: "Founder and Editor-in-chief",
-  },
-  {
-    className: "first",
-    name: "7",
-    title: "Founder and Editor-in-chief",
-  },
-  {
-    className: "third",
-    name: "8",
-    title: "Founder and Editor-in-chief",
-  },
-];
-
-// const renderData = () => {
-//   return <div>Ahmed</div>;
-// };
+import { GET_TEAM } from "../../graphql";
+import questionmark from "../../images/questionmark.svg";
 
 export const TeamMembersSection = () => {
-  //   renderData();
+  const { data } = useQuery(GET_TEAM, {
+    variables: {
+      orderBy: [
+        {
+          group: "asc",
+        },
+      ],
+    },
+  });
+
+  console.log(data?.teamMembers);
+
+  const render = (groupnum) => {
+    return (
+      <div
+        className={`grid xl:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 auto-cols-w-[387px] sm:auto-rows-h-24 gap-5 pd-1`}
+      >
+        {data?.teamMembers
+          .filter((item) => item?.group === groupnum)
+          .map((item, key) => (
+            <TeamMember key={key} {...item} />
+          ))}
+      </div>
+    );
+  };
+
   return (
-    <div className={`pt-36 mx-10 w-full max-w-screen-xl`}>
-      <p className=" font-title text-3xl pb-8 ">Who We Are</p>
-      <div className="flex flex-col gap-14">
-        <div
-          className={`grid grid-cols-3 gap-5 auto-cols-[387px] auto-rows-h-24 pd-1`}
-        >
-          {data.slice(0, 4).map((item) => (
-            <TeamMember {...item} />
-          ))}
+    <div className={`md:pt-36 md:mx-10 md:max-w-[1200px] sm:pt-72 bg-grey`}>
+      <div className="flex flex-col md:items-start sm:items-center pb-14">
+        <p className=" font-title text-3xl pb-8 ">Who We Are</p>
+        <div className="flex flex-col md:gap-14 sm:gap-5">
+          {render(1)}
+          {render(2)}
+          {render(3)}
         </div>
+      </div>
+      {/* paragraph */}
+      <div className="md:min-h-60 bg-white flex md:flex-row md:items-start md:justify-evenly md:py-8 sm:flex-col sm:px-4 sm:py-4 sm:max-w-80 sm:gap-4">
         <div
-          className={`grid grid-cols-3 gap-5 auto-cols-[387px] auto-rows-h-24 pd-1`}
+          className={`md:w-24 md:h-24 sm:h-20 sm:w-20 bg-primary rounded-full flex items-center justify-center `}
         >
-          {data.slice(3, 6).map((item) => (
-            <TeamMember {...item} />
-          ))}
+          <img className={`md:w-3.5 h-9`} src={questionmark} />
         </div>
-        <div
-          className={`grid grid-cols-3 gap-5 auto-cols-[387px] auto-rows-h-24 pd-1`}
-        >
-          {data.slice(6, 8).map((item) => (
-            <TeamMember {...item} />
-          ))}
+        <div className={`md:w-10/12`}>
+          <div className="md:pb-8 sm:pb-4">
+            <div className={`font-title md:text-3xl sm:text-2xl`}>
+              Become our next teammate!
+            </div>
+            <div className={`font-title md:text-3xl sm:text-2xl`}>
+              If you are passionate about chemistry like us, and want to
+              contribute to our project, reach out to synthesisworkshopvideos
+              <div>@gmail.com</div>
+            </div>
+          </div>
+
+          <div>
+            <div className={`font-text text-lg text-[#3A3C46CC]`}>
+              We are looking for researchers, video editors, social media
+              managers, and so on...
+            </div>
+          </div>
         </div>
-        <div className="h-60 bg-secondry">Safy</div>
       </div>
     </div>
   );
