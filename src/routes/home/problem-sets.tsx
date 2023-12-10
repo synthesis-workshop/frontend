@@ -1,6 +1,7 @@
 import { useQuery } from "@apollo/client";
 import React from "react";
 import { useMediaQuery } from "react-responsive";
+import { Link } from "react-router-dom";
 import { Loading, Button, ProblemSetCard } from "../../components";
 import { GET_PROBLEM_SETS } from "../../graphql";
 import { OrderDirection } from "../../__generated__/graphql";
@@ -35,9 +36,9 @@ export const ProblemSets: React.FC = () => {
               <ProblemSetCard key={problemSet.id} problemSet={problemSet} />
             ))}
           </div>
-          <Button className="mt-10 mx-auto" variant="primary">
-            Show All Problem Sets
-          </Button>
+          <Link to="/problem-sets" className="mt-10 mx-auto">
+            <Button variant="primary">Show All Problem Sets</Button>
+          </Link>
         </>
       )}
     </div>

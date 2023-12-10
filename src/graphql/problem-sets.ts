@@ -1,8 +1,8 @@
 import { gql } from "../__generated__/gql";
 
 export const GET_PROBLEM_SETS = gql(`
-  query GetProblemSets($orderBy: [ProblemSetOrderByInput!]!, $take: Int) {
-    problemSets(orderBy: $orderBy, take: $take) {
+  query GetProblemSets($orderBy: [ProblemSetOrderByInput!]!, $take: Int, $skip: Int) {
+    problemSets(orderBy: $orderBy, take: $take, skip: $skip) {
       downloadCount
       episode {
         id
@@ -21,5 +21,6 @@ export const GET_PROBLEM_SETS = gql(`
       title
       id
     }
+    problemSetsCount
   }
 `);
