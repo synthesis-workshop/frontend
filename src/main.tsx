@@ -10,7 +10,7 @@ const client = new ApolloClient({
     //in Vite, use special object `import.meta.env` to access enviroment variables
     import.meta.env.MODE === "production"
       ? //created environment variables must be prefixed by VITE
-        import.meta.env.VITE_API_URI
+        "https://synthesis-workshop-backend-97f537f332bd.herokuapp.com/api/graphql"
       : "http://localhost:8080/api/graphql",
   cache: new InMemoryCache(),
 });
@@ -26,6 +26,5 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         </Routes>
       </BrowserRouter>
     </ApolloProvider>
-  </React.StrictMode>
+  </React.StrictMode>,
 );
-                                

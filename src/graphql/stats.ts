@@ -1,6 +1,6 @@
-import { gql } from "@apollo/client";
+import { gql } from "../__generated__/gql";
 
-export const GET_STATS = gql`
+export const GET_STATS = gql(`
   query GetStats {
     meta {
       guestsCount
@@ -9,4 +9,4 @@ export const GET_STATS = gql`
       viewsCount
     }
   }
-`;
+`);

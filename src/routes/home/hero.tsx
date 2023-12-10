@@ -1,7 +1,8 @@
 import { useQuery } from "@apollo/client";
+import cx from "classnames";
 import React, { useMemo } from "react";
-import greyBlur from "../../assets/grey-blur.png";
-import purpleBlur from "../../assets/purple-blur.png";
+import greyBlur from "../../images/grey-blur.png";
+import purpleBlur from "../../images/purple-blur.png";
 import { Loading } from "../../components";
 import { GET_STATS } from "../../graphql";
 import flaskBlue from "../../images/flask-blue.svg";
@@ -17,23 +18,25 @@ export const Hero: React.FC = () => {
       { label: "Featured Guests", value: data?.meta?.guestsCount ?? 0 },
       { label: "Subscribers", value: data?.meta?.subscriberCount ?? 0 },
     ],
-    [data]
+    [data],
   );
 
   return (
-    <div className="bg-primary relative mb-[238px]">
-      <img
-        className="absolute h-[407px] lg:h-[398px] md:h-[347px] w-[248px] lg:w-[654px] md:w-[577px] bottom-0 -left-[100px]"
-        src={purpleBlur}
-        alt="left accent blur"
-      />
-      <img
-        className="absolute h-[227px] md:h-[398px] w-[377px] md:w-[654px] -top-[33px] md:-top-[68px] -right-[128px] md:-right-[100px] md:-right-[150px] -rotate-12"
-        src={greyBlur}
-        alt="right accent blur"
-      />
+    <div className="relative w-screen">
+      <div className="overflow-hidden absolute w-full h-full bg-primary">
+        <img
+          className="absolute h-[407px] lg:h-[398px] md:h-[347px] w-[248px] lg:w-[654px] md:w-[577px] bottom-0 -left-[100px]"
+          src={purpleBlur}
+          alt="left accent blur"
+        />
+        <img
+          className="absolute h-[227px] md:h-[398px] w-[377px] md:w-[654px] -top-[33px] md:-top-[68px] -right-[128px] md:-right-[100px] -rotate-12"
+          src={greyBlur}
+          alt="right accent blur"
+        />
+      </div>
 
-      <div className="flex flex-col items-center py-[152px] text-center mx-4 md:mx-10">
+      <div className="flex flex-col items-center py-[152px] text-center mx-4 relative z-10">
         <h1 className="flex flex-col text-white/60 text-4xl md:text-5xl font-medium font-title">
           Explore the art
           <div className="flex items-center gap-2">
@@ -52,7 +55,12 @@ export const Hero: React.FC = () => {
           organic chemistry and is growing into an educational online project
         </div>
 
-        <div className="flex flex-wrap gap-10 md:gap-20 bg-white rounded-3xl w-[343px] max-w-[1280px] md:w-11/12 absolute -bottom-[220px] md:-bottom-[80px] py-8 md:py-10 text-center justify-center shadow-2xl">
+        <div
+          className={cx(
+            "flex flex-wrap gap-10 bg-white rounded-3xl w-[343px] max-w-[1280px] absolute -bottom-[188px] py-8 text-center justify-center shadow-2xl",
+            "md:gap-20 md:w-11/12 md:-bottom-[80px] md:py-10",
+          )}
+        >
           {loading ? (
             <Loading />
           ) : (
@@ -64,7 +72,9 @@ export const Hero: React.FC = () => {
                 <div className="text-primary text-3xl font-medium font-text">
                   {kFormat(value)}+
                 </div>
-                <div className="text-primary/80 pt-3 font-text">{label}</div>
+                <div className="text-primary/80 pt-3 font-text tracking-tight">
+                  {label}
+                </div>
               </div>
             ))
           )}
