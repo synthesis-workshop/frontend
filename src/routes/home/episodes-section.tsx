@@ -60,6 +60,7 @@ export const EpisodesSection = () => {
         },
       },
       take: isTabletOrMobile ? 3 : 6,
+     
     },
   });
 

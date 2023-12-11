@@ -26,6 +26,12 @@ const client = new ApolloClient({
     typePolicies: {
       Query: {
         fields: {
+          episodes: {
+            keyArgs: ["orderBy", "take"],
+            merge(existing = [], incoming) {
+              return [...existing, ...incoming];
+            },
+          },
           problemSets: {
             keyArgs: ["orderBy", "take"],
             merge(existing = [], incoming) {
