@@ -27,8 +27,8 @@ export const DownloadItem: React.FC<DownloadItemProps> = ({
           Last Updated: {lastUpdated}
         </div>
       </div>
-      <a href={fileDownload.url} download>
-        <Button variant="primary">Download ↓</Button>
+      <a className="max-w-lg max-md:w-full" href={fileDownload.url} download>
+        <Button className="max-md:w-full" variant="primary">Download ↓</Button>
       </a>
     </div>
   );
