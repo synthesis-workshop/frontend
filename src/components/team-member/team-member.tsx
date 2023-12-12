@@ -6,7 +6,6 @@ export interface TeamMemberProps {
   name: string;
   title: string;
   image?: { url };
-  onClickFunction: () => void;
 }
 
 export const TeamMember: React.FC<TeamMemberProps> = ({
@@ -14,7 +13,6 @@ export const TeamMember: React.FC<TeamMemberProps> = ({
   name,
   title,
   image,
-  onClickFunction,
 }) => {
   console.log(image?.url);
   return (
@@ -23,7 +21,7 @@ export const TeamMember: React.FC<TeamMemberProps> = ({
         "flex items-center gap-5 box-border p-2 max-h-24 cursor-pointer hover:bg-white",
         className
       )}
-      onClick={() => onClickFunction}
+      onClick={() => console.log(name)}
     >
       <img
         className="w-20 h-20 rounded-full object-cover"
