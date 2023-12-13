@@ -15,6 +15,10 @@ export default {
         blue: "#575AA4",
         pink: "#94498C",
         yellow: "#B6A362",
+        white: "#FFFFFF",
+        red: "#ff0000",
+        formBackground: "#4d4f58",
+        formBorder: "#83848a"
       },
       fontSize: {
         "card-title": "28px",
@@ -23,6 +27,9 @@ export default {
         text: ["Inter", "Helvetica", "Arial", "sans"],
         title: ["Esteban", "cursive"],
       },
+      maxWidth: {
+        pageContent: "1200px"
+      }
     },
   },
   plugins: [HeadlessTailwindPlugin({ prefix: "ui" })],
