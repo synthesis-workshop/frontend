@@ -13,9 +13,9 @@ interface Props {
 export const ExpandableSection = ({
   children,
   className,
-  variant = "light",
-  expandText = "More",
-  collapseText = "Fewer",
+  variant = "dark",
+  expandText = "More Posters",
+  collapseText = "Fewer Posters",
   preview,
 }: PropsWithChildren<Props>) => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -24,7 +24,7 @@ export const ExpandableSection = ({
     <div className="flex flex-col items-center">
       <div
         className={cx(
-          `py-10 px-8 rounded-lg`,
+          `py-10 px-8 rounded-b-xl`,
           variant === "dark" && "bg-primary",
           variant === "light" && "bg-white",
           className,

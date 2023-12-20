@@ -17,7 +17,7 @@ export const PosterCard = ({
   title,
 }: Props) => {
   return (
-    <div className={cx("flex flex-col font-text", className)}>
+    <div className={cx("flex flex-col font-text justify-between", className)}>
       <img className="rounded w-full" src={image} alt={title} />
       <div className="my-5 leading-normal">
         <h2 className="text-xl text-white line-clamp-3">{title}</h2>
