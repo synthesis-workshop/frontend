@@ -3,7 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./global/default.css";
-import { Courses, Episodes, Home, ProblemSetsPage } from "./routes";
+import { Courses, Episodes, Home, ProblemSetsPage, PublicationsPage } from "./routes";
 
 const client = new ApolloClient({
   uri:
@@ -17,6 +17,12 @@ const client = new ApolloClient({
       Query: {
         fields: {
           problemSets: {
+            keyArgs: ["orderBy", "take"],
+            merge(existing = [], incoming) {
+              return [...existing, ...incoming];
+            },
+          },
+          publications: {
             keyArgs: ["orderBy", "take"],
             merge(existing = [], incoming) {
               return [...existing, ...incoming];
@@ -37,6 +43,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           <Route path="/episodes" element={<Episodes />} />
           <Route path="/courses" element={<Courses />} />
           <Route path="/problem-sets" element={<ProblemSetsPage />} />
+          <Route path="/publications" element={<PublicationsPage />} />
         </Routes>
       </BrowserRouter>
     </ApolloProvider>

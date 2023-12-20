@@ -14,7 +14,7 @@ export const Default: PubStory = {
   args: {
     publication: {
       id: "1",
-      link: "https://www.youtube.com",
+      link: "https://www.youtube.com/",
       title: "A community that educates itself",
       description: {
         document: "Matthew Horwitz, creator of the Synthesis Workshop video podcast, talks to Nature Chemistry about using podcasting as a driver of professional-level education in the chemistry community.",

@@ -17,7 +17,7 @@ export const PublicationsPage: React.FC = () => {
             ],
             take: isTablet ? 3 : 10,
             skip: 0
-          }
+        }
     });
     
 
