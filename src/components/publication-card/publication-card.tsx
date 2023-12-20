@@ -1,49 +1,37 @@
 import { Button } from "../button";
 import { Card } from "../card";
+import { PropsWithChildren } from "react";
+import type { Publication } from "../../__generated__/graphql";
 
-interface PublicationCardProps {
-  className?: string;
-  title: string;
-  description: string;
-  author: string;
-  publishedDate: string;
-  publisher: string;
-  doi: string;
-  link: string;
+interface Props {
+  publication: Publication;
 }
 
 export const PublicationCard = ({
-  className,
-  title,
-  description,
-  author,
-  publishedDate,
-  publisher,
-  doi,
-  link,
-}: PublicationCardProps) => {
+  publication
+}: PropsWithChildren<Props>) => {
   return (
-    <Card variant="light" className={className}>
+    <Card variant="light">
       <div className="flex justify-between">
         <div className="max-w-[680px]">
-          <h2 className="text-2xl font-medium mb-3">{title}</h2>
-          <p className="text-primary mb-8">{description}</p>
+          <h2 className="text-2xl font-medium mb-3">{publication.title}</h2>
+          <p className="text-primary mb-8">{publication.description?.document}</p>
         </div>
-        <a href={link} target="_blank" className="hidden lg:block">
+        <a href={publication.link} target="_blank" className="hidden lg:block">
           <Button>Read the Full Article ↗</Button>
         </a>
       </div>
       <div className="flex flex-wrap gap-x-3 gap-y-1 text-primary/80">
-        <p>By: {author}</p>
+        <p>By: {publication.author}</p>
         <span>|</span>
-        <p>Published: {publishedDate}</p>
+        <p>Published: {publication.publishedDate}</p>
         <span>|</span>
-        <p>In: {publisher}</p>
+        <p>In: {publication.publisher}</p>
         <span>|</span>
-        <p>DOI: {doi}</p>
+        <p>DOI: {publication.doi}</p>
       </div>
       <a
-        href={link}
+        ref={publication.link}
         target="_blank"
         className="lg:hidden mt-5 m-auto sm:mr-0 sm:ml-auto"
       >
