@@ -66,7 +66,7 @@ export const AboutUs: React.FC = () => {
         </h2>
         <div className="flex flex-row gap-3 sm:flex-row sm:flex-wrap sm:justify-center">
           {data?.links?.map((link) => (
-            <a href={link?.link} target="_blank">
+            <a href={`${link?.link}`} target="_blank">
               <Button
                 key={link.id}
                 className="px-[16px] py-[10px] sm:w-[155px] flex items-center"
