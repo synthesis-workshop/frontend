@@ -1,23 +1,14 @@
 import { useQuery } from "@apollo/client";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   DocumentRenderer,
   DocumentRendererProps,
 } from "@keystone-6/document-renderer";
-import { fas } from "@fortawesome/free-solid-svg-icons";
 import { GET_ABOUT_US } from "../../graphql/about-us";
-import {
-  faXTwitter,
-  faFacebook,
-  faLinkedin,
-  faSquareYoutube,
-  faFontAwesome,
-  faYoutube,
-  faInstagramSquare,
-} from "@fortawesome/free-brands-svg-icons";
 import { Button } from "../../components";
-
+import Instagram from "../../images/instagram_ico.svg";
+import Twitter from "../../images/twitter_ico.svg";
+import Linkedin from "../../images/linkedin_ico.svg";
+import Youtube from "../../images/youtube_ico.svg";
 const renderers: DocumentRendererProps["renderers"] = {
   inline: {
     bold: ({ children }) => {
@@ -44,16 +35,6 @@ const renderers: DocumentRendererProps["renderers"] = {
   },
 };
 
-library.add(
-  fas,
-  faXTwitter,
-  faFontAwesome,
-  faSquareYoutube,
-  faFacebook,
-  faLinkedin,
-  faInstagramSquare,
-  faYoutube,
-);
 export const AboutUs: React.FC = () => {
   const { loading, data } = useQuery(GET_ABOUT_US, {
     variables: {},
@@ -65,18 +46,51 @@ export const AboutUs: React.FC = () => {
           Subscribe to Our Socials
         </h2>
         <div className="flex flex-row gap-3 sm:flex-row sm:flex-wrap sm:justify-center">
-          {data?.links?.map((link) => (
-            <a href={`${link?.link}`} target="_blank">
-              <Button
-                key={link.id}
-                className="px-[16px] py-[10px] sm:w-[155px] flex items-center"
-                variant="social"
-              >
-                {/* <FontAwesomeIcon fontSize={20} icon={["fab", link?.logo]} /> */}
-                {link.title}
-              </Button>
-            </a>
-          ))}
+          <a
+            href="https://www.instagram.com/synthesis.workshop/"
+            target="_blank"
+          >
+            <Button
+              className="px-[16px] py-[10px] sm:w-[155px] flex items-center"
+              variant="social"
+            >
+              <img src={Instagram} />
+              Instgram
+            </Button>
+          </a>
+          <a
+            href="https://www.linkedin.com/in/matthew-horwitz-8a00861a4/"
+            target="_blank"
+          >
+            <Button
+              className="px-[16px] py-[10px] sm:w-[155px] flex items-center"
+              variant="social"
+            >
+              <img src={Linkedin} />
+              Linked In
+            </Button>
+          </a>
+          <a href="https://twitter.com/MatthewHorwitz1" target="_blank">
+            <Button
+              className="px-[16px] py-[10px] sm:w-[155px] flex items-center"
+              variant="social"
+            >
+              <img src={Twitter} />
+              Twitter
+            </Button>
+          </a>
+          <a
+            href="https://www.youtube.com/c/SynthesisWorkshopVideos/featured"
+            target="_blank"
+          >
+            <Button
+              className="px-[16px] py-[10px] sm:w-[155px] flex items-center"
+              variant="social"
+            >
+              <img src={Youtube} />
+              YouTube
+            </Button>
+          </a>
         </div>
         <p className="text-primary sm:text-lg  md:h-auto text-center sm:font-[18px]">
           <a href="mailto:synthesisworkshopvideos@gmail.com">
