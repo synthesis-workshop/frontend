@@ -72,7 +72,7 @@ export const AboutUs: React.FC = () => {
                 className="px-[16px] py-[10px] sm:w-[155px] flex items-center"
                 variant="social"
               >
-                <FontAwesomeIcon fontSize={20} icon={["fab", link?.logo]} />
+                {/* <FontAwesomeIcon fontSize={20} icon={["fab", link?.logo]} /> */}
                 {link.title}
               </Button>
             </a>
