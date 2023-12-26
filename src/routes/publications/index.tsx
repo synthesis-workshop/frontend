@@ -22,16 +22,16 @@ export const PublicationsPage: React.FC = () => {
     
 
     return (
-      <div className="bg-grey mx-auto w-[343px] md:w-11/12 max-w-[1280px] flex flex-col items-center mt-10">
-      <div>
-        <h2 className="font-title text-[32px] mb-3">Our Publications</h2>
-        <div className="flex flex-col items-center">
+      <div className="bg-gray w-screen h-screen">
+      <div className="mx-auto w-[343px] md:w-11/12 max-w-[1280px] flex flex-col">
+        <h2 className="font-title text-[32px] mb-10 mt-10">Our Publications</h2>
+        <div className="flex flex-col items-center mb-10">
           {loading ? (
             <Loading />
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div className="grid grid-cols-1 gap-5">
               {data?.publications?.map((publication) => (
-                <PublicationCard key={publication.id} publication={publication} />
+                <PublicationCard key={publication.id} {...publication} />
               ))}
             </div>
           )}
