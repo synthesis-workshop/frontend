@@ -27,10 +27,15 @@ export default {
 const Template = () => {
   //Object of TailWindCSS classes
   const formClasses = {
-    form: "flex bg-primary p-10 gap-10 flex-col w-max font-text max-w-pageContent ",
-    formContainer: "flex w-full gap-10 items-start width-full",
+    form: `flex bg-primary gap-10 flex-col w-max font-text rounded-xl justify-center 
+    xl:max-w-xlPageContent 
+    lg:max-w-lgPageContent lg:p-10
+    md:max-w-mdPageContent md:p-10
+    sm:max-w-smPageContent sm:w-full sm:gap-6 sm:py-6 sm:px-4 `,
+    formContainer:
+      "flex w-full gap-10 items-start width-full sm:flex-col sm:gap-6 ",
     formLabelTypeOne:
-      "w-full flex flex-col justify-center items-start gap-2 text-base tracking-tight text-white",
+      "w-full flex flex-col justify-center items-start gap-2 text-base tracking-tight text-white ",
     formInputTypeOne: `w-auto px-5 py-4 justify-center items-start gap-2.5 self-stretch 
     rounded-lg border-2 border-solid border-formBorder bg-formBackground `,
     formLabelTypeTwo: `w-full flex flex-col justify-center items-start gap-2 text-base 
@@ -39,8 +44,11 @@ const Template = () => {
       border-formBorder bg-formBackground `,
     formInputTypeThree: `w-50% h-44 px-5 py-4 justify-center items-start gap-2.5 
     self-stretch rounded-lg border-2 border-solid border-formBorder bg-formBackground `,
-    formSubmitButton: `flex h-14 px-8 py-2.5 justify-center items-center gap-5 rounded-lg border-2 border-solid 
-    border-white text-white text-lg font-medium hover:duration-500 hover:bg-formBackground hover:cursor-pointer `,
+    formSubmitButton: `flex mx-auto h-14  px-8 py-2.5 justify-center items-center gap-5 rounded-lg border-2 border-solid 
+    border-white text-white text-lg font-medium hover:duration-500 hover:bg-formBackground hover:cursor-pointer 
+    sm:w-full 
+    md:w-52 
+    lg:w-52 `,
     errorClassname: "text-red text-xs ",
   };
 
@@ -172,4 +180,4 @@ const Template = () => {
 };
 
 export const FormComponent = Template.bind({});
-FormComponent.args = {};
+//FormComponent.args = {};
