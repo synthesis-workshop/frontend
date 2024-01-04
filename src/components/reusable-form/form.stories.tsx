@@ -27,10 +27,9 @@ export default {
 const Template = () => {
   //Object of TailWindCSS classes
   const formClasses = {
-    form: `flex bg-primary gap-10 flex-col w-max font-text rounded-xl justify-center 
-    xl:max-w-xlPageContent 
-    lg:max-w-lgPageContent lg:p-10
-    md:max-w-mdPageContent md:p-10
+    form: `flex bg-primary p-10 max-w-xlPageContent  gap-10 flex-col w-max font-text rounded-xl justify-center 
+    lg:max-w-lgPageContent  
+    md:max-w-mdPageContent md:p-10 
     sm:max-w-smPageContent sm:w-full sm:gap-6 sm:py-6 sm:px-4 `,
     formContainer:
       "flex w-full gap-10 items-start width-full sm:flex-col sm:gap-6 ",
