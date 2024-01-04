@@ -1,8 +1,8 @@
 import { useQuery } from "@apollo/client";
 import cx from "classnames";
 import React, { useMemo } from "react";
-import greyBlur from "../../assets/grey-blur.png";
-import purpleBlur from "../../assets/purple-blur.png";
+import greyBlur from "../../images/grey-blur.png";
+import purpleBlur from "../../images/purple-blur.png";
 import { Loading } from "../../components";
 import { GET_STATS } from "../../graphql";
 import flaskBlue from "../../images/flask-blue.svg";

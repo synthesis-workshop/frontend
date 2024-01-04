@@ -1,10 +1,8 @@
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon } from "@heroicons/react/20/solid";
+import cx from "classnames";
 import { Fragment, PropsWithChildren, useState } from "react";
 import arrow from "../../images/caret-down-solid.svg";
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
 
 export interface List {
   name?: string;
@@ -12,13 +10,14 @@ export interface List {
 }
 
 interface Props {
-  list?: List[];
-  changeMenu: (any) => void;
+  list: List[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  changeMenu: (newValue: any[]) => void;
   title: string;
 }
 
 export const Menu = ({ list, changeMenu, title }: PropsWithChildren<Props>) => {
-  const [selected, setSelected] = useState(list[0]);
+  const [selected, setSelected] = useState([list[0]]);
   // fun;
   return (
     <Listbox value={selected} onChange={setSelected}>
@@ -28,7 +27,7 @@ export const Menu = ({ list, changeMenu, title }: PropsWithChildren<Props>) => {
             <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6">
               <span className="flex items-center">
                 <span className="ml-3 block truncate">
-                  {title} : {selected.name}
+                  {title} : {selected.length > 1 ? "..." : selected[0].name}
                 </span>
               </span>
               <span className="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
@@ -52,7 +51,7 @@ export const Menu = ({ list, changeMenu, title }: PropsWithChildren<Props>) => {
                   <Listbox.Option
                     // key={id}
                     className={({ active }) =>
-                      classNames(
+                      cx(
                         active ? "bg-indigo-600 text-white" : "text-gray-900",
                         "relative cursor-default select-none py-2 pl-3 pr-9",
                       )
@@ -63,7 +62,7 @@ export const Menu = ({ list, changeMenu, title }: PropsWithChildren<Props>) => {
                       <>
                         <div className="flex items-center">
                           <span
-                            className={classNames(
+                            className={cx(
                               selected ? "font-semibold" : "font-normal",
                               "ml-3 block truncate",
                             )}
@@ -73,12 +72,12 @@ export const Menu = ({ list, changeMenu, title }: PropsWithChildren<Props>) => {
                         </div>
 
                         {selected
-                          ? (setSelected(list[item]),
-                            changeMenu(list[item].value),
+                          ? (setSelected([list[item]]),
+                            changeMenu([list[item].value]),
                             (
                               // fun,
                               <span
-                                className={classNames(
+                                className={cx(
                                   active ? "text-white" : "text-indigo-600",
                                   "absolute inset-y-0 right-0 flex items-center pr-4",
                                 )}
