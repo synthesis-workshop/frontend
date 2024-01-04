@@ -11,12 +11,11 @@ import { Link } from "react-router-dom";
 export const Footer: React.FC = () => {
   return (
     <footer
-      className={
-        footerClassNames.footer +
-        footerClassNames.footerSM +
-        footerClassNames.footerMD +
-        footerClassNames.footerLG
-      }
+      className={`max-w-[1440px] h-[294px] bg-primary mx-[auto] my-[0] pl-[138px] pr-[38px] 
+      py-[40px] flex justify-between relative overflow-hidden font-text z-0 
+      sm:max-w-[767px] sm:h-[534px] sm:pt-[32px] sm:pr-[35px] sm:pb-[75px] sm:pl-[16px] sm:flex-col sm:justify-start 
+      md:max-w-[1023px] md:h-[427px] md:pt-[40px] md:pr-[136px] md:pb-[50px] md:pl-[16px] 
+      lg:max-w-[1279px] lg:pt-[40px] lg:pr-[60px] lg:pb-[60px] lg:pl-[40px] `}
     >
       <div
         className={
@@ -128,14 +127,6 @@ export const Footer: React.FC = () => {
 };
 
 const footerClassNames = {
-  footer:
-    "max-w-[1440px] h-[294px] bg-primary mx-[auto] my-[0] pl-[138px] pr-[38px] py-[40px] flex justify-between relative overflow-hidden font-text z-0 ",
-  footerSM:
-    "sm:max-w-[767px] sm:h-[534px] sm:pt-[32px] sm:pr-[35px] sm:pb-[75px] sm:pl-[16px] sm:flex-col sm:justify-start ",
-  footerMD:
-    "md:max-w-[1023px] md:h-[427px] md:pt-[40px] md:pr-[136px] md:pb-[50px] md:pl-[16px] ",
-  footerLG:
-    "lg:max-w-[1279px] lg:pt-[40px] lg:pr-[60px] lg:pb-[60px] lg:pl-[40px] ",
   container: "flex flex-col justify-between h-[194px] w-[324px] m-0 ",
   containerSM: "sm:absolute sm:h-[462px] ",
   containerMD: "md:h-[337px] md:absolute md:justify-between md:m-0 ",
