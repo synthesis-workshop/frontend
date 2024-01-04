@@ -2,6 +2,7 @@ import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Footer } from "./components/Footer/Footer";
 import "./global/default.css";
 import { Courses, Episodes, Home, ProblemSetsPage } from "./routes";
 
