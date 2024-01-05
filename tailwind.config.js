@@ -6,7 +6,11 @@ export default {
   mode: "jit",
   purge: ["./public/**/*.html", "./src/**/*.{js,jsx,ts,tsx,vue}"],
   theme: {
-    screens: { sm: "375px", md: "768px", lg: "1024px", xl: "1280px" },
+    screens: {
+      sm: { min: "375px", max: "767px" },
+      md: { min: "768px", max: "1023px" },
+      lg: { min: "1024px", max: "1279px" },
+    },
     extend: {
       colors: {
         primary: "#3A3C46",
@@ -15,6 +19,11 @@ export default {
         blue: "#575AA4",
         pink: "#94498C",
         yellow: "#B6A362",
+        white: "#FFFFFF",
+        red: "#ff0000",
+        formBackground: "#4d4f58",
+        formBorder: "#83848a",
+        text: "#ffffffcc",
       },
       fontSize: {
         "card-title": "28px",
@@ -22,6 +31,12 @@ export default {
       fontFamily: {
         text: ["Inter", "Helvetica", "Arial", "sans"],
         title: ["Esteban", "cursive"],
+      },
+      maxWidth: {
+        xlPageContent: "1200px",
+        lgPageContent: "944px",
+        mdPageContent: "728px",
+        smPageContent: "343px",
       },
     },
   },

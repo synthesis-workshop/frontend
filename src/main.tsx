@@ -2,6 +2,7 @@ import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Footer } from "./components/footer";
 import "./global/default.css";
 import { Courses, Episodes, Home, ProblemSetsPage } from "./routes";
 
@@ -38,6 +39,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           <Route path="/courses" element={<Courses />} />
           <Route path="/problem-sets" element={<ProblemSetsPage />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </ApolloProvider>
   </React.StrictMode>,
