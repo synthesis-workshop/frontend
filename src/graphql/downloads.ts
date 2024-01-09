@@ -1,4 +1,4 @@
-import {gql} from "../__generated__/gql";
+import { gql } from "../__generated__/gql";
 
 export const GET_DOWNLOADS = gql(`
     query GetDownloads(
@@ -9,9 +9,10 @@ export const GET_DOWNLOADS = gql(`
             lastUpdated
             fileDownload {
                 url
+                filename
+                filesize
             }
             id
         }
     }
 `);
-
