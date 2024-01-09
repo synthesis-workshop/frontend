@@ -15,8 +15,6 @@ export default {
         blue: "#575AA4",
         pink: "#94498C",
         yellow: "#B6A362",
-        grey: "#F0F0F0",
-        white: "#FFFFFF",
       },
       fontSize: {
         "card-title": "28px",

@@ -1,6 +1,6 @@
-import { gql } from "@apollo/client";
+import { gql } from "../__generated__/gql";
 
-export const GET_TEAM = gql`
+export const GET_TEAM = gql(`
   query GetTeam($orderBy: [TeamMemberOrderByInput!]!) {
     teamMembers(orderBy: $orderBy) {
       id
@@ -8,9 +8,13 @@ export const GET_TEAM = gql`
       title
       group
       image {
-        url
+        extension
+        filesize
+        height
         id
+        url
+        width
       }
     }
   }
-`;
+`);

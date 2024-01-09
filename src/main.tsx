@@ -11,7 +11,7 @@ const client = new ApolloClient({
     import.meta.env.MODE === "production"
       ? //created environment variables must be prefixed by VITE
         "https://synthesis-workshop-backend-97f537f332bd.herokuapp.com/api/graphql"
-      : "http://localhost:8080/api/graphql",
+      : "https://synthesis-workshop-backend-97f537f332bd.herokuapp.com/api/graphql",
   cache: new InMemoryCache({
     typePolicies: {
       Query: {
