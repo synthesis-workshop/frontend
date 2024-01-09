@@ -18,8 +18,8 @@ export const Card = ({
         cx(
           variant === "dark" ? "bg-primary" : "bg-white",
           "flex flex-col p-5 rounded-xl relative",
-          className
-        )
+          className,
+        ),
       )}
     >
       {children}

@@ -1,11 +1,15 @@
 // routes/home/index.tsx
+import { EpisodesSection } from "./episodes-section";
 import { Hero } from "./hero";
+import { ProblemSets } from "./problem-sets";
 import { TeamMembersSection } from "./team-members-section";
 
 export const Home = () => {
   return (
-    <div className="h-screen flex flex-col items-center bg-grey">
+    <div className="flex flex-col items-center bg-black/[.06]">
       <Hero />
+      <EpisodesSection />
+      <ProblemSets />
       <TeamMembersSection />
     </div>
   );
