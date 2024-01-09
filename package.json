@@ -59,6 +59,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^14.4.3",
+    "@types/pluralize": "^0.0.33",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@types/storybook__react": "^5.2.1",

@@ -13,6 +13,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const problemSet = {
+  id: "2484a1e2-7d25-4254-b6ac-cf7a8a2b992b",
   title: "Tishchenko Reaction",
   problemSetLink:
     "https://img.freepik.com/free-photo/puppy-that-is-walking-snow_1340-37228.jpg",
