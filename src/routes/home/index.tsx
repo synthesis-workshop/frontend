@@ -2,6 +2,7 @@
 import { EpisodesSection } from "./episodes-section";
 import { Hero } from "./hero";
 import { ProblemSets } from "./problem-sets";
+import { TeamMembers } from "./team-members";
 
 export const Home = () => {
   return (
@@ -9,6 +10,7 @@ export const Home = () => {
       <Hero />
       <EpisodesSection />
       <ProblemSets />
+      <TeamMembers />
     </div>
   );
 };
