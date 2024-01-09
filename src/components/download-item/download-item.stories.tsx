@@ -20,9 +20,12 @@ type Story = StoryObj<typeof DownloadItem>;
 export const Default: Story = {
   render: () => (
     <DownloadItem
+      id="2484a1e2-7d25-4254-b6ac-cf7a8a2b992b"
       title="Title goes here"
       lastUpdated="01-01-2023"
       fileDownload={{
+        filename: "foo",
+        filesize: 123,
         url: "example",
       }}
     />
