@@ -44,7 +44,7 @@ export const Footer: React.FC = () => {
     <footer
       className={cx(
         `max-w-full h-72 bg-primary mx-auto my-0 pl-36 pr-9    
-        py-10 flex justify-between relative overflow-hidden font-text z-0 text-text 
+        py-10 flex justify-between relative overflow-hidden font-text z-0 text-white/80 
         sm:h-fit sm:pt-8 sm:pr-9 sm:pb-20 sm:pl-4 sm:flex-col sm:justify-start 
         md:h-fit md:pt-10 md:pr-36 md:pb-12 md:pl-4 
         lg:pt-10 lg:pr-16 lg:pb-16 lg:pl-10 `,
