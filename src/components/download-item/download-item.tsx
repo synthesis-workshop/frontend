@@ -1,15 +1,11 @@
 import cx from "classnames";
 import React from "react";
 import { Button } from "../button";
+import { Download } from "../../__generated__/graphql";
 
-interface DownloadItemProps {
-  title: string;
-  lastUpdated: string;
-  fileDownload: {
-    url: string;
-  };
+type DownloadItemProps = Download & {
   className?: string;
-}
+};
 
 export const DownloadItem: React.FC<DownloadItemProps> = ({
   title,
@@ -27,9 +23,13 @@ export const DownloadItem: React.FC<DownloadItemProps> = ({
           Last Updated: {lastUpdated}
         </div>
       </div>
-      <a href={fileDownload.url} download>
-        <Button variant="primary">Download ↓</Button>
-      </a>
+      {fileDownload?.url && (
+        <a className="max-w-lg max-md:w-full" href={fileDownload.url} download>
+          <Button className="max-md:w-full" variant="primary">
+            Download ↓
+          </Button>
+        </a>
+      )}
     </div>
   );
 };
