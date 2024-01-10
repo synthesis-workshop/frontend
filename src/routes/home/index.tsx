@@ -1,8 +1,11 @@
 // routes/home/index.tsx
+import { AboutUs } from "./about-us";
 import { EpisodesSection } from "./episodes-section";
 import { Hero } from "./hero";
+import { Downloads } from "./downloads";
 import { PosterSection } from "./poster-section";
 import { ProblemSets } from "./problem-sets";
+import { TeamMembers } from "./team-members";
 
 export const Home = () => {
   return (
@@ -11,6 +14,9 @@ export const Home = () => {
       <EpisodesSection />
       <ProblemSets />
       <PosterSection />
+      <Downloads />
+      <AboutUs />
+      <TeamMembers />
     </div>
   );
 };

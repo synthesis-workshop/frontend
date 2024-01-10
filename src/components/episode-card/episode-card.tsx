@@ -34,9 +34,9 @@ export const EpisodeCard = ({
         {title}
       </h1>
       <div className="flex flex-col gap-6 bg-white rounded-tl-xl rounded-br-xl px-3 py-4 h-4/6 justify-between">
-        <p className="text-base leading-5 text-ellipsis overflow-hidden text-primary line-clamp-5">
+        <div className="text-base leading-5 text-ellipsis overflow-hidden text-primary line-clamp-5">
           <DocumentRenderer document={description?.document} />
-        </p>
+        </div>
 
         <div className="flex flex-row justify-between items-center text-sm text-primary/80">
           <div className="flex gap-3 items-center">
