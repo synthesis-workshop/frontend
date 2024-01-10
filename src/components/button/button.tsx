@@ -22,6 +22,12 @@ const variants = cva(
           "hover:text-white hover:bg-gradient-to-r hover:from-primary hover:to-blue hover:from-60%",
         ],
         secondary: ["text-white", "border-white", "hover:bg-white/10"],
+        social: [
+          "text-white",
+          "border-primary",
+          "bg-primary",
+          "hover:text-white hover:bg-gradient-to-r hover:from-primary hover:to-blue hover:from-60%",
+        ],
       },
       size: {
         default: ["text-lg", "py-2", "px-8"],
@@ -31,7 +37,7 @@ const variants = cva(
       variant: "primary",
       size: "default",
     },
-  }
+  },
 );
 
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
@@ -44,9 +50,9 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       className={twMerge(cx(variants({ variant, size, className })))}
       {...rest}
     >
-      <span>{children}</span>
+      <span className="flex flex-row gap-x-2.5 items-center">{children}</span>
     </button>
-  )
+  ),
 );
 
 Button.displayName = "Button";

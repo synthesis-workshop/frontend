@@ -1,4 +1,5 @@
 // routes/home/index.tsx
+import { AboutUs } from "./about-us";
 import { EpisodesSection } from "./episodes-section";
 import { Hero } from "./hero";
 import { Downloads } from "./downloads";
@@ -10,8 +11,9 @@ export const Home = () => {
     <div className="flex flex-col items-center bg-black/[.06]">
       <Hero />
       <EpisodesSection />
-      <Downloads />
       <ProblemSets />
+      <Downloads />
+      <AboutUs />
       <TeamMembers />
     </div>
   );
