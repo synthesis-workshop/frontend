@@ -15,7 +15,7 @@ export const PosterSection = () => {
             <h2 className="text-[32px] ">Organic Chemistry Posters</h2>
             <p className="text-[16px] ">
               If you are interested in sharing your published work in the form
-              of a virtual research poster, feel free to reach out via
+              of a virtual research poster, feel free to reach out via{" "}
               <a href="mailto:synthesisworkshopvideos@gmail.com">
                 synthesisworkshopvideos@gmail.com
               </a>{" "}
