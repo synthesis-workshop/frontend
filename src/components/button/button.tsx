@@ -50,7 +50,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       className={twMerge(cx(variants({ variant, size, className })))}
       {...rest}
     >
-      <span className="flex flex-row gap-x-2.5 items-center">{children}</span>
+      {children}
     </button>
   ),
 );

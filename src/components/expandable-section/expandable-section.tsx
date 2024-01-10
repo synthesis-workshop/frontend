@@ -13,9 +13,9 @@ interface Props {
 export const ExpandableSection = ({
   children,
   className,
-  variant = "dark",
-  expandText = "More Posters",
-  collapseText = "Fewer Posters",
+  variant = "light",
+  expandText = "More",
+  collapseText = "Fewer",
   preview,
 }: PropsWithChildren<Props>) => {
   const [isExpanded, setIsExpanded] = useState(false);

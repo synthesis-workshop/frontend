@@ -1,13 +1,10 @@
 import cx from "classnames";
 import { Button } from "../button";
+import { Poster } from "../../__generated__/graphql";
 
-interface Props {
+type Props = Poster & {
   className?: string;
-  title: string;
-  attribution: string;
-  image: string;
-  file: string;
-}
+};
 
 export const PosterCard = ({
   attribution,
@@ -18,18 +15,26 @@ export const PosterCard = ({
 }: Props) => {
   return (
     <div className={cx("flex flex-col font-text justify-between", className)}>
-      <img className="rounded w-full" src={image} alt={title} />
+      {image && (
+        <img
+          className="rounded w-full"
+          src={image.url}
+          alt={title ?? "Poster Image"}
+        />
+      )}
       <div className="my-5 leading-normal">
         <h2 className="text-xl text-white line-clamp-3">{title}</h2>
         <p className="text-white/80 text-sm mt-2 line-clamp-1">
           By {attribution}
         </p>
       </div>
-      <a href={file} download target="_blank">
-        <Button className="w-full" variant="secondary">
-          Download ↓
-        </Button>
-      </a>
+      {file?.url && (
+        <a href={file.url} download target="_blank">
+          <Button className="w-full" variant="secondary">
+            Download ↓
+          </Button>
+        </a>
+      )}
     </div>
   );
 };
