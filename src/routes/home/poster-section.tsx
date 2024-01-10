@@ -33,7 +33,7 @@ export const PosterSection = () => {
             preview={data.posters.slice(0, 2).map((poster) => (
               <PosterCard key={poster.id} {...poster} />
             ))}
-            className="gap-[32px] grid grid-cols-2 max-md:grid-cols-1 max-[768px]:px-4"
+            className="gap-[32px] grid grid-cols-2 max-md:grid-cols-1 max-[768px]:px-4 rounded-t-none"
           >
             {data.posters.length > 2 &&
               data.posters
