@@ -1,5 +1,5 @@
 // routes/home/index.tsx
-import { AboutUs } from "./aboutus";
+import { AboutUs } from "./about-us";
 import { EpisodesSection } from "./episodes-section";
 import { Hero } from "./hero";
 import { Downloads } from "./downloads";
