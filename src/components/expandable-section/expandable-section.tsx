@@ -24,7 +24,7 @@ export const ExpandableSection = ({
     <div className="flex flex-col items-center">
       <div
         className={cx(
-          `py-10 px-8 rounded-lg`,
+          `py-10 px-8 rounded-xl`,
           variant === "dark" && "bg-primary",
           variant === "light" && "bg-white",
           className,
@@ -33,26 +33,28 @@ export const ExpandableSection = ({
         {preview}
         {isExpanded && children}
       </div>
-      <button
-        className={cx(
-          "rounded-b-lg py-5 px-12 ui-open:hidden",
-          variant === "light" && "bg-white text-primary",
-          variant === "dark" && "bg-primary text-white",
-        )}
-        onClick={() => setIsExpanded((prev) => !prev)}
-      >
-        <div className="flex gap-3">
-          {isExpanded ? (
-            <>
-              {collapseText} <ChevronUpIcon className="w-[18px]" />
-            </>
-          ) : (
-            <>
-              {expandText} <ChevronDownIcon className="w-[18px]" />
-            </>
+      {children && (
+        <button
+          className={cx(
+            "rounded-b-lg py-5 px-12 ui-open:hidden",
+            variant === "light" && "bg-white text-primary",
+            variant === "dark" && "bg-primary text-white",
           )}
-        </div>
-      </button>
+          onClick={() => setIsExpanded((prev) => !prev)}
+        >
+          <div className="flex gap-3">
+            {isExpanded ? (
+              <>
+                {collapseText} <ChevronUpIcon className="w-[18px]" />
+              </>
+            ) : (
+              <>
+                {expandText} <ChevronDownIcon className="w-[18px]" />
+              </>
+            )}
+          </div>
+        </button>
+      )}
     </div>
   );
 };

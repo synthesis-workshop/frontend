@@ -47,9 +47,9 @@ export const Menu = ({ list, changeMenu, title }: PropsWithChildren<Props>) => {
               leaveTo="opacity-0"
             >
               <Listbox.Options className="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                {list.map((id, item) => (
+                {list.map((_id, item) => (
                   <Listbox.Option
-                    // key={id}
+                    key={list[item].name}
                     className={({ active }) =>
                       cx(
                         active ? "bg-indigo-600 text-white" : "text-gray-900",

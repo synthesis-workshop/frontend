@@ -39,3 +39,14 @@ export const Secondary: Story = {
     },
   },
 };
+export const Social: Story = {
+  args: {
+    variant: "social",
+    children: "My Button",
+  },
+  parameters: {
+    backgrounds: {
+      default: "dark",
+    },
+  },
+};
