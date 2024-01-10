@@ -15,11 +15,10 @@ export default {
         blue: "#575AA4",
         pink: "#94498C",
         yellow: "#B6A362",
-        gray: "#F0F0F0",
       },
       fontSize: {
         "card-title": "28px",
-        "section-title": "32px"
+        "section-title": "32px",
       },
       fontFamily: {
         text: ["Inter", "Helvetica", "Arial", "sans"],

@@ -1,4 +1,5 @@
 import pluralize from "pluralize";
+import { PropsWithChildren } from "react";
 import ellipses from "../../images/ellipses.svg";
 import { Button } from "../button";
 import { Card } from "../card";
