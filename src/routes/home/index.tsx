@@ -3,6 +3,7 @@ import { AboutUs } from "./about-us";
 import { EpisodesSection } from "./episodes-section";
 import { Hero } from "./hero";
 import { Downloads } from "./downloads";
+import { PosterSection } from "./poster-section";
 import { ProblemSets } from "./problem-sets";
 import { TeamMembers } from "./team-members";
 
@@ -12,6 +13,7 @@ export const Home = () => {
       <Hero />
       <EpisodesSection />
       <ProblemSets />
+      <PosterSection />
       <Downloads />
       <AboutUs />
       <TeamMembers />

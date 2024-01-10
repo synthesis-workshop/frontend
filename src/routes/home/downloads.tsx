@@ -30,7 +30,12 @@ export const Downloads: React.FC = () => {
         </div>
       ) : (
         <div className="w-full">
-          <ExpandableSection preview={downloads.slice(0, 3)} className="w-full">
+          <ExpandableSection
+            expandText="More Downloads"
+            collapseText="Fewer Downloads"
+            preview={downloads.slice(0, 3)}
+            className="w-full"
+          >
             {downloads.length > 3 && downloads.slice(3)}
           </ExpandableSection>
         </div>
