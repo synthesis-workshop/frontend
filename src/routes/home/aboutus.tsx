@@ -3,7 +3,7 @@ import {
   DocumentRenderer,
   DocumentRendererProps,
 } from "@keystone-6/document-renderer";
-import { GET_ABOUTUS } from "../../graphql/aboutus";
+import { GET_ABOUT_US } from "../../graphql/about-us";
 import { Button } from "../../components";
 import Instagram from "../../images/instagram_ico.svg";
 import Linkedin from "../../images/linkedin_ico.svg";
@@ -36,7 +36,7 @@ const renderers: DocumentRendererProps["renderers"] = {
 };
 
 export const AboutUs: React.FC = () => {
-  const { loading, data } = useQuery(GET_ABOUTUS, {
+  const { loading, data } = useQuery(GET_ABOUT_US, {
     variables: {},
   });
   return (

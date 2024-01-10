@@ -3,7 +3,7 @@ import cx from "classnames";
 import { useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import { Link } from "react-router-dom";
-import { Episode, OrderDirection } from "../../__generated__/graphql";
+import { OrderDirection } from "../../__generated__/graphql";
 import { Button, EpisodeCard, Loading } from "../../components";
 import Menu from "../../components/drop-down-menu/drop-down-menu";
 import { GET_EPISODES } from "../../graphql";
@@ -26,18 +26,18 @@ const CategoryList = [
 ];
 
 const SortList = [
-  { name: "Date added ascending", value: ["Asc"] },
-  { name: "Date added descending", value: ["Desc"] },
+  { name: "Date added ascending", value: [OrderDirection.Asc] },
+  { name: "Date added descending", value: [OrderDirection.Desc] },
 ];
 
 export const EpisodesSection = () => {
-  const [category, setCategory] = useState(CategoryList[0].value);
-  const [sorting, setSorting] = useState(SortList[0].value);
+  const [category, setCategory] = useState<string[]>(CategoryList[0].value);
+  const [sorting, setSorting] = useState<OrderDirection[]>(SortList[0].value);
 
-  const changeCategory = (newState) => {
+  const changeCategory = (newState: string[]) => {
     setCategory(newState);
   };
-  const changeSort = (newState) => {
+  const changeSort = (newState: OrderDirection[]) => {
     setSorting(newState);
   };
 
@@ -47,7 +47,7 @@ export const EpisodesSection = () => {
       orderBy: [
         {
           // TODO: This needs to be a state variable based on the sorting dropdown
-          publishedAt: OrderDirection[sorting[0]],
+          publishedAt: sorting[0],
         },
       ],
       where: {
@@ -92,8 +92,8 @@ export const EpisodesSection = () => {
           <div
             className={`grid lg:grid-cols-3 lg:gap-5 auto-rows-[360px] gap-5 md:grid-cols-2 md:gap-3 sm:grid-cols-1`}
           >
-            {data?.episodes?.map(({ id, ...episode }) => (
-              <EpisodeCard key={id} {...(episode as Required<Episode>)} />
+            {data?.episodes?.map((episode) => (
+              <EpisodeCard key={episode.id} {...episode} />
             ))}
           </div>
           <Link to="/episodes" className="mt-10 mx-auto">
