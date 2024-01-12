@@ -61,8 +61,8 @@ export const Footer: React.FC = () => {
         <h1 className="text-white text-lg font-medium ">
           Synthesis Workshop ©, 2023
         </h1>
-        <div className="text-footerText text-lg truncate ">
-          <a href="" target="_blank">
+        <div className="text-footerText text-lg flex flex-col ">
+          <a href="" target="_blank" className="whitespace-nowrap">
             Terms of Service
           </a>
           <a href="mailto:synthesisworkshopvideos@gmail.com">
