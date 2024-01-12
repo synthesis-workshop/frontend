@@ -1,4 +1,5 @@
 import cx from "classnames";
+import dayjs from "dayjs";
 import React from "react";
 import { Button } from "../button";
 import { Download } from "../../__generated__/graphql";
@@ -20,7 +21,7 @@ export const DownloadItem: React.FC<DownloadItemProps> = ({
           {title}
         </div>
         <div className="font-text text-base text-primary/80 tracking-tight font-normal">
-          Last Updated: {lastUpdated}
+          Last Updated: {dayjs(lastUpdated).format("D MMM, YYYY")}
         </div>
       </div>
       {fileDownload?.url && (
