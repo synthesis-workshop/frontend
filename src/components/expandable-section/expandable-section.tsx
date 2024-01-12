@@ -24,7 +24,7 @@ export const ExpandableSection = ({
     <div className="flex flex-col items-center">
       <div
         className={cx(
-          `py-10 px-8 rounded-lg`,
+          `py-10 px-8 rounded-xl`,
           variant === "dark" && "bg-primary",
           variant === "light" && "bg-white",
           className,
