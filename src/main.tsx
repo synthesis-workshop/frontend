@@ -4,7 +4,13 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Footer } from "./components/footer";
 import "./global/default.css";
-import { Courses, Episodes, Home, ProblemSetsPage, PublicationsPage } from "./routes";
+import {
+  Courses,
+  Episodes,
+  Home,
+  ProblemSetsPage,
+  PublicationsPage,
+} from "./routes";
 
 const client = new ApolloClient({
   uri:
