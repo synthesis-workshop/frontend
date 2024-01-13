@@ -1,7 +1,7 @@
 import { Path, RegisterOptions, UseFormRegister } from "react-hook-form";
 
 interface Props<TFormValues extends Record<string, unknown>> {
-  textboxClassname: string;
+  className: string;
   placeholder: string;
   ariaLabel: string;
   id: string;
@@ -13,7 +13,7 @@ interface Props<TFormValues extends Record<string, unknown>> {
 }
 
 export const TextboxInput = <TFormValues extends Record<string, unknown>>({
-  textboxClassname,
+  className,
   placeholder,
   ariaLabel,
   id,
@@ -26,7 +26,7 @@ export const TextboxInput = <TFormValues extends Record<string, unknown>>({
   return (
     <>
       <textarea
-        className={textboxClassname}
+        className={className}
         placeholder={placeholder}
         id={id}
         aria-label={ariaLabel}

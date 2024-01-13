@@ -1,7 +1,7 @@
 import { Path, RegisterOptions, UseFormRegister } from "react-hook-form";
 
 type Props<TFormValues extends Record<string, unknown>> = {
-  inputClassname: string;
+  className: string;
   placeholder: string;
   inputId: string;
   ariaLabel: string;
@@ -12,9 +12,9 @@ type Props<TFormValues extends Record<string, unknown>> = {
 };
 
 export const SingleLineTextInput = <
-  TFormValues extends Record<string, unknown>
+  TFormValues extends Record<string, unknown>,
 >({
-  inputClassname,
+  className,
   placeholder,
   inputId,
   ariaLabel,
@@ -26,7 +26,7 @@ export const SingleLineTextInput = <
   return (
     <>
       <input
-        className={inputClassname}
+        className={className}
         placeholder={placeholder}
         type={type}
         aria-label={ariaLabel}
