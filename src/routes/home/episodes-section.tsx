@@ -7,6 +7,7 @@ import { OrderDirection } from "../../__generated__/graphql";
 import { Button, EpisodeCard, Loading } from "../../components";
 import Menu from "../../components/drop-down-menu/drop-down-menu";
 import { GET_EPISODES } from "../../graphql";
+import { useNavigate } from "react-router-dom";
 
 const CategoryList = [
   {
@@ -33,6 +34,13 @@ const SortList = [
 export const EpisodesSection = () => {
   const [category, setCategory] = useState<string[]>(CategoryList[0].value);
   const [sorting, setSorting] = useState<OrderDirection[]>(SortList[0].value);
+  const [searchTerm, setSearchTerm] = useState(""); // State for search term
+
+  const navigate = useNavigate();
+  const handleSearch = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    navigate(`/episodes?search=${encodeURIComponent(searchTerm)}`);
+  };
 
   const changeCategory = (newState: string[]) => {
     setCategory(newState);
@@ -82,6 +90,21 @@ export const EpisodesSection = () => {
           />
           <Menu title={"Sort"} list={SortList} changeMenu={changeSort} />
         </div>
+      </div>
+      {/* Search Component */}
+      <div className="mt-4 mb-8">
+        <form onSubmit={handleSearch} className="flex gap-4">
+          <input
+            type="text"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            placeholder="Search episodes"
+            className="w-[1180px] h-13 px-4 py-2 border border-gray-300 rounded-md"
+          />
+          <Button variant="primary" type="submit" className="h-13 px-4">
+            Search
+          </Button>
+        </form>
       </div>
       {loading ? (
         <div className="mt-12">
