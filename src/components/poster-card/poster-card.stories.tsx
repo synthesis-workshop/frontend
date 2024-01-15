@@ -2,6 +2,8 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { PosterCard } from "./poster-card";
 import { ImageExtension } from "../../__generated__/graphql";
 
+
+
 const meta: Meta<typeof PosterCard> = {
   component: PosterCard,
   title: "Components/PosterCard",
