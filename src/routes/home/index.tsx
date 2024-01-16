@@ -7,6 +7,7 @@ import { PosterSection } from "./poster-section";
 import { ProblemSets } from "./problem-sets";
 import { Publications } from "./publications";
 import { TeamMembers } from "./team-members";
+import { ContactForm } from "./contact-form";
 
 export const Home = () => {
   return (
@@ -17,6 +18,7 @@ export const Home = () => {
       <PosterSection />
       <Publications />
       <Downloads />
+      <ContactForm />
       <AboutUs />
       <TeamMembers />
     </div>

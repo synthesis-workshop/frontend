@@ -5,10 +5,21 @@ import { TextboxInput } from "./textbox-input";
 
 interface Props {
   className: string;
+  action: string;
+  method: string;
 }
 
-export const Form = ({ className, children }: PropsWithChildren<Props>) => {
-  return <form className={className}>{children}</form>;
+export const Form = ({
+  className,
+  children,
+  action,
+  method,
+}: PropsWithChildren<Props>) => {
+  return (
+    <form className={className} action={action} method={method}>
+      {children}
+    </form>
+  );
 };
 
 Form.Label = Label;

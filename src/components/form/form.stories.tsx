@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { Button } from "../button";
 import { Form } from "./form";
+import React from "react";
 
 export default {
   title: "Components/Form",
@@ -12,6 +13,9 @@ export default {
     },
   },
 };
+
+const GOOGLE_FORM_URL =
+  "https://docs.google.com/forms/d/e/1FAIpQLSfC4j_lyHmHWRUp1shKlNxzPIdE_QVIzfXwIfLLoBqlVo_12A/formResponse";
 
 const nameRules = {
   required: "This field is required",
@@ -81,10 +85,10 @@ const Template = () => {
     errorClassname: "text-red text-xs ",
   };
 
-  //Change this object to have the inputs name and the type of data it takes.
+  //Change this object to have the input's name and the type of data the input takes.
   type FormFields = {
-    name: string;
-    email: string;
+    "entry.2005620554": string;
+    "email.boop": string;
     subject: string;
     message: string;
   };
@@ -98,8 +102,12 @@ const Template = () => {
   //onSubmit function for testing purposes only.
   const onSubmit = handleSubmit((data) => console.log(data));
 
+  React.useEffect(() => {
+    console.log(errors);
+  }, [errors]);
+
   return (
-    <Form className={formClasses.form}>
+    <Form className={formClasses.form} action={GOOGLE_FORM_URL} method="post">
       <div className={formClasses.formContainer}>
         <Form.Label
           className={formClasses.formLabelTypeOne}
@@ -111,13 +119,13 @@ const Template = () => {
             inputId="name"
             ariaLabel="Your name should be inputted here."
             type="text"
-            name="name"
+            name="entry.2005620554"
             register={register}
             rules={nameRules}
           />
-          {errors.name?.message && (
+          {errors["entry.2005620554"]?.message && (
             <span className={formClasses.errorClassname}>
-              {errors.name?.message}
+              {errors["entry.2005620554"]?.message}
             </span>
           )}
         </Form.Label>
@@ -132,13 +140,13 @@ const Template = () => {
             inputId="email"
             ariaLabel="Your Email address should be inputted here."
             type="text"
-            name="email"
+            name="email.boop"
             register={register}
             rules={emailRules}
           />
-          {errors.email?.message && (
+          {errors["email.boop"]?.message && (
             <span className={formClasses.errorClassname}>
-              {errors.email?.message}
+              {errors["email.boop"]?.message}
             </span>
           )}
         </Form.Label>
@@ -163,7 +171,6 @@ const Template = () => {
           </span>
         )}
       </Form.Label>
-
       <Form.Label
         className={formClasses.formLabelTypeTwo}
         labelText="Message (* Required)"
@@ -185,7 +192,6 @@ const Template = () => {
           </span>
         )}
       </Form.Label>
-
       <Button
         className="mx-auto"
         variant="secondary"
