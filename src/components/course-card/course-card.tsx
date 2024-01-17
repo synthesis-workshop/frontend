@@ -8,27 +8,11 @@ import { Card } from "../card";
 export const CourseCard = ({
     title, 
     description,
+    duration,
+    price,
     episodes,
     problemSets,
 }: Course) => {
-const totalRuntimeHours = episodes?.reduce((total, episode) => {
-    if (episode.runtime) {
-      const [hours, minutes] = episode.runtime.split(":");
-      return total + Math.ceil((parseInt(hours) + parseInt(minutes) / 60));
-    }
-    return total;
-  }, 0) || 0;
-
-const totalRuntimeMinutes = episodes?.reduce((total, episode) => {
-    if (episode.runtime) {
-      const [hours, minutes] = episode.runtime.split(":");
-      return total + Math.ceil((parseInt(hours) + parseInt(minutes) / 60));
-    }
-    return total;
-    }
-    , 0) || 0;
-
-const totalRuntime = totalRuntimeHours + totalRuntimeMinutes;
 
     return (
         <Card className={cx("w-full")}>
@@ -40,13 +24,15 @@ const totalRuntime = totalRuntimeHours + totalRuntimeMinutes;
                 <div className="flex justify-between mt-24">
                     <div className="flex items-end gap-3">
                         <div className="bg-[#F6C825] rounded-md justify-center items-center">
-                            <p className="text-sm p-2">Free!</p>
+                            <p className="text-sm p-2">
+                                {price === 0 ? "Free!" : `$${price}`}
+                            </p>
                         </div>
                         <div className="bg-transparent border border-white rounded-md justify-center items-center">
                             <p className="text-white text-sm p-2">{episodes?.length} videos</p>
                         </div>
                         <div className="bg-transparent border border-white rounded-md justify-center items-center">
-                            <p className="text-white text-sm p-2">{totalRuntime} hours</p>
+                            <p className="text-white text-sm p-2">{duration} hours</p>
                         </div>
                         <div className="bg-transparent border border-white rounded-md justify-center items-center">
                             <p className="text-white text-sm p-2">{problemSets?.length} tasks</p>
