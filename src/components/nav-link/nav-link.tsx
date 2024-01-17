@@ -21,7 +21,7 @@ export const NavLink = ({
 
   React.useEffect(() => {
     setIsActive([linkTo].includes(pathname + hash));
-  });
+  }, [linkTo, pathname, hash]);
 
   return (
     <Link
