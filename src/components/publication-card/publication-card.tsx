@@ -28,29 +28,35 @@ export const PublicationCard = ({
           </div>
           <div className="md:hidden">
             <a href={link || "#"} target="_blank">
-              <Button className="w-full">Read the Full Article ↗</Button>
+              <Button className="w-full whitespace-nowrap">
+                Read the Full Article ↗
+              </Button>
             </a>
           </div>
         </div>
         <div className="flex flex-wrap gap-x-3 gap-y-1 text-primary/80 mb-4 w-full">
-          <p>By: {author}</p>
-          <span className="hidden md:inline-block">|</span>
-          {publishedDate && (
+          <p className="overflow-wrap-break-word">
+            By: {author}
+          </p>
+          {!publishedDate ? null : (
             <>
+              <span className="hidden md:inline-block">|</span>
               <p className="hidden md:inline-block">
                 Published:{" "}
                 {dayjs(publishedDate, "YYYY-DD-MM").format("D MMMM YYYY")}
               </p>
-              <span className="hidden md:inline-block">|</span>
             </>
           )}
-          <p>In: {publisher}</p>
           <span className="hidden md:inline-block">|</span>
-          <p>DOI: {doi}</p>
+          <p className="overflow-wrap-break-word">In: {publisher}</p>
+          <span className="hidden md:inline-block">|</span>
+          <p className="overflow-wrap-break-word">DOI: {doi}</p>
         </div>
         <div className="md:hidden">
           <a href={link || "#"} target="_blank">
-            <Button className="w-full">Read the Full Article ↗</Button>
+            <Button className="w-full whitespace-nowrap">
+              Read the Full Article ↗
+            </Button>
           </a>
         </div>
       </div>
