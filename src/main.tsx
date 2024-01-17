@@ -11,6 +11,7 @@ import {
   ProblemSetsPage,
   PublicationsPage,
 } from "./routes";
+import { Header } from "./components/header/header";
 
 const client = new ApolloClient({
   uri:
@@ -45,6 +46,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <ApolloProvider client={client}>
       <BrowserRouter>
+        <Header />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/episodes" element={<Episodes />} />

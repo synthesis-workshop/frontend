@@ -22,7 +22,7 @@ export const Hero: React.FC = () => {
   );
 
   return (
-    <div className="relative w-screen">
+    <div className="relative w-full">
       <div className="overflow-hidden absolute w-full h-full bg-primary">
         <img
           className="absolute h-[407px] lg:h-[398px] md:h-[347px] w-[248px] lg:w-[654px] md:w-[577px] bottom-0 -left-[100px]"
