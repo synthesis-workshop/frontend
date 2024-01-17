@@ -11,7 +11,8 @@ import {
   ProblemSetsPage,
   PublicationsPage,
 } from "./routes";
-import { Header } from "./components/header/header";
+import { Header } from "./components/header";
+import { ScrollToAnchor, ScrollToTop } from "./utils/scroll";
 
 const client = new ApolloClient({
   uri:
@@ -46,6 +47,8 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <ApolloProvider client={client}>
       <BrowserRouter>
+        <ScrollToAnchor />
+        <ScrollToTop />
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />

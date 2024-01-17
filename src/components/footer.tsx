@@ -12,11 +12,11 @@ import { Link } from "react-router-dom";
 const links = [
   { label: "Episodes", link: "/episodes" },
   { label: "Problem Sets", link: "/problem-sets" },
-  { label: "Posters", link: "#posters" },
+  { label: "Posters", link: "/#posters" },
   { label: "Publications", link: "/publications" },
-  { label: "Downloads", link: "#downloads" },
-  { label: "Contacts", link: "#contact" },
-  { label: "About", link: "#about" },
+  { label: "Downloads", link: "/#downloads" },
+  { label: "Contacts", link: "/#contact" },
+  { label: "About", link: "/#about" },
 ];
 
 const socials = [
@@ -45,10 +45,10 @@ export const Footer: React.FC = () => {
       className={cx(
         `bg-primary mx-auto my-0   
         h-fit pt-8 pr-9 pb-20 pl-4 flex-col justify-start max-w-full py-10
-        flex relative overflow-hidden font-text z-0 text-white/80 
+        flex relative overflow-hidden font-text z-0 text-white/80
         md:h-fit md:pt-10 md:pr-36 md:pb-12 md:pl-4 md:justify-between md:flex-row
-        lg:pt-10 lg:pr-16 lg:pb-16 lg:pl-10 lg:h-72
-        xl:pl-36 xl:pr-9 `,
+        lg:pt-10 lg:pr-16 lg:pb-16 lg:pl-10 lg:h-72 
+        xl:pl-36 xl:pr-9`,
       )}
     >
       <div
@@ -104,6 +104,7 @@ export const Footer: React.FC = () => {
             to={link}
             className="h-11 text-left flex items-center w-fit hover:opacity-80 "
             target="_blank"
+            key={uniqueId(label)}
           >
             <FontAwesomeIcon
               icon={icon}
