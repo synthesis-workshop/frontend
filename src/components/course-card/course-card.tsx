@@ -3,43 +3,52 @@ import { Button } from "../button";
 import { Course } from "../../__generated__/graphql";
 import { DocumentRenderer } from "@keystone-6/document-renderer";
 import { Card } from "../card";
+import purpleBlur from "../../images/purple-blur.png";
 
 
 export const CourseCard = ({
     title, 
     description,
-    duration,
+    durationHrs,
     price,
-    episodes,
-    problemSets,
+    episodesCount,
+    problemSetsCount,
 }: Course) => {
 
     return (
-        <Card className={cx("w-full")}>
+        <Card className={cx("w-full relative overflow-hidden")}>
+            
+                <img
+                className="absolute h-[0px] lg:h-[366px] md:h-[0px] w-[0px] lg:w-[520px] md:w-[0px] -top-[150px] -right-[129px] transform rotate-[-157deg]"
+                src={purpleBlur}
+                alt="left accent blur"
+                />
+            
             <div className="flex flex-col p-3">
-                <h2 className="font-title text-xl text-white">{title}</h2>
-                <p className="text-white/80 text-sm mt-2 max-w-[659px]">
+                <h2 className="font-title text-card-title text-white">{title}</h2>
+                <p className="text-white/80 mt-2 max-w-[659px]">
                     <DocumentRenderer document={description?.document} />
                 </p>
-                <div className="flex justify-between mt-24">
-                    <div className="flex items-end gap-3">
+                
+                <div className="flex sm:flex-col md:flex-row justify-between mt-10 md:mt-24">
+                    <div className="grid grid-cols-4 col-auto items-end gap-1 mb-5 md:gap-3">
                         <div className="bg-[#F6C825] rounded-md justify-center items-center">
-                            <p className="text-sm p-2">
+                            <p className="text-sm p-2 text-center">
                                 {price === 0 ? "Free!" : `$${price}`}
                             </p>
                         </div>
                         <div className="bg-transparent border border-white rounded-md justify-center items-center">
-                            <p className="text-white text-sm p-2">{episodes?.length} videos</p>
+                            <p className="text-white text-center text-sm p-2">{episodesCount} videos</p>
                         </div>
                         <div className="bg-transparent border border-white rounded-md justify-center items-center">
-                            <p className="text-white text-sm p-2">{duration} hours</p>
+                            <p className="text-white text-center text-sm p-2">{durationHrs} hours</p>
                         </div>
                         <div className="bg-transparent border border-white rounded-md justify-center items-center">
-                            <p className="text-white text-sm p-2">{problemSets?.length} tasks</p>
+                            <p className="text-white text-center text-sm p-2">{problemSetsCount} tasks</p>
                         </div>
                     </div>
                     <div className="">
-                        <Button className="" variant="secondary">
+                        <Button className="w-full md:w-max" variant="secondary" >
                             Go to the Course →
                         </Button>
                     </div>

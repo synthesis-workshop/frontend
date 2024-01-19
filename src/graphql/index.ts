@@ -5,4 +5,4 @@ export * from "./problem-sets";
 export * from "./publications";
 export * from "./stats";
 export * from "./team-members";
-
+export * from "./courses";

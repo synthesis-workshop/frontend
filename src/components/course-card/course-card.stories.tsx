@@ -11,11 +11,17 @@ const meta: Meta<typeof CourseCard> = {
         description: {
             control: { type: "text" },
         },
-        problemSets: {
-            control: { type: "text" },
+        problemSetsCount: {
+            control: { type: "number" },
         },
-        episodes: {
-            control: { type: "text" },
+        episodesCount: {
+            control: { type: "number" },
+        },
+        price: {
+            control: { type: "number" },
+        },
+        durationHrs: {
+            control: { type: "number" },
         },
     },
     };
@@ -39,8 +45,10 @@ export const Default: Story = {
               },
             ],
           },       
-        problemSets: [],
-        episodes: [],
+        problemSetsCount: 10,
+        episodesCount: 25,
+        price: 0,
+        durationHrs: 10,
     },
     parameters: {
         backgrounds: {
