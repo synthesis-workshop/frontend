@@ -15,6 +15,7 @@ export default {
         blue: "#575AA4",
         pink: "#94498C",
         yellow: "#B6A362",
+        brightYellow: "#F6C825",
         white: "#FFFFFF",
         red: "#ff0000",
         formBackground: "#4d4f58",

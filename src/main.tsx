@@ -10,6 +10,7 @@ import {
   Home,
   ProblemSetsPage,
   PublicationsPage,
+  Course
 } from "./routes";
 
 const client = new ApolloClient({
@@ -49,6 +50,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           <Route path="/" element={<Home />} />
           <Route path="/episodes" element={<Episodes />} />
           <Route path="/courses" element={<Courses />} />
+          <Route path="/courses/:courseId" element={<Course />} />
           <Route path="/problem-sets" element={<ProblemSetsPage />} />
           <Route path="/publications" element={<PublicationsPage />} />
         </Routes>
