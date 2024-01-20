@@ -36,7 +36,7 @@ export const Hero: React.FC = () => {
         />
       </div>
 
-      <div className="flex flex-col items-center py-[152px] text-center mx-4 relative z-10">
+      <div className="flex flex-col items-center py-40 text-center relative z-10">
         <h1 className="flex flex-col text-white/60 text-4xl md:text-5xl font-medium font-title">
           Explore the art
           <div className="flex items-center gap-2">
@@ -57,7 +57,7 @@ export const Hero: React.FC = () => {
 
         <div
           className={cx(
-            "flex flex-wrap gap-10 bg-white rounded-3xl w-[343px] max-w-[1280px] absolute -bottom-[188px] py-8 text-center justify-center shadow-2xl",
+            "flex flex-wrap gap-10 bg-white rounded-3xl w-[343px] max-w-smPageContent md:max-w-mdPageContent lg:max-w-lgPageContent xl:max-w-xlPageContent absolute -bottom-[188px] py-8 text-center justify-center shadow-2xl",
             "md:gap-20 md:w-11/12 md:-bottom-[80px] md:py-10",
           )}
         >

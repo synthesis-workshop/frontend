@@ -101,6 +101,7 @@ export const Footer: React.FC = () => {
       >
         {socials.map(({ label, link, icon }) => (
           <Link
+            key={uniqueId(label)}
             to={link}
             className="h-11 text-left flex items-center w-fit hover:opacity-80 "
             target="_blank"
