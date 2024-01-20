@@ -14,10 +14,7 @@ export const PublicationCard = ({
   author,
 }: Publication) => {
   return (
-    <Card
-      variant="light"
-      className="w-max sm:w-[343px] md:w-[688px] lg:w-[1200px]"
-    >
+    <Card variant="light">
       <div className="flex flex-col">
         <div className="flex justify-between">
           <div className="mb-4 md:mb-8 max-w-[688px]">
