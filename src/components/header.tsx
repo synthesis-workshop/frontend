@@ -79,9 +79,8 @@ export const Header: React.FC = () => {
           <div className="flex flex-col gap-20 items-center mx-auto my-10 text-center">
             <div className="flex flex-col text-primary text-lg font-medium gap-3 font-lg">
               {linksMiddle.map(({ label, link }) => (
-                <button onClick={handleMobileClick}>
+                <button onClick={handleMobileClick} key={uniqueId(label)}>
                   <NavLink
-                    key={uniqueId(label)}
                     linkTo={link}
                     activeClassName="w-full hover:opacity-80 border-b-2 border-solid border-b-primary"
                     inactiveClassName="w-full hover:opacity-80"
@@ -92,9 +91,8 @@ export const Header: React.FC = () => {
             </div>
             <div className="flex flex-col text-primary text-lg font-medium gap-3 text-center font-lg xl:gap-6">
               {linksRight.map(({ label, link }) => (
-                <button onClick={handleMobileClick}>
+                <button onClick={handleMobileClick} key={uniqueId(label)}>
                   <NavLink
-                    key={uniqueId(label)}
                     linkTo={link}
                     activeClassName="w-full hover:opacity-80 border-b-2 border-solid border-b-primary"
                     inactiveClassName="w-full hover:opacity-80"
