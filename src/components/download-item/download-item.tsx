@@ -1,15 +1,12 @@
 import cx from "classnames";
+import dayjs from "dayjs";
 import React from "react";
 import { Button } from "../button";
+import { Download } from "../../__generated__/graphql";
 
-interface DownloadItemProps {
-  title: string;
-  lastUpdated: string;
-  fileDownload: {
-    url: string;
-  };
+type DownloadItemProps = Download & {
   className?: string;
-}
+};
 
 export const DownloadItem: React.FC<DownloadItemProps> = ({
   title,
@@ -24,12 +21,16 @@ export const DownloadItem: React.FC<DownloadItemProps> = ({
           {title}
         </div>
         <div className="font-text text-base text-primary/80 tracking-tight font-normal">
-          Last Updated: {lastUpdated}
+          Last Updated: {dayjs(lastUpdated).format("D MMM, YYYY")}
         </div>
       </div>
-      <a href={fileDownload.url} download>
-        <Button variant="primary">Download ↓</Button>
-      </a>
+      {fileDownload?.url && (
+        <a className="max-w-lg max-md:w-full" href={fileDownload.url} download>
+          <Button className="max-md:w-full" variant="primary">
+            Download ↓
+          </Button>
+        </a>
+      )}
     </div>
   );
 };

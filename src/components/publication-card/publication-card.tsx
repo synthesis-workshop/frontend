@@ -1,54 +1,60 @@
 import { Button } from "../button";
 import { Card } from "../card";
-
-interface PublicationCardProps {
-  className?: string;
-  title: string;
-  description: string;
-  author: string;
-  publishedDate: string;
-  publisher: string;
-  doi: string;
-  link: string;
-}
+import { Publication } from "../../__generated__/graphql";
+import { DocumentRenderer } from "@keystone-6/document-renderer";
+import dayjs from "dayjs";
 
 export const PublicationCard = ({
-  className,
   title,
   description,
-  author,
   publishedDate,
   publisher,
-  doi,
   link,
-}: PublicationCardProps) => {
+  doi,
+  author,
+}: Publication) => {
   return (
-    <Card variant="light" className={className}>
-      <div className="flex justify-between">
-        <div className="max-w-[680px]">
-          <h2 className="text-2xl font-medium mb-3">{title}</h2>
-          <p className="text-primary mb-8">{description}</p>
+    <Card variant="light">
+      <div className="flex flex-col">
+        <div className="flex justify-between">
+          <div className="mb-4 md:mb-8 max-w-[688px]">
+            <h2 className="text-card-title font-normal leading-8 mb-3 tracking-[.48px]">
+              {title}
+            </h2>
+            <DocumentRenderer document={description?.document} />
+          </div>
+          <div>
+            <a
+              href={link || "#"}
+              target="_blank"
+              className="hidden md:block w-full"
+            >
+              <Button>Read the Full Article ↗</Button>
+            </a>
+          </div>
         </div>
-        <a href={link} target="_blank" className="hidden lg:block">
-          <Button>Read the Full Article ↗</Button>
-        </a>
+        <div className="flex flex-wrap gap-x-3 gap-y-1 text-primary/80 mb-4 w-full">
+          <p>By: {author}</p>
+          <span>|</span>
+          {publishedDate && (
+            <>
+              <p>
+                Published:{" "}
+                {dayjs(publishedDate, "YYYY-DD-MM").format("D MMMM YYYY")}
+              </p>
+              <span>|</span>
+            </>
+          )}
+          <p>In: {publisher}</p>
+          <span>|</span>
+          <p>DOI: {doi}</p>
+        </div>
+        <div className="md:hidden">
+          <a href={link || "#"} target="_blank">
+            <Button className="w-full">Read the Full Article ↗</Button>
+          </a>
+        </div>
       </div>
-      <div className="flex flex-wrap gap-x-3 gap-y-1 text-primary/80">
-        <p>By: {author}</p>
-        <span>|</span>
-        <p>Published: {publishedDate}</p>
-        <span>|</span>
-        <p>In: {publisher}</p>
-        <span>|</span>
-        <p>DOI: {doi}</p>
-      </div>
-      <a
-        href={link}
-        target="_blank"
-        className="lg:hidden mt-5 m-auto sm:mr-0 sm:ml-auto"
-      >
-        <Button>Read the Full Article ↗</Button>
-      </a>
     </Card>
   );
 };
