@@ -105,7 +105,6 @@ export const Footer: React.FC = () => {
             to={link}
             className="h-11 text-left flex items-center w-fit hover:opacity-80 "
             target="_blank"
-            key={uniqueId(label)}
           >
             <FontAwesomeIcon
               icon={icon}
