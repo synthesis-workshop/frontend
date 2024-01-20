@@ -41,7 +41,7 @@ export const AboutUs: React.FC = () => {
     variables: {},
   });
   return (
-    <div className="flex flex-col gap-y/[100px] my-24">
+    <div className="flex flex-col gap-y/[100px] my-24" id="about">
       <div className="flex flex-col gap-y-8 items-center  md:w-[809px] md:max-w-[728px] md:px-3 sm:px-[25px] sm:h-auto ">
         <h2 className="text-primary text-section-title font-title font-normal leading-9">
           Subscribe to Our Socials

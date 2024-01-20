@@ -18,7 +18,7 @@ export const ProblemSetsPage: React.FC = () => {
   });
 
   return (
-    <div className="bg-black/[.06] w-screen h-screen">
+    <div className="bg-black/[.06] w-full h-screen pt-28">
       <div className="mx-auto w-[343px] md:w-11/12 max-w-[1280px] flex flex-col items-center mt-10">
         <h2 className="font-title text-[32px] mb-3">Problem Sets</h2>
         <p className="font-text text-lg mb-8 text-primary/80 md:max-w-xl">

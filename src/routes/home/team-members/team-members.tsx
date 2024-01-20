@@ -16,7 +16,9 @@ export const TeamMembers = () => {
   });
 
   return (
-    <div className={`md:pt-36 md:mx-10 md:max-w-[1200px] sm:pt-72`}>
+    <div
+      className={`md:pt-36 md:mx-10 md:max-w-[1200px] pt-72 pb-24 xl:pb-44 md:pb-32 `}
+    >
       <div className="flex flex-col md:items-start sm:items-center pb-14">
         <p className=" font-title text-3xl pb-8 ">Who We Are</p>
         <div className="flex flex-col md:gap-14 sm:gap-5">
