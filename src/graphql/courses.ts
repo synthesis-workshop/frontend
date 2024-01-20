@@ -10,6 +10,35 @@ export const GET_COURSES = gql(
             description {
                 document
             }
+            problemSets {
+                title
+                problemSetFile {
+                    url
+                    filename
+                    filesize
+                }
+                solutionFile {
+                    url
+                    filename
+                    filesize
+                }
+                downloadCount
+                episode {
+                    id
+                    youtubeVideoId
+                }
+            }
+            episodes {
+                id
+                title
+                description {
+                  document
+                }
+                episodeNumber
+                category
+                runtime
+                publishedAt
+            }
         }
     }`
 );
