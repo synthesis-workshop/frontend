@@ -21,7 +21,7 @@ export const Publications: React.FC = () => {
   });
 
   return (
-    <div className="flex flex-col max-w-[1200px] w-full">
+    <div className="flex flex-col max-w-[1200px] w-full px-4 md:px-5">
       <h2 className="font-title text-primary text-3xl mb-8">
         Our Publications
       </h2>
@@ -29,7 +29,7 @@ export const Publications: React.FC = () => {
         {loading ? (
           <Loading />
         ) : (
-          <div className="grid grid-cols-1 gap-5 w-full px-4">
+          <div className="grid grid-cols-1 gap-5 w-full">
             {data?.publications?.map((publication) => (
               <PublicationCard key={publication.id} {...publication} />
             ))}

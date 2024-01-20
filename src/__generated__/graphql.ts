@@ -43,11 +43,14 @@ export type CalendarDayFilter = {
 export type Course = {
   __typename?: 'Course';
   description?: Maybe<Course_Description_Document>;
+  durationHrs?: Maybe<Scalars['Int']['output']>;
   episodes?: Maybe<Array<Episode>>;
   episodesCount?: Maybe<Scalars['Int']['output']>;
   id: Scalars['ID']['output'];
+  price?: Maybe<Scalars['Int']['output']>;
   problemSets?: Maybe<Array<ProblemSet>>;
   problemSetsCount?: Maybe<Scalars['Int']['output']>;
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
   title?: Maybe<Scalars['String']['output']>;
 };
 
@@ -81,8 +84,11 @@ export type CourseProblemSetsCountArgs = {
 
 export type CourseCreateInput = {
   description?: InputMaybe<Scalars['JSON']['input']>;
+  durationHrs?: InputMaybe<Scalars['Int']['input']>;
   episodes?: InputMaybe<EpisodeRelateToManyForCreateInput>;
+  price?: InputMaybe<Scalars['Int']['input']>;
   problemSets?: InputMaybe<ProblemSetRelateToManyForCreateInput>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -93,7 +99,10 @@ export type CourseManyRelationFilter = {
 };
 
 export type CourseOrderByInput = {
+  durationHrs?: InputMaybe<OrderDirection>;
   id?: InputMaybe<OrderDirection>;
+  price?: InputMaybe<OrderDirection>;
+  publishedAt?: InputMaybe<OrderDirection>;
   title?: InputMaybe<OrderDirection>;
 };
 
@@ -116,8 +125,11 @@ export type CourseUpdateArgs = {
 
 export type CourseUpdateInput = {
   description?: InputMaybe<Scalars['JSON']['input']>;
+  durationHrs?: InputMaybe<Scalars['Int']['input']>;
   episodes?: InputMaybe<EpisodeRelateToManyForUpdateInput>;
+  price?: InputMaybe<Scalars['Int']['input']>;
   problemSets?: InputMaybe<ProblemSetRelateToManyForUpdateInput>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -125,9 +137,12 @@ export type CourseWhereInput = {
   AND?: InputMaybe<Array<CourseWhereInput>>;
   NOT?: InputMaybe<Array<CourseWhereInput>>;
   OR?: InputMaybe<Array<CourseWhereInput>>;
+  durationHrs?: InputMaybe<IntFilter>;
   episodes?: InputMaybe<EpisodeManyRelationFilter>;
   id?: InputMaybe<IdFilter>;
+  price?: InputMaybe<IntFilter>;
   problemSets?: InputMaybe<ProblemSetManyRelationFilter>;
+  publishedAt?: InputMaybe<DateTimeNullableFilter>;
   title?: InputMaybe<StringFilter>;
 };
 
@@ -1945,6 +1960,14 @@ export type GetAboutUsInfoQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetAboutUsInfoQuery = { __typename?: 'Query', metas?: Array<{ __typename?: 'Meta', id: string, about?: { __typename?: 'Meta_about_Document', document: any } | null, mission?: { __typename?: 'Meta_mission_Document', document: any } | null }> | null };
 
+export type QueryQueryVariables = Exact<{
+  orderBy: Array<CourseOrderByInput> | CourseOrderByInput;
+  take?: InputMaybe<Scalars['Int']['input']>;
+}>;
+
+
+export type QueryQuery = { __typename?: 'Query', courses?: Array<{ __typename?: 'Course', durationHrs?: number | null, episodesCount?: number | null, id: string, price?: number | null, problemSetsCount?: number | null, title?: string | null, description?: { __typename?: 'Course_description_Document', document: any } | null }> | null };
+
 export type GetDownloadsQueryVariables = Exact<{
   orderBy?: InputMaybe<Array<DownloadOrderByInput> | DownloadOrderByInput>;
 }>;
@@ -1998,6 +2021,7 @@ export type GetTeamQuery = { __typename?: 'Query', teamMembers?: Array<{ __typen
 
 
 export const GetAboutUsInfoDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetAboutUsInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"metas"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"about"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"document"}}]}},{"kind":"Field","name":{"kind":"Name","value":"mission"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"document"}}]}}]}}]}}]} as unknown as DocumentNode<GetAboutUsInfoQuery, GetAboutUsInfoQueryVariables>;
+export const QueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Query"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"orderBy"}},"type":{"kind":"NonNullType","type":{"kind":"ListType","type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CourseOrderByInput"}}}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"take"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"courses"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"orderBy"},"value":{"kind":"Variable","name":{"kind":"Name","value":"orderBy"}}},{"kind":"Argument","name":{"kind":"Name","value":"take"},"value":{"kind":"Variable","name":{"kind":"Name","value":"take"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"description"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"document"}}]}},{"kind":"Field","name":{"kind":"Name","value":"durationHrs"}},{"kind":"Field","name":{"kind":"Name","value":"episodesCount"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"price"}},{"kind":"Field","name":{"kind":"Name","value":"problemSetsCount"}},{"kind":"Field","name":{"kind":"Name","value":"title"}}]}}]}}]} as unknown as DocumentNode<QueryQuery, QueryQueryVariables>;
 export const GetDownloadsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetDownloads"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"orderBy"}},"type":{"kind":"ListType","type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"DownloadOrderByInput"}}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"downloads"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"orderBy"},"value":{"kind":"Variable","name":{"kind":"Name","value":"orderBy"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"lastUpdated"}},{"kind":"Field","name":{"kind":"Name","value":"fileDownload"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"filename"}},{"kind":"Field","name":{"kind":"Name","value":"filesize"}}]}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<GetDownloadsQuery, GetDownloadsQueryVariables>;
 export const GetEpisodesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetEpisodes"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"orderBy"}},"type":{"kind":"NonNullType","type":{"kind":"ListType","type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"EpisodeOrderByInput"}}}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"where"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"EpisodeWhereInput"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"take"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"episodes"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"orderBy"},"value":{"kind":"Variable","name":{"kind":"Name","value":"orderBy"}}},{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"Variable","name":{"kind":"Name","value":"where"}}},{"kind":"Argument","name":{"kind":"Name","value":"take"},"value":{"kind":"Variable","name":{"kind":"Name","value":"take"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"document"}}]}},{"kind":"Field","name":{"kind":"Name","value":"episodeNumber"}},{"kind":"Field","name":{"kind":"Name","value":"category"}},{"kind":"Field","name":{"kind":"Name","value":"runtime"}},{"kind":"Field","name":{"kind":"Name","value":"publishedAt"}}]}}]}}]} as unknown as DocumentNode<GetEpisodesQuery, GetEpisodesQueryVariables>;
 export const GetPostersDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetPosters"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"posters"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attribution"}},{"kind":"Field","name":{"kind":"Name","value":"file"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"filename"}},{"kind":"Field","name":{"kind":"Name","value":"filesize"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"extension"}},{"kind":"Field","name":{"kind":"Name","value":"filesize"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}}]}},{"kind":"Field","name":{"kind":"Name","value":"title"}}]}}]}}]} as unknown as DocumentNode<GetPostersQuery, GetPostersQueryVariables>;
