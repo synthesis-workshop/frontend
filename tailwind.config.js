@@ -17,7 +17,6 @@ export default {
         yellow: "#B6A362",
         white: "#FFFFFF",
         red: "#ff0000",
-        semiTransparentWhite: "#ffffffcc",
         formBackground: "#4d4f58",
         formBorder: "#83848a",
       },
