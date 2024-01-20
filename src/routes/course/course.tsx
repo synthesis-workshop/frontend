@@ -9,8 +9,6 @@ interface Course {
     description: typeof document;
   }
 
-
-  
   interface CourseData {
     courses: Course[];
   }
@@ -52,7 +50,7 @@ export const CourseData: React.FC = () => {
                     <h2 className="text-[32px] text-primary font-title mb-8">Course episodes & tasks</h2>
                 <div className="mb-[116px] grid lg:grid-cols-3 lg:gap-5 auto-rows-[360px] gap-5 md:grid-cols-2 md:gap-3 sm:grid-cols-1">
                     <ProblemSetCard problemSet={course?.problemSets[0]} />
-                    <EpisodeCard {...course.episodes[0]} />
+                    <EpisodeCard {...course?.episodes[0]} />
                 </div>
             </div>
         </>
