@@ -16,48 +16,46 @@ export const PublicationCard = ({
   return (
     <Card variant="light">
       <div className="flex flex-col">
-        <div className="flex flex-col md:flex-row md:justify-between">
+        <div className="flex justify-between">
           <div className="mb-4 md:mb-8 max-w-[688px]">
             <h2 className="text-card-title font-normal leading-8 mb-3 tracking-[.48px]">
               {title}
             </h2>
             <DocumentRenderer document={description?.document} />
           </div>
-          <div className="md:hidden">
-            <a href={link || "#"} target="_blank">
-              <Button className="w-full whitespace-nowrap">
-                Read the Full Article ↗
-              </Button>
+          <div>
+            <a
+              href={link || "#"}
+              target="_blank"
+              className="hidden md:block w-full"
+            >
+              <Button>Read the Full Article ↗</Button>
             </a>
           </div>
         </div>
         <div className="flex flex-wrap gap-x-3 gap-y-1 text-primary/80 mb-4 w-full">
-          <p className="overflow-wrap-break-word">
-            By: {author}
-          </p>
-          {!publishedDate ? null : (
+          <p>By: {author}</p>
+          <span>|</span>
+          {publishedDate && (
             <>
-              <span className="hidden md:inline-block">|</span>
-              <p className="hidden md:inline-block">
+              <p>
                 Published:{" "}
                 {dayjs(publishedDate, "YYYY-DD-MM").format("D MMMM YYYY")}
               </p>
+              <span>|</span>
             </>
           )}
-          <span className="hidden md:inline-block">|</span>
-          <p className="overflow-wrap-break-word">In: {publisher}</p>
-          <span className="hidden md:inline-block">|</span>
-          <p className="overflow-wrap-break-word">DOI: {doi}</p>
+          <p>In: {publisher}</p>
+          <span>|</span>
+          <p>DOI: {doi}</p>
         </div>
         <div className="md:hidden">
           <a href={link || "#"} target="_blank">
-            <Button className="w-full whitespace-nowrap">
-              Read the Full Article ↗
-            </Button>
+            {/* <Button className="w-full">Read the Full Article ↗</Button> */}
+            <Button>Read the Full Article ↗</Button>
           </a>
         </div>
       </div>
     </Card>
   );
 };
-
