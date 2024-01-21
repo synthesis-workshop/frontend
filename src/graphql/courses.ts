@@ -26,6 +26,7 @@ export const GET_COURSES = gql(`
       publishedAt
     }
     problemSets {
+      id
       title
       problemSetFile {
           url

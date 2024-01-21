@@ -17,9 +17,9 @@ interface Course {
   }
 
   interface CourseData {
-    courses: Course[];
-    episodes: Episode[];
-    problemSets: ProblemSet[];
+    courses: [Course];
+    episodes: [Episode];
+    problemSets: [ProblemSet];
   }
 
 export const CourseData: React.FC = () => {
@@ -38,6 +38,7 @@ export const CourseData: React.FC = () => {
     const course = data?.courses[0];
     const episodes = data?.episodes;
     const problemSets = data?.problemSets;
+    
  
 
 
@@ -60,8 +61,12 @@ export const CourseData: React.FC = () => {
                 <div className="mb-[116px] grid lg:grid-cols-3 lg:gap-5 auto-rows-[360px] gap-5 md:grid-cols-2 md:gap-3 sm:grid-cols-1">
                     {!loading && data && (
                         <>
-                            <ProblemSetCard problemSet={problemSets[0]} />
-                            <EpisodeCard {...episodes[0]} />
+                            {problemSets?.map(problemSet => {
+                                return <ProblemSetCard key={problemSet.id} problemSet={problemSet} />
+                            })}
+                            {episodes?.map(episode => {
+                                return <EpisodeCard key={episode.id} {...episode} />
+                            })}
                         </>
                     )}
                 </div>
