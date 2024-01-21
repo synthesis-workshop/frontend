@@ -11,3 +11,4 @@ export * from "./publication-card";
 export * from "./team-member";
 export * from "./video-card";
 export * from "./video-player";
+export * from "./course-card";
