@@ -23,8 +23,6 @@ export const SingleLineTextInput = <
   register,
   rules,
 }: Props<TFormValues>): JSX.Element => {
-  console.log(name.toString());
-
   return (
     <>
       <input

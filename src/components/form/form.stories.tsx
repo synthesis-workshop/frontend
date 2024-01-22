@@ -14,6 +14,11 @@ export default {
   },
 };
 
+const emailMessageURL =
+  import.meta.env.MODE === "production"
+    ? "https://synthesis-workshop-backend-97f537f332bd.herokuapp.com/api/email-message"
+    : "http://localhost:8080/api/email-message";
+
 const GOOGLE_FORM_URL =
   "https://docs.google.com/forms/d/e/1FAIpQLSfC4j_lyHmHWRUp1shKlNxzPIdE_QVIzfXwIfLLoBqlVo_12A/formResponse";
 
@@ -87,8 +92,8 @@ const Template = () => {
 
   //Change this object to have the input's name and the type of data the input takes.
   type FormFields = {
-    "entry.2005620554": string;
-    "email.boop": string;
+    name: string;
+    email: string;
     subject: string;
     message: string;
   };
@@ -99,12 +104,20 @@ const Template = () => {
     formState: { errors },
   } = useForm<FormFields>();
 
-  //onSubmit function for testing purposes only.
-  const onSubmit = handleSubmit((data) => console.log(data));
+  const onSubmit = handleSubmit((data) => {
+    const formData = new FormData();
+    formData.append("name", data.name);
+    formData.append("email", data.email);
+    formData.append("subject", data.subject);
+    formData.append("message", data.message);
 
-  React.useEffect(() => {
-    console.log(errors);
-  }, [errors]);
+    fetch(emailMessageURL, {
+      method: "POST",
+      body: formData,
+    }).catch((err) => {
+      console.log(err);
+    });
+  });
 
   return (
     <Form className={formClasses.form} action={GOOGLE_FORM_URL} method="post">
@@ -119,13 +132,13 @@ const Template = () => {
             inputId="name"
             ariaLabel="Your name should be inputted here."
             type="text"
-            name="entry.2005620554"
+            name="name"
             register={register}
             rules={nameRules}
           />
-          {errors["entry.2005620554"]?.message && (
+          {errors.name?.message && (
             <span className={formClasses.errorClassname}>
-              {errors["entry.2005620554"]?.message}
+              {errors.name?.message}
             </span>
           )}
         </Form.Label>
@@ -140,13 +153,13 @@ const Template = () => {
             inputId="email"
             ariaLabel="Your Email address should be inputted here."
             type="text"
-            name="email.boop"
+            name="email"
             register={register}
             rules={emailRules}
           />
-          {errors["email.boop"]?.message && (
+          {errors.email?.message && (
             <span className={formClasses.errorClassname}>
-              {errors["email.boop"]?.message}
+              {errors.email?.message}
             </span>
           )}
         </Form.Label>
