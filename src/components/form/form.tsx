@@ -5,18 +5,16 @@ import { TextboxInput } from "./textbox-input";
 
 interface Props {
   className: string;
-  action: string;
-  method: string;
+  onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
 }
 
 export const Form = ({
   className,
   children,
-  action,
-  method,
+  onSubmit,
 }: PropsWithChildren<Props>) => {
   return (
-    <form className={className} action={action} method={method}>
+    <form className={className} onSubmit={onSubmit}>
       {children}
     </form>
   );
