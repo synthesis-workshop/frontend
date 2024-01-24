@@ -23,7 +23,7 @@ export const Header: React.FC = () => {
 
   const linksRight = [
     { label: "Downloads", link: "/#downloads" },
-    { label: "Contacts", link: "/#contact" },
+    { label: "Contact", link: "/#contact" },
     { label: "About", link: "/#about" },
   ];
 

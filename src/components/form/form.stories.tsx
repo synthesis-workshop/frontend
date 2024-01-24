@@ -1,7 +1,6 @@
 import { useForm } from "react-hook-form";
 import { Button } from "../button";
 import { Form } from "./form";
-import React from "react";
 
 export default {
   title: "Components/Form",
@@ -13,14 +12,6 @@ export default {
     },
   },
 };
-
-const emailMessageURL =
-  import.meta.env.MODE === "production"
-    ? "https://synthesis-workshop-backend-97f537f332bd.herokuapp.com/api/email-message"
-    : "http://localhost:8080/api/email-message";
-
-const GOOGLE_FORM_URL =
-  "https://docs.google.com/forms/d/e/1FAIpQLSfC4j_lyHmHWRUp1shKlNxzPIdE_QVIzfXwIfLLoBqlVo_12A/formResponse";
 
 const nameRules = {
   required: "This field is required",
@@ -104,23 +95,12 @@ const Template = () => {
     formState: { errors },
   } = useForm<FormFields>();
 
-  const onSubmit = handleSubmit((data) => {
-    const formData = new FormData();
-    formData.append("name", data.name);
-    formData.append("email", data.email);
-    formData.append("subject", data.subject);
-    formData.append("message", data.message);
-
-    fetch(emailMessageURL, {
-      method: "POST",
-      body: formData,
-    }).catch((err) => {
-      console.log(err);
-    });
+  const onSubmit = handleSubmit(() => {
+    alert("Submitted!");
   });
 
   return (
-    <Form className={formClasses.form} action={GOOGLE_FORM_URL} method="post">
+    <Form className={formClasses.form} onSubmit={onSubmit}>
       <div className={formClasses.formContainer}>
         <Form.Label
           className={formClasses.formLabelTypeOne}
@@ -205,12 +185,7 @@ const Template = () => {
           </span>
         )}
       </Form.Label>
-      <Button
-        className="mx-auto"
-        variant="secondary"
-        type="submit"
-        onClick={onSubmit}
-      >
+      <Button className="mx-auto" variant="secondary" type="submit">
         Send Message
       </Button>
     </Form>
