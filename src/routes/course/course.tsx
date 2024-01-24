@@ -61,11 +61,11 @@ export const CourseData: React.FC = () => {
                 <div className="mb-[116px] grid lg:grid-cols-3 lg:gap-5 auto-rows-[360px] gap-5 md:grid-cols-2 md:gap-3 sm:grid-cols-1">
                     {!loading && data && (
                         <>
-                            {problemSets?.map(problemSet => {
-                                return <ProblemSetCard key={problemSet.id} problemSet={problemSet} />
-                            })}
                             {episodes?.map(episode => {
                                 return <EpisodeCard key={episode.id} {...episode} />
+                            })}
+                            {problemSets?.map(problemSet => {
+                                return <ProblemSetCard key={problemSet.id} problemSet={problemSet} />
                             })}
                         </>
                     )}
