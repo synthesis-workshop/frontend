@@ -5,10 +5,19 @@ import { TextboxInput } from "./textbox-input";
 
 interface Props {
   className: string;
+  onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
 }
 
-export const Form = ({ className, children }: PropsWithChildren<Props>) => {
-  return <form className={className}>{children}</form>;
+export const Form = ({
+  className,
+  children,
+  onSubmit,
+}: PropsWithChildren<Props>) => {
+  return (
+    <form className={className} onSubmit={onSubmit}>
+      {children}
+    </form>
+  );
 };
 
 Form.Label = Label;

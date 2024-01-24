@@ -29,7 +29,7 @@ export const ProblemSetCard = ({ problemSet }: PropsWithChildren<Props>) => {
           </Button>
         </a>
       </div>
-      <div className="flex justify-between mt-8">
+      <div className="flex mt-8">
         {problemSet.episode && (
           <a
             href={`https://www.youtube.com/watch?v=${problemSet.episode.youtubeVideoId}`}
@@ -41,7 +41,7 @@ export const ProblemSetCard = ({ problemSet }: PropsWithChildren<Props>) => {
         )}
 
         {problemSet.downloadCount && (
-          <p className="text-white/80 font-text text-base">
+          <p className="text-white/80 font-text text-base ml-auto mr-5">
             Downloaded {problemSet.downloadCount}{" "}
             {pluralize("time", problemSet.downloadCount)}
           </p>
