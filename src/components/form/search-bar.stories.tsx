@@ -35,18 +35,15 @@ const Template = () => {
   const onSubmit = handleSubmit((data) => console.log(data));
 
   return (
-    <Form className={formClasses.form}>
-      <Form.SingleLineTextInput
+    <Form className={formClasses.form} onSubmit={onSubmit}>
+      <Form.SearchBar
         className={formClasses.input}
-        placeholder="Search for any topic"
         inputId="searchInput"
-        ariaLabel="Your search terms should be inputted here"
-        type="text"
         name="searchInput"
         register={register}
         rules={searchInputRules}
       />
-      <Button onClick={onSubmit}>Search</Button>
+      <Button type="submit">Search</Button>
     </Form>
   );
 };
