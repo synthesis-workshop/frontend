@@ -21,7 +21,7 @@ export const Publications: React.FC = () => {
   });
 
   return (
-    <div className="flex flex-col max-w-[1200px] w-full px-4 md:px-5">
+    <div className="flex flex-col w-full max-w-smPageContent lg:max-w-lgPageContent md:max-w-mdPageContent xl:max-w-xlPageContent">
       <h2 className="font-title text-primary text-3xl mb-8">
         Our Publications
       </h2>
