@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client"
-import { GET_COURSES } from "../../graphql/courses"
+import { GET_COURSE } from "../../graphql/course"
 import { useParams } from "react-router";
 import { ProblemSetCard, EpisodeCard } from "../../components";
 import { Episode, ProblemSet } from "../../__generated__/graphql";
@@ -24,7 +24,7 @@ interface Course {
 
 export const CourseData: React.FC = () => {
     const { courseId } = useParams<{ courseId: string }>();
-    const {loading, data} = useQuery<CourseData>(GET_COURSES, {
+    const {loading, data} = useQuery<CourseData>(GET_COURSE, {
         variables: {
             where: {
                 id: {
