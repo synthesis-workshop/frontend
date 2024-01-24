@@ -1,5 +1,6 @@
 import type { PropsWithChildren } from "react";
 import { Label } from "./label";
+import { SearchBar } from "./search-bar";
 import { SingleLineTextInput } from "./single-line-text-input";
 import { TextboxInput } from "./textbox-input";
 
@@ -21,5 +22,6 @@ export const Form = ({
 };
 
 Form.Label = Label;
+Form.SearchBar = SearchBar;
 Form.SingleLineTextInput = SingleLineTextInput;
 Form.TextboxInput = TextboxInput;
