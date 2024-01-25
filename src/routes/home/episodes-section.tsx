@@ -1,10 +1,11 @@
 import { useQuery } from "@apollo/client";
 import cx from "classnames";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { useMediaQuery } from "react-responsive";
 import { Link } from "react-router-dom";
 import { OrderDirection } from "../../__generated__/graphql";
-import { Button, EpisodeCard, Loading } from "../../components";
+import { Form, Button, EpisodeCard, Loading } from "../../components";
 import Menu from "../../components/drop-down-menu/drop-down-menu";
 import { GET_EPISODES } from "../../graphql";
 import { useNavigate } from "react-router-dom";
@@ -30,23 +31,38 @@ const SortList = [
   { name: "Date added ascending", value: [OrderDirection.Asc] },
   { name: "Date added descending", value: [OrderDirection.Desc] },
 ];
+interface FormValues {
+  searchInput: string;
+}
 
 export const EpisodesSection = () => {
   const [category, setCategory] = useState<string[]>(CategoryList[0].value);
   const [sorting, setSorting] = useState<OrderDirection[]>(SortList[0].value);
-  const [searchTerm, setSearchTerm] = useState(""); // State for search term
 
   const navigate = useNavigate();
-  const handleSearch = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    navigate(`/episodes?search=${encodeURIComponent(searchTerm)}`);
+  const { handleSubmit, register } = useForm<FormValues>(); // Used FormValues interface
+  const searchInputRules = {
+    required: "Search term is required",
+    minLength: {
+      value: 3,
+      message: "Search term must be at least 3 characters",
+    },
   };
+
+  const onSubmit = handleSubmit((data) => {
+    navigate(`/episodes?search=${encodeURIComponent(data.searchInput)}`);
+  });
 
   const changeCategory = (newState: string[]) => {
     setCategory(newState);
   };
   const changeSort = (newState: OrderDirection[]) => {
     setSorting(newState);
+  };
+  const formClasses = {
+    form: "flex flex-col w-80 md:flex-row md:w-[625px] md:h-14 xl:w-[794px]",
+    input:
+      "w-full py-4 px-5 mb-3 border-solid border-2px border-2 border-opacity-40 border-formBorder rounded-lg text-primary font-text md:w-4/5 md:mr-5 md:mb-0",
   };
 
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 450px)" });
@@ -91,39 +107,37 @@ export const EpisodesSection = () => {
           <Menu title={"Sort"} list={SortList} changeMenu={changeSort} />
         </div>
       </div>
-      {/* Search Component */}
-      <div className="mt-4 mb-8">
-        <form onSubmit={handleSearch} className="flex gap-4">
-          <input
-            type="text"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="Search episodes"
-            className="w-[1180px] h-13 px-4 py-2 border border-gray-300 rounded-md"
-          />
-          <Button variant="primary" type="submit" className="h-13 px-4">
-            Search
-          </Button>
-        </form>
-      </div>
+
       {loading ? (
         <div className="mt-12">
           <Loading />
         </div>
       ) : (
-        <>
-          <div
-            className={`grid lg:grid-cols-3 lg:gap-5 auto-rows-[360px] gap-5 md:grid-cols-2 md:gap-3 sm:grid-cols-1`}
-          >
-            {data?.episodes?.map((episode) => (
-              <EpisodeCard key={episode.id} {...episode} />
-            ))}
-          </div>
-          <Link to="/episodes" className="mt-10 mx-auto">
-            <Button>Show All Episodes</Button>
-          </Link>
-        </>
+        <div
+          className={`grid lg:grid-cols-3 lg:gap-5 auto-rows-[360px] gap-5 md:grid-cols-2 md:gap-3 sm:grid-cols-1`}
+        >
+          {data?.episodes?.map((episode) => (
+            <EpisodeCard key={episode.id} {...episode} />
+          ))}
+        </div>
       )}
+
+      <Link to="/episodes" className="mt-10 mx-auto">
+        <Button>Show All Episodes</Button>
+      </Link>
+
+      <div className="mt-4 mb-8">
+        <Form className={formClasses.form} onSubmit={onSubmit}>
+          <Form.SearchBar
+            className={formClasses.input}
+            inputId="searchInput"
+            name="searchInput"
+            register={register}
+            rules={searchInputRules}
+          />
+          <Button type="submit">Search</Button>
+        </Form>
+      </div>
     </div>
   );
 };
