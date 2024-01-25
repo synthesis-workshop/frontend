@@ -43,10 +43,10 @@ export const CourseData: React.FC = () => {
 
 
     return (
-        <>
+        <div className="bg-black/[.06] w-full flex flex-col items-center">
             <div className="max-w-xlPageContent w-11/12 mt-[152px] mb-20" id="header">
-                <div className="flex justify-between items-center mb-8">
-                    <h1 className="text-[50px] text-primary font-title">{course?.title}</h1>
+                <div className="flex mb-8 flex-col sm:flex-col md:flex-col lg:flex-row lg:justify-between lg:items-center">
+                    <h1 className="text-[50px] text-primary font-title mb-2 mr-1">{course?.title}</h1>
                     <div className="flex gap-3">
                         <div className="p-2 bg-brightYellow rounded">{course?.price === 0 ? "Free" : course?.price + "$"}</div>
                         <div className="p-2 border border-[#3A3C46CC] rounded">{course?.episodesCount} Videos</div>
@@ -71,6 +71,6 @@ export const CourseData: React.FC = () => {
                     )}
                 </div>
             </div>
-        </>
+        </div>
     )
 }
