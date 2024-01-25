@@ -1,6 +1,11 @@
-import { Path, RegisterOptions, UseFormRegister } from "react-hook-form";
+import {
+  FieldValues,
+  Path,
+  RegisterOptions,
+  UseFormRegister,
+} from "react-hook-form";
 
-type Props<TFormValues extends Record<string, unknown>> = {
+type Props<TFormValues extends FieldValues> = {
   className: string;
   placeholder: string;
   inputId: string;
@@ -11,9 +16,7 @@ type Props<TFormValues extends Record<string, unknown>> = {
   register: UseFormRegister<TFormValues>;
 };
 
-export const SingleLineTextInput = <
-  TFormValues extends Record<string, unknown>,
->({
+export const SingleLineTextInput = <TFormValues extends FieldValues>({
   className,
   placeholder,
   inputId,
