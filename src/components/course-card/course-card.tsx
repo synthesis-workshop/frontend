@@ -4,8 +4,10 @@ import { Course } from "../../__generated__/graphql";
 import { DocumentRenderer } from "@keystone-6/document-renderer";
 import { Card } from "../card";
 import purpleBlur from "../../images/purple-blur.png";
+import { Link } from "react-router-dom";
 
 export const CourseCard = ({
+  id,
   title,
   description,
   durationHrs,
@@ -51,9 +53,11 @@ export const CourseCard = ({
             </div>
           </div>
           <div className="">
-            <Button className="w-full md:w-max" variant="secondary">
-              Go to the Course →
-            </Button>
+            <Link to={`/courses/${id}`}>
+              <Button className="w-full md:w-max" variant="secondary">
+                Go to the Course →
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

@@ -1,8 +1,8 @@
 import { gql } from "../__generated__/gql";
 
 export const GET_COURSE = gql(`
-  query getCourse($where: CourseWhereInput!) {
-    courses(where: $where) {
+  query getCourse($where: CourseWhereUniqueInput!) {
+    course(where: $where) {
       description {
         document
       }
@@ -13,36 +13,36 @@ export const GET_COURSE = gql(`
       problemSetsCount
       title
       publishedAt
+      episodes {
+        id
+        title
+        description {
+          document
+        }
+        episodeNumber
+        category
+        runtime
+        publishedAt
+      }
+      problemSets {
+        id
+        title
+        problemSetFile {
+            url
+            filename
+            filesize
+        }
+        solutionFile {
+            url
+            filename
+            filesize
+        }
+        downloadCount
+        episode {
+            id
+            youtubeVideoId
+        }
+      }
     }
-    episodes {
-      id
-      title
-      description {
-        document
-      }
-      episodeNumber
-      category
-      runtime
-      publishedAt
-    }
-    problemSets {
-      id
-      title
-      problemSetFile {
-          url
-          filename
-          filesize
-      }
-      solutionFile {
-          url
-          filename
-          filesize
-      }
-      downloadCount
-      episode {
-          id
-          youtubeVideoId
-      }
-    } 
   }
 `);
