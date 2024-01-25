@@ -38,23 +38,25 @@ export const TeamMembers = () => {
         </div>
       </div>
       {/* paragraph */}
-      <div className="md:min-h-60 bg-white flex md:flex-row md:items-start md:justify-evenly md:py-8 sm:flex-col sm:px-4 sm:py-4 sm:max-w-80 sm:gap-4">
+      <div className="md:min-h-60 bg-white flex md:flex-row md:items-start md:justify-evenly md:py-8 sm:flex-col sm:px-4 sm:py-4 sm:max-w-80 sm:gap-4 ">
         <div
           className={`md:w-24 md:h-24 sm:h-20 sm:w-20 bg-primary rounded-full flex items-center justify-center `}
         >
           <img className={`md:w-3.5 h-9`} src={questionmark} />
         </div>
-        <div className={`md:w-10/12`}>
+        <div className={`md:w-10/12 `}>
           <div className="md:pb-8 sm:pb-4 text-primary font-normal">
             <div className={`font-title md:text-3xl sm:text-2xl`}>
               Become our next teammate!
             </div>
-            <div className={`font-title md:text-3xl sm:text-2xl`}>
+            <div
+              className={`font-title md:text-3xl sm:text-2xl text-ellipsis overflow-hidden  `}
+            >
               If you are passionate about chemistry like us, and want to
               contribute to our project, reach out to{" "}
               <a
                 href="mailto:synthesisworkshopvideos@gmail.com"
-                className="underline hover:text-blue"
+                className="underline hover:text-blue "
               >
                 synthesisworkshopvideos@gmail.com
               </a>
