@@ -65,11 +65,11 @@ export const Episodes = () => {
     },
   });
 
-  return <div className="bg-grey flex flex-col max-w-[1280px] mt-[238px] md:mt-[167px] mx-auto">
+  return <div className="bg-grey flex flex-col max-w-[1280px]">
   <div
     className={cx(
       "w-full flex flex-col justify-between items-center pb-8 gap-5",
-      "md:flex-row md:items-start md:gap-0",
+      "md:flex-row md:items-start md:gap-0 mt-[238px] md:mt-[167px] ",
     )}
   >
     <h2 className="font-title text-primary text-3xl">
