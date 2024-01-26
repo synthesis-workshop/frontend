@@ -10,6 +10,7 @@ import {
   Home,
   ProblemSetsPage,
   PublicationsPage,
+  Course
 } from "./routes";
 import { Header } from "./components/header";
 import { ScrollToAnchor, ScrollToTop } from "./utils/scroll";
@@ -54,6 +55,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           <Route path="/" element={<Home />} />
           <Route path="/episodes" element={<Episodes />} />
           <Route path="/courses" element={<Courses />} />
+          <Route path="/courses/:courseId" element={<Course />} />
           <Route path="/problem-sets" element={<ProblemSetsPage />} />
           <Route path="/publications" element={<PublicationsPage />} />
         </Routes>
