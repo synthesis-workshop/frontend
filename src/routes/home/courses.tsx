@@ -16,7 +16,7 @@ export const Courses: React.FC = () => {
   });
 
   return (
-    <div className="flex flex-col max-w-[1200px] px-4 md:px-5 w-screen mt-20">
+    <div className="flex flex-col w-full mt-20 max-w-smPageContent lg:max-w-lgPageContent md:max-w-mdPageContent xl:max-w-xlPageContent">
       <h2 className="font-title text-primary text-section-title">
         Courses on Organic Chemistry
       </h2>
