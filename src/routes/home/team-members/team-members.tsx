@@ -16,7 +16,7 @@ export const TeamMembers = () => {
   });
 
   return (
-    <div className={`md:mx-10 md:max-w-xlPageContent pb-24 xl:pb-44 lg:pb-32 `}>
+    <div className={`md:mx-10 md:max-w-xl pb-24 xl:pb-44 lg:pb-32 `}>
       <div className="flex flex-col md:items-start sm:items-center pb-14">
         <p className=" font-title text-3xl pb-8 ">Who We Are</p>
         <div className="flex flex-col md:gap-14 sm:gap-5">
@@ -40,7 +40,7 @@ export const TeamMembers = () => {
         <div
           className={`md:w-24 md:h-24 sm:h-20 sm:w-20 bg-primary rounded-full flex items-center justify-center `}
         >
-          <img className={`md:w-3.5 h-9`} src={questionmark} />
+          <img className={`md:w-3.5 h-9`} src={questionmark} alt=""/>
         </div>
         <div className={`md:w-10/12`}>
           <div className="md:pb-8 sm:pb-4 text-primary font-normal">

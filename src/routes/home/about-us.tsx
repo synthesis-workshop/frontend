@@ -56,7 +56,7 @@ export const AboutUs: React.FC = () => {
               variant="social"
             >
               <span className=" flex flex-row justify-center gap-2">
-                <img src={Instagram} />
+                <img src={Instagram} alt="instagram" />
                 <span>Instgram</span>
               </span>
             </Button>
@@ -70,7 +70,7 @@ export const AboutUs: React.FC = () => {
               variant="social"
             >
               <span className=" flex flex-row justify-center gap-2">
-                <img src={Linkedin} />
+                <img src={Linkedin} alt="linkedin" />
                 Linked In
               </span>
             </Button>
@@ -81,7 +81,7 @@ export const AboutUs: React.FC = () => {
               variant="social"
             >
               <span className=" flex flex-row justify-center gap-2">
-                <img src={Twitter} />
+                <img src={Twitter} alt="twitter" />
                 Twitter
               </span>
             </Button>
@@ -95,7 +95,7 @@ export const AboutUs: React.FC = () => {
               variant="social"
             >
               <span className=" flex flex-row justify-center gap-2">
-                <img src={Youtube} />
+                <img src={Youtube} alt="youtube" />
                 YouTube
               </span>
             </Button>
