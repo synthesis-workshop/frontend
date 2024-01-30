@@ -6,8 +6,6 @@ import { OrderDirection } from "../../__generated__/graphql";
 import { Button, EpisodeCard } from "../../components";
 import Menu from "../../components/drop-down-menu/drop-down-menu";
 import { GET_EPISODES } from "../../graphql";
-import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
 
 const CategoryList = [
   {
@@ -43,7 +41,7 @@ export const Episodes = () => {
   };
 
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 450px)" });
-  const { data, fetchMore } = useQuery(GET_EPISODES, {
+  const { loading, data, fetchMore } = useQuery(GET_EPISODES, {
     variables: {
       orderBy: [
         {
@@ -64,23 +62,18 @@ export const Episodes = () => {
     },
   });
 
-  const [showContent, setShowContent] = React.useState(false);
-
-  React.useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      setShowContent(true);
-    }, 1500);
-
-    return () => clearTimeout(timeoutId);
-  }, []);
-
   return (
-    <div className="bg-grey px-4">
-      <div className="flex md:flex-row gap-4 sm:flex-col pt-32 pb-8 justify-between">
+    <div className="bg-grey flex flex-col max-w-[1280px]">
+      <div
+        className={cx(
+          "w-full flex flex-col justify-between items-center pb-8 gap-5",
+          "md:flex-row md:items-start md:gap-0 mt-[238px] md:mt-[167px] ",
+        )}
+      >
         <h2 className="font-title text-primary text-3xl">
           Explore our episodes
         </h2>
-        <div className="flex sm:flex-col md:flex-row gap-4">
+        <div className="font-text flex md:flex-row gap-4 sm:flex-col">
           <Menu
             title={"Category"}
             list={CategoryList}
@@ -89,43 +82,41 @@ export const Episodes = () => {
           <Menu title={"Sort"} list={SortList} changeMenu={changeSort} />
         </div>
       </div>
-      <div className="pb-8 hidden md:visible">
+      <div>
         <p>Search Bar</p>
       </div>
-      <div
-        className={`grid lg:grid-cols-3 lg:gap-5 auto-rows-[360px] gap-5 md:grid-cols-2 md:gap-3 sm:grid-cols-1`}
-      >
-        {showContent ? (
-          data?.episodes?.map((episode) => (
-            <EpisodeCard key={episode.id} {...episode} />
-          ))
-        ) : (
-          <>
-            <Skeleton height={319} />
-            <Skeleton height={319} />
-            <Skeleton height={319} />
-          </>
+      {loading ? (
+        <div className="mt-12">
+          <Loading />
+        </div>
+      ) : (
+        <>
+          <div
+            className={`grid lg:grid-cols-3 lg:gap-5 auto-rows-[360px] gap-5 md:grid-cols-2 md:gap-3 sm:grid-cols-1`}
+          >
+            {data?.episodes?.map((episode) => (
+              <EpisodeCard key={episode.id} {...episode} />
+            ))}
+          </div>
+        </>
+      )}
+      {data?.episodesCount &&
+        data.episodes &&
+        data.episodesCount > data.episodes.length && (
+          <Button
+            className="mt-10"
+            variant="primary"
+            onClick={() => {
+              fetchMore({
+                variables: {
+                  skip: data?.episodes?.length,
+                },
+              });
+            }}
+          >
+            Load More
+          </Button>
         )}
-      </div>
-      <div className="flex justify-center">
-        {data?.episodesCount &&
-          data.episodes &&
-          data.episodesCount > data.episodes.length && (
-            <Button
-              className="my-10"
-              variant="primary"
-              onClick={() => {
-                fetchMore({
-                  variables: {
-                    skip: data?.episodes?.length,
-                  },
-                });
-              }}
-            >
-              Load More
-            </Button>
-          )}
-      </div>
     </div>
   );
 };
