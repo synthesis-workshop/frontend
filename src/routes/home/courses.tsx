@@ -37,7 +37,7 @@ export const Courses: React.FC = () => {
             </h3>
             <p className="font-text pt-3 max-w-[659px]">
               If you would like to contribute to our next course, feel free to
-              reach out via email at synthesisworkshopvideos@gmail.com to
+              reach out via email at <a href="mailto:synthesisworkshopvideos@gmail.com">synthesisworkshopvideos@gmail.com</a> to
               discuss the possibilities.
             </p>
           </div>
