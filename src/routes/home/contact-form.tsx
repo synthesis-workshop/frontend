@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import { Button, Form } from "../../components";
+import React from "react";
 
 const emailMessageURL =
   import.meta.env.MODE === "production"
@@ -65,6 +66,8 @@ export const ContactForm = () => {
     formState: { errors },
   } = useForm<FormFields>();
 
+  const [isSubmitted, setIsSubmitted] = React.useState(false);
+
   const onSubmit = handleSubmit((data) => {
     const formData = new FormData();
     formData.append("name", data.name);
@@ -75,9 +78,11 @@ export const ContactForm = () => {
     fetch(emailMessageURL, {
       method: "POST",
       body: formData,
-    }).catch((err) => {
-      console.log(err);
-    });
+    })
+      .then(() => setIsSubmitted(true))
+      .catch((err) => {
+        console.log(err);
+      });
   });
 
   const formClasses = {
@@ -102,104 +107,119 @@ export const ContactForm = () => {
   };
 
   return (
-    <section className="mt-20 | mt-24 " id="contact">
+    <section
+      className="w-full max-w-smPageContent lg:max-w-lgPageContent md:max-w-mdPageContent xl:max-w-xlPageContent"
+      id="contact"
+    >
       <h1 className="font-title text-primary text-4xl mb-6 | md:mb-8 ">
         Contact Us
       </h1>
-      <Form className={formClasses.form} onSubmit={onSubmit}>
-        <div className={formClasses.formContainer}>
-          <Form.Label
-            className={formClasses.formLabelTypeOne}
-            labelText="Name (* Required)"
-          >
-            <Form.SingleLineTextInput
-              className={formClasses.formInputTypeOne}
-              placeholder="Your Name"
-              inputId="name"
-              ariaLabel="Your name should be inputted here."
-              type="text"
-              name="name"
-              register={register}
-              rules={nameRules}
-            />
-            {errors.name?.message && (
-              <span className={formClasses.errorClassname}>
-                {errors.name?.message}
-              </span>
-            )}
-          </Form.Label>
-
-          <Form.Label
-            className={formClasses.formLabelTypeOne}
-            labelText="Email (* Required)"
-          >
-            <Form.SingleLineTextInput
-              className={formClasses.formInputTypeOne}
-              placeholder="Your Email"
-              inputId="email"
-              ariaLabel="Your Email address should be inputted here."
-              type="text"
-              name="email"
-              register={register}
-              rules={emailRules}
-            />
-            {errors.email?.message && (
-              <span className={formClasses.errorClassname}>
-                {errors.email?.message}
-              </span>
-            )}
-          </Form.Label>
+      {isSubmitted ? (
+        <div
+          className={`flex bg-primary p-10 gap-10 font-text rounded-xl justify-center text-section-title text-white
+        xl:max-w-xlPageContent
+        lg:max-w-lgPageContent  
+        md:max-w-mdPageContent md:p-10 
+        sm:max-w-smPageContent sm:w-full sm:gap-6 sm:py-6 sm:px-4 `}
+        >
+          <p className="text-base font-text">Form successfully submitted!</p>
         </div>
-        <Form.Label
-          className={formClasses.formLabelTypeTwo}
-          labelText="Subject (* Required)"
-        >
-          <Form.SingleLineTextInput
-            className={formClasses.formInputTypeTwo}
-            placeholder="Subject"
-            inputId="subject"
-            ariaLabel="Your email's subject line should be inputted here."
-            type="text"
-            name="subject"
-            register={register}
-            rules={subjectRules}
-          />
-          {errors.subject?.message && (
-            <span className={formClasses.errorClassname}>
-              {errors.subject?.message}
-            </span>
-          )}
-        </Form.Label>
-        <Form.Label
-          className={formClasses.formLabelTypeTwo}
-          labelText="Message (* Required)"
-        >
-          <Form.TextboxInput
-            className={formClasses.formInputTypeThree}
-            placeholder="Message"
-            ariaLabel="The content of your email should be inputted here."
-            id="message"
-            rows={10}
-            cols={100}
-            name="message"
-            rules={messageRules}
-            register={register}
-          />
-          {errors.message?.message && (
-            <span className={formClasses.errorClassname}>
-              {errors.message?.message}
-            </span>
-          )}
-        </Form.Label>
-        <Button
-          className="mx-auto"
-          variant="secondary"
-          type="submit"
-          onClick={onSubmit}
-        >
-          Send Message
-        </Button>
-      </Form>
+      ) : (
+        <Form className={formClasses.form} onSubmit={onSubmit}>
+          <div className={formClasses.formContainer}>
+            <Form.Label
+              className={formClasses.formLabelTypeOne}
+              labelText="Name (* Required)"
+            >
+              <Form.SingleLineTextInput
+                className={formClasses.formInputTypeOne}
+                placeholder="Your Name"
+                inputId="name"
+                ariaLabel="Your name should be inputted here."
+                type="text"
+                name="name"
+                register={register}
+                rules={nameRules}
+              />
+              {errors.name?.message && (
+                <span className={formClasses.errorClassname}>
+                  {errors.name?.message}
+                </span>
+              )}
+            </Form.Label>
+
+            <Form.Label
+              className={formClasses.formLabelTypeOne}
+              labelText="Email (* Required)"
+            >
+              <Form.SingleLineTextInput
+                className={formClasses.formInputTypeOne}
+                placeholder="Your Email"
+                inputId="email"
+                ariaLabel="Your Email address should be inputted here."
+                type="text"
+                name="email"
+                register={register}
+                rules={emailRules}
+              />
+              {errors.email?.message && (
+                <span className={formClasses.errorClassname}>
+                  {errors.email?.message}
+                </span>
+              )}
+            </Form.Label>
+          </div>
+          <Form.Label
+            className={formClasses.formLabelTypeTwo}
+            labelText="Subject (* Required)"
+          >
+            <Form.SingleLineTextInput
+              className={formClasses.formInputTypeTwo}
+              placeholder="Subject"
+              inputId="subject"
+              ariaLabel="Your email's subject line should be inputted here."
+              type="text"
+              name="subject"
+              register={register}
+              rules={subjectRules}
+            />
+            {errors.subject?.message && (
+              <span className={formClasses.errorClassname}>
+                {errors.subject?.message}
+              </span>
+            )}
+          </Form.Label>
+          <Form.Label
+            className={formClasses.formLabelTypeTwo}
+            labelText="Message (* Required)"
+          >
+            <Form.TextboxInput
+              className={formClasses.formInputTypeThree}
+              placeholder="Message"
+              ariaLabel="The content of your email should be inputted here."
+              id="message"
+              rows={10}
+              cols={100}
+              name="message"
+              rules={messageRules}
+              register={register}
+            />
+            {errors.message?.message && (
+              <span className={formClasses.errorClassname}>
+                {errors.message?.message}
+              </span>
+            )}
+          </Form.Label>
+          <Button
+            className="mx-auto"
+            variant="secondary"
+            type="submit"
+            onClick={onSubmit}
+          >
+            Send Message
+          </Button>
+        </Form>
+      )}
     </section>
   );
 };
