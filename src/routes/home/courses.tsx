@@ -22,26 +22,32 @@ export const Courses: React.FC = () => {
       <h2 className="font-title text-primary text-section-title">
         Courses on Organic Chemistry
       </h2>
-      <div className="mt-8">
-        {data?.courses?.map((course) => 
-          (<CourseCard key={course.id} {...course} /> )
-        ) || <Skeleton height={360}/>}
-      </div>
-      <div className="mt-7 border rounded-md border-2 border-black p-7">
-        <h3 className="font-title text-card-title">
-          Contribute to our next course!
-        </h3>
-        <p className="font-text pt-3 max-w-[659px]">
-          If you would like to contribute to our next course, feel free to
-          reach out via email at synthesisworkshopvideos@gmail.com to
-          discuss the possibilities.
-        </p>
-      </div>
-      <div className="flex justify-center mt-10">
-        <Link to="/courses" className="">
-          <Button variant="primary">Show All Courses</Button>
-        </Link>
-      </div>
+      {loading ? (
+        <div className="mt-12">
+          <Loading />
+        </div>
+      ) : (
+        <>
+          <div className="mt-8">
+            {data?.courses?.map((course) => (
+              <CourseCard key={course.id} {...course} />
+            ))}
+          </div>
+          <div className="mt-7 border rounded-md border-2 border-black p-7">
+            <h3 className="font-title text-card-title">
+              Contribute to our next course!
+            </h3>
+            <p className="font-text pt-3 max-w-[659px]">
+              If you would like to contribute to our next course, feel free to
+              reach out via email at <a href="mailto:synthesisworkshopvideos@gmail.com">synthesisworkshopvideos@gmail.com</a> to
+              discuss the possibilities.
+            </p>
+          </div>
+          <Link to="/courses" className="mt-10 mx-auto">
+            <Button variant="primary">Show All Courses</Button>
+          </Link>
+        </>
+      )}
     </div>
   );
 };
