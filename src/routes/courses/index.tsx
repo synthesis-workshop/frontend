@@ -14,7 +14,7 @@ export const Courses = () => {
 
   return (
     <div className="pt-[152px] bg-black/[.06] flex flex-col items-center">
-        <h1 className="text-section-title md:text-[50px] text-primary font-title mb-12 text-center mx-12">Courses on Organic Chemistry</h1>
+        <h1 className="text-section-title md:text-[50px] text-primary font-title mb-12 mx-12 max-w-smPageContent lg:max-w-lgPageContent md:max-w-mdPageContent xl:max-w-xlPageContent">Courses on Organic Chemistry</h1>
         {loading ? (
         <div className="mt-12">
           <Loading />
