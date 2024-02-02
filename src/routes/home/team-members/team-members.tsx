@@ -1,8 +1,11 @@
+import React from "react";
 import { useQuery } from "@apollo/client";
 import { GET_TEAM } from "../../../graphql";
 import questionmark from "../../../images/question-mark.svg";
 import { OrderDirection } from "../../../__generated__/graphql";
 import { TeamMemberGroup } from "./team-member-group";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 export const TeamMembers = () => {
   const { data } = useQuery(GET_TEAM, {
@@ -15,25 +18,37 @@ export const TeamMembers = () => {
     },
   });
 
+  const [showContent, setShowContent] = React.useState(false);
+
+  React.useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setShowContent(true);
+    }, 1500);
+
+    return () => clearTimeout(timeoutId);
+  }, []);
+
   return (
     <div
       className={`md:mx-10 max-w-smPageContent lg:max-w-lgPageContent md:max-w-mdPageContent xl:max-w-xlPageContent pb-24 xl:pb-44 lg:pb-32 `}
     >
-      <div className="flex flex-col md:items-start sm:items-center pb-14">
-        <p className=" font-title text-3xl pb-8 ">Who We Are</p>
-        <div className="flex flex-col md:gap-14 sm:gap-5">
-          {data?.teamMembers?.length && data?.teamMembers.length > 0 && (
+      <div className="md:items-start sm:items-center pb-14">
+        <p className="font-title text-3xl pb-8 ">Who We Are</p>
+        <div className="md:gap-14 sm:gap-5">
+          {showContent ? (
             <>
               <TeamMemberGroup
-                members={data.teamMembers.filter((item) => item.group === 1)}
+                members={data?.teamMembers?.filter((item) => item.group === 1)}
               />
               <TeamMemberGroup
-                members={data.teamMembers.filter((item) => item.group === 2)}
+                members={data?.teamMembers?.filter((item) => item.group === 2)}
               />
               <TeamMemberGroup
-                members={data.teamMembers.filter((item) => item.group === 3)}
+                members={data?.teamMembers?.filter((item) => item.group === 3)}
               />
             </>
+          ) : (
+            <Skeleton height={100} borderRadius={12} count={8} />
           )}
         </div>
       </div>
@@ -42,7 +57,7 @@ export const TeamMembers = () => {
         <div
           className={`md:w-24 md:h-24 sm:h-20 sm:w-20 bg-primary rounded-full flex items-center justify-center `}
         >
-          <img className={`md:w-3.5 h-9`} src={questionmark} alt=""/>
+          <img className={`md:w-3.5 h-9`} src={questionmark} alt="" />
         </div>
         <div className={`md:w-10/12 `}>
           <div className="md:pb-8 sm:pb-4 text-primary font-normal">

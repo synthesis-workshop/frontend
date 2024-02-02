@@ -6,11 +6,11 @@ import purpleBlur from "../../images/purple-blur.png";
 import { GET_STATS } from "../../graphql";
 import flaskBlue from "../../images/flask-blue.svg";
 import { kFormat } from "../../utils";
-import Skeleton from 'react-loading-skeleton'
-import 'react-loading-skeleton/dist/skeleton.css'
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 export const Hero: React.FC = () => {
-  const { loading, data } = useQuery(GET_STATS);
+  const { data } = useQuery(GET_STATS);
 
   const stats = useMemo(
     () => [
@@ -21,6 +21,16 @@ export const Hero: React.FC = () => {
     ],
     [data],
   );
+
+  const [showContent, setShowContent] = React.useState(false);
+
+  React.useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setShowContent(true);
+    }, 1500);
+
+    return () => clearTimeout(timeoutId);
+  }, []);
 
   return (
     <div className="relative w-full">
@@ -62,21 +72,39 @@ export const Hero: React.FC = () => {
             "md:gap-20 md:w-11/12 md:-bottom-[80px] md:py-10",
           )}
         >
-          {
-            stats.map(({ label, value }) =>
-              <div
-                className="flex flex-col gap-1 w-[121px] md:w-auto"
-                key={label}
-              >
-                <div className="text-primary text-3xl font-medium font-text">
-                  {loading ? <Skeleton height={39} width={77} containerClassName="flex-1" baseColor="#FFF" /> : (kFormat(value)+'+') }
-                </div>
-                <div className="text-primary/80 pt-3 font-text tracking-tight">
-                  {label}
-                </div>
+          {stats.map(({ label, value }) => (
+            <div
+              className="flex flex-col gap-1 w-[121px] md:w-auto"
+              key={label}
+            >
+              <div className="text-primary text-3xl font-medium font-text">
+                {showContent ? (
+                  kFormat(value) + "+"
+                ) : (
+                  <Skeleton
+                    height={39}
+                    width={77}
+                    containerClassName="flex-1"
+                    baseColor="#FFF"
+                    borderRadius={12}
+                  />
+                )}
               </div>
-            )
-          }
+              <div className="text-primary/80 pt-3 font-text tracking-tight">
+                {showContent ? (
+                  label
+                ) : (
+                  <Skeleton
+                    height={20}
+                    width={120}
+                    containerClassName="flex-1"
+                    baseColor="#FFF"
+                    borderRadius={12}
+                  />
+                )}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>

@@ -1,3 +1,4 @@
+import React from "react";
 import { useQuery } from "@apollo/client";
 import cx from "classnames";
 import { useState } from "react";
@@ -7,8 +8,8 @@ import { OrderDirection } from "../../__generated__/graphql";
 import { Button, EpisodeCard } from "../../components";
 import Menu from "../../components/drop-down-menu/drop-down-menu";
 import { GET_EPISODES } from "../../graphql";
-import Skeleton from 'react-loading-skeleton'
-import 'react-loading-skeleton/dist/skeleton.css'
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const CategoryList = [
   {
@@ -65,8 +66,18 @@ export const EpisodesSection = () => {
     },
   });
 
+  const [showContent, setShowContent] = React.useState(false);
+
+  React.useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setShowContent(true);
+    }, 1500);
+
+    return () => clearTimeout(timeoutId);
+  }, []);
+
   return (
-    <div className="flex flex-col mx-4 md:mx-5 max-w-smPageContent lg:max-w-lgPageContent md:max-w-mdPageContent xl:max-w-xlPageContent">
+    <div className="flex flex-col w-full mx-4 md:mx-5 max-w-smPageContent lg:max-w-lgPageContent md:max-w-mdPageContent xl:max-w-xlPageContent">
       <div
         className={cx(
           "w-full flex flex-col justify-between items-center pb-8 gap-5",
@@ -90,14 +101,19 @@ export const EpisodesSection = () => {
           <div
             className={`grid lg:grid-cols-3 lg:gap-5 auto-rows-[360px] gap-5 md:grid-cols-2 md:gap-3 sm:grid-cols-1`}
           >
-            {data?.episodes?.map((episode) => (
-              <EpisodeCard key={episode.id} {...episode} />
-            )) || <Skeleton height={360} />}
+            {data?.episodes?.map((episode) =>
+              showContent ? (
+                <EpisodeCard key={episode.id} {...episode} />
+              ) : (
+                <Skeleton height={360} borderRadius={12} width={360} />
+              ),
+            )}
           </div>
-          <Link to="/episodes" className="mt-10 mx-auto">
+          <Link to="/episodes" className="mt-10 flex justify-center">
             <Button>Show All Episodes</Button>
           </Link>
-        </>}
+        </>
+      }
     </div>
   );
 };
