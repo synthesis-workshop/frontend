@@ -19,7 +19,7 @@ export const ProblemSets: React.FC = () => {
   });
 
   return (
-    <div className="flex flex-col max-w-[1200px] px-4 md:px-5 w-full">
+    <div className="flex flex-col w-full max-w-smPageContent lg:max-w-lgPageContent md:max-w-mdPageContent xl:max-w-xlPageContent">
       <h2 className="font-title text-primary text-3xl mb-3">Problem Sets</h2>
       <p className="font-text text-lg mb-8 text-primary/80 md:max-w-xl">
         Problem sets are small tasks in PDF format that will help you to
