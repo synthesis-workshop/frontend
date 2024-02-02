@@ -35,7 +35,7 @@ export const TeamMembers = () => {
       <div className="md:items-start sm:items-center pb-14">
         <p className="font-title text-3xl pb-8 ">Who We Are</p>
         <div className="md:gap-14 sm:gap-5">
-          {showContent ? (
+          {showContent && data?.teamMembers ? (
             <>
               <TeamMemberGroup
                 members={data?.teamMembers?.filter((item) => item.group === 1)}
@@ -48,7 +48,7 @@ export const TeamMembers = () => {
               />
             </>
           ) : (
-            <Skeleton height={100} borderRadius={12} count={8} />
+            <Skeleton height={100} borderRadius={12} count={3} />
           )}
         </div>
       </div>

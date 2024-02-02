@@ -1,3 +1,4 @@
+import React from "react";
 import { useQuery } from "@apollo/client";
 import {
   DocumentRenderer,
@@ -9,6 +10,9 @@ import Instagram from "../../images/instagram_ico.svg";
 import Linkedin from "../../images/linkedin_ico.svg";
 import Twitter from "../../images/twitter_ico.svg";
 import Youtube from "../../images/youtube_ico.svg";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+
 const renderers: DocumentRendererProps["renderers"] = {
   inline: {
     bold: ({ children }) => {
@@ -37,9 +41,20 @@ const renderers: DocumentRendererProps["renderers"] = {
 };
 
 export const AboutUs: React.FC = () => {
-  const { loading, data } = useQuery(GET_ABOUT_US, {
+  const { data } = useQuery(GET_ABOUT_US, {
     variables: {},
   });
+
+  const [showContent, setShowContent] = React.useState(false);
+
+  React.useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setShowContent(true);
+    }, 1500);
+
+    return () => clearTimeout(timeoutId);
+  }, []);
+
   return (
     <div className="flex flex-col gap-y/[100px]" id="about">
       <div className="flex flex-col gap-y-8 items-center  md:w-[809px] md:max-w-[728px] md:px-3 sm:px-[25px] sm:h-auto ">
@@ -56,7 +71,7 @@ export const AboutUs: React.FC = () => {
               variant="social"
             >
               <span className=" flex flex-row justify-center gap-2">
-                <img src={Instagram} alt="instagram"/>
+                <img src={Instagram} alt="instagram" />
                 <span>Instgram</span>
               </span>
             </Button>
@@ -70,7 +85,7 @@ export const AboutUs: React.FC = () => {
               variant="social"
             >
               <span className=" flex flex-row justify-center gap-2">
-                <img src={Linkedin} alt="linkedin"/>
+                <img src={Linkedin} alt="linkedin" />
                 Linked In
               </span>
             </Button>
@@ -95,7 +110,7 @@ export const AboutUs: React.FC = () => {
               variant="social"
             >
               <span className=" flex flex-row justify-center gap-2">
-                <img src={Youtube} alt="youtube"/>
+                <img src={Youtube} alt="youtube" />
                 YouTube
               </span>
             </Button>
@@ -107,43 +122,46 @@ export const AboutUs: React.FC = () => {
           </a>
         </p>
       </div>
-      {loading ? (
-        <div className="mt-12"></div>
-      ) : (
-        <>
-          <div className="flex flex-col gap-[80px] items-center max-w-[809px] mt-[100px] md:max-w-[728px] md:px-3 sm:px-[25px] sm:mt-[80px] ">
-            <div className="flex flex-col gap-5">
-              <h2 className="text-primary text-section-title font-title font-normal leading-9 ">
-                About us
-              </h2>
-              <div className="text-xl font-text text-primary leading-[27px] tracking-[-0.4px] sm:text-lg sm:w-auto sm:h-auto ">
-                {data?.metas?.map((metaData) => (
+      <div className="flex flex-col gap-[80px] items-center max-w-[809px] mt-[100px] md:max-w-[728px] md:px-3 sm:px-[25px] sm:mt-[80px] ">
+        <div className="flex flex-col gap-5">
+          <h2 className="text-primary text-section-title font-title font-normal leading-9 ">
+            About us
+          </h2>
+          <div className="text-xl font-text text-primary leading-[27px] tracking-[-0.4px] sm:text-lg sm:w-auto sm:h-auto ">
+            {showContent ? (
+              data?.metas?.map((metaData) => (
+                <DocumentRenderer
+                  key={metaData.id}
+                  document={metaData.about?.document}
+                  renderers={renderers}
+                />
+              ))
+            ) : (
+              <Skeleton height={50} borderRadius={12} />
+            )}
+          </div>
+        </div>
+        <div className="flex flex-col gap-5  ">
+          <h2 className="text-primary text-section-title font-title font-normal leading-9">
+            Our Mission
+          </h2>
+          <div className="flex flex-col">
+            <div className="text-xl font-text text-primary leading-[27px] tracking-[-0.4px] sm:text-lg">
+              {showContent ? (
+                data?.metas?.map((metaData) => (
                   <DocumentRenderer
                     key={metaData.id}
-                    document={metaData.about?.document}
+                    document={metaData.mission?.document}
+                    renderers={renderers}
                   />
-                ))}
-              </div>
-            </div>
-            <div className="flex flex-col gap-5  ">
-              <h2 className="text-primary text-section-title font-title font-normal leading-9">
-                Our Mission
-              </h2>
-              <div className="flex flex-col">
-                <div className="text-xl font-text text-primary leading-[27px] tracking-[-0.4px] sm:text-lg">
-                  {data?.metas?.map((metaData) => (
-                    <DocumentRenderer
-                      key={metaData.id}
-                      document={metaData.mission?.document}
-                      renderers={renderers}
-                    />
-                  ))}
-                </div>
-              </div>
+                ))
+              ) : (
+                <Skeleton height={50} borderRadius={12} />
+              )}
             </div>
           </div>
-        </>
-      )}
+        </div>
+      </div>
     </div>
   );
 };
