@@ -7,6 +7,8 @@ import { OrderDirection } from "../../__generated__/graphql";
 import { Button, EpisodeCard, Loading } from "../../components";
 import Menu from "../../components/drop-down-menu/drop-down-menu";
 import { GET_EPISODES } from "../../graphql";
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 const CategoryList = [
   {
@@ -83,24 +85,19 @@ export const EpisodesSection = () => {
           <Menu title={"Sort"} list={SortList} changeMenu={changeSort} />
         </div>
       </div>
-      {loading ? (
-        <div className="mt-12">
-          <Loading />
-        </div>
-      ) : (
+      {
         <>
           <div
             className={`grid lg:grid-cols-3 lg:gap-5 auto-rows-[360px] gap-5 md:grid-cols-2 md:gap-3 sm:grid-cols-1`}
           >
             {data?.episodes?.map((episode) => (
               <EpisodeCard key={episode.id} {...episode} />
-            ))}
+            )) || <Skeleton height={360} />}
           </div>
           <Link to="/episodes" className="mt-10 mx-auto">
             <Button>Show All Episodes</Button>
           </Link>
-        </>
-      )}
+        </>}
     </div>
   );
 };

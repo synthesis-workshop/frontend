@@ -3,10 +3,11 @@ import cx from "classnames";
 import React, { useMemo } from "react";
 import greyBlur from "../../images/grey-blur.png";
 import purpleBlur from "../../images/purple-blur.png";
-import { Loading } from "../../components";
 import { GET_STATS } from "../../graphql";
 import flaskBlue from "../../images/flask-blue.svg";
 import { kFormat } from "../../utils";
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 export const Hero: React.FC = () => {
   const { loading, data } = useQuery(GET_STATS);
@@ -61,23 +62,21 @@ export const Hero: React.FC = () => {
             "md:gap-20 md:w-11/12 md:-bottom-[80px] md:py-10",
           )}
         >
-          {loading ? (
-            <Loading />
-          ) : (
-            stats.map(({ label, value }) => (
+          {
+            stats.map(({ label, value }) =>
               <div
                 className="flex flex-col gap-1 w-[121px] md:w-auto"
                 key={label}
               >
                 <div className="text-primary text-3xl font-medium font-text">
-                  {kFormat(value)}+
+                  {loading ? <Skeleton height={39} width={77} containerClassName="flex-1" baseColor="#FFF" /> : (kFormat(value)+'+') }
                 </div>
                 <div className="text-primary/80 pt-3 font-text tracking-tight">
                   {label}
                 </div>
               </div>
-            ))
-          )}
+            )
+          }
         </div>
       </div>
     </div>

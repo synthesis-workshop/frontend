@@ -2,9 +2,11 @@ import { useQuery } from "@apollo/client";
 import React from "react";
 import { useMediaQuery } from "react-responsive";
 import { Link } from "react-router-dom";
-import { Loading, Button, ProblemSetCard } from "../../components";
+import { Button, ProblemSetCard } from "../../components";
 import { GET_PROBLEM_SETS } from "../../graphql";
 import { OrderDirection } from "../../__generated__/graphql";
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 export const ProblemSets: React.FC = () => {
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 450px)" });
@@ -25,22 +27,18 @@ export const ProblemSets: React.FC = () => {
         Problem sets are small tasks in PDF format that will help you to
         practice and understand concepts of our episodes
       </p>
-      {loading ? (
-        <div className="mt-12">
-          <Loading />
-        </div>
-      ) : (
+      {
         <>
           <div className="grid lg:grid-cols-3 lg:gap-5 auto-rows-[360px] gap-5 md:grid-cols-2 md:gap-3 sm:grid-cols-1">
             {data?.problemSets?.map((problemSet) => (
               <ProblemSetCard key={problemSet.id} problemSet={problemSet} />
-            ))}
+            )) || <Skeleton height={360} /> 
+            } 
           </div>
           <Link to="/problem-sets" className="mt-10 mx-auto">
             <Button variant="primary">Show All Problem Sets</Button>
           </Link>
-        </>
-      )}
+          </> }
     </div>
   );
 };
