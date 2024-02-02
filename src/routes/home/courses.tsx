@@ -4,8 +4,7 @@ import { Link } from "react-router-dom";
 import { Button, CourseCard } from "../../components";
 import { GET_COURSES } from "../../graphql";
 import { OrderDirection } from "../../__generated__/graphql";
-import Skeleton from 'react-loading-skeleton'
-import 'react-loading-skeleton/dist/skeleton.css'
+import "react-loading-skeleton/dist/skeleton.css";
 
 export const Courses: React.FC = () => {
   const { data } = useQuery(GET_COURSES, {
@@ -39,8 +38,11 @@ export const Courses: React.FC = () => {
             </h3>
             <p className="font-text pt-3 max-w-[659px]">
               If you would like to contribute to our next course, feel free to
-              reach out via email at <a href="mailto:synthesisworkshopvideos@gmail.com">synthesisworkshopvideos@gmail.com</a> to
-              discuss the possibilities.
+              reach out via email at{" "}
+              <a href="mailto:synthesisworkshopvideos@gmail.com">
+                synthesisworkshopvideos@gmail.com
+              </a>{" "}
+              to discuss the possibilities.
             </p>
           </div>
           <Link to="/courses" className="mt-10 mx-auto">
