@@ -11,7 +11,7 @@ import 'react-loading-skeleton/dist/skeleton.css'
 export const ProblemSets: React.FC = () => {
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 450px)" });
 
-  const { loading, data } = useQuery(GET_PROBLEM_SETS, {
+  const { data } = useQuery(GET_PROBLEM_SETS, {
     variables: {
       orderBy: {
         downloadCount: OrderDirection.Desc,

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import { Link } from "react-router-dom";
 import { OrderDirection } from "../../__generated__/graphql";
-import { Button, EpisodeCard, Loading } from "../../components";
+import { Button, EpisodeCard } from "../../components";
 import Menu from "../../components/drop-down-menu/drop-down-menu";
 import { GET_EPISODES } from "../../graphql";
 import Skeleton from 'react-loading-skeleton'
@@ -44,7 +44,7 @@ export const EpisodesSection = () => {
   };
 
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 450px)" });
-  const { loading, data } = useQuery(GET_EPISODES, {
+  const { data } = useQuery(GET_EPISODES, {
     variables: {
       orderBy: [
         {
