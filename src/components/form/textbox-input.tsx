@@ -1,6 +1,11 @@
-import { Path, RegisterOptions, UseFormRegister } from "react-hook-form";
+import {
+  FieldValues,
+  Path,
+  RegisterOptions,
+  UseFormRegister,
+} from "react-hook-form";
 
-interface Props<TFormValues extends Record<string, unknown>> {
+interface Props<TFormValues extends FieldValues> {
   className: string;
   placeholder: string;
   ariaLabel: string;
@@ -12,7 +17,7 @@ interface Props<TFormValues extends Record<string, unknown>> {
   register: UseFormRegister<TFormValues>;
 }
 
-export const TextboxInput = <TFormValues extends Record<string, unknown>>({
+export const TextboxInput = <TFormValues extends FieldValues>({
   className,
   placeholder,
   ariaLabel,

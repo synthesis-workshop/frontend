@@ -9,8 +9,11 @@ export const PosterSection = () => {
 
   return (
     <>
-      <section className="py-10 mx-10 max-[375px]:px-4 max-[768px]:mx-4">
-        <div className="bg-primary px-8 pt-10 pb-[12px] rounded-t-xl m-0 max-[768px]:px-4">
+      <section className="mx-10 max-[375px]:px-4 max-[768px]:mx-4">
+        <div
+          className="bg-primary px-8 pt-10 pb-[12px] rounded-t-xl m-0 max-[768px]:px-4"
+          id="posters"
+        >
           <div className="text-white max-w-[765px] flex flex-col  m-auto gap-y-5 max-md:w-full md:text-center ">
             <h2 className="text-[32px] ">Organic Chemistry Posters</h2>
             <p className="text-[16px] ">

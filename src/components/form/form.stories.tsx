@@ -81,7 +81,7 @@ const Template = () => {
     errorClassname: "text-red text-xs ",
   };
 
-  //Change this object to have the inputs name and the type of data it takes.
+  //Change this object to have the input's name and the type of data the input takes.
   type FormFields = {
     name: string;
     email: string;
@@ -95,11 +95,12 @@ const Template = () => {
     formState: { errors },
   } = useForm<FormFields>();
 
-  //onSubmit function for testing purposes only.
-  const onSubmit = handleSubmit((data) => console.log(data));
+  const onSubmit = handleSubmit(() => {
+    alert("Submitted!");
+  });
 
   return (
-    <Form className={formClasses.form}>
+    <Form className={formClasses.form} onSubmit={onSubmit}>
       <div className={formClasses.formContainer}>
         <Form.Label
           className={formClasses.formLabelTypeOne}
@@ -163,7 +164,6 @@ const Template = () => {
           </span>
         )}
       </Form.Label>
-
       <Form.Label
         className={formClasses.formLabelTypeTwo}
         labelText="Message (* Required)"
@@ -185,13 +185,7 @@ const Template = () => {
           </span>
         )}
       </Form.Label>
-
-      <Button
-        className="mx-auto"
-        variant="secondary"
-        type="submit"
-        onClick={onSubmit}
-      >
+      <Button className="mx-auto" variant="secondary" type="submit">
         Send Message
       </Button>
     </Form>

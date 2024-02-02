@@ -8,10 +8,11 @@ import { ProblemSets } from "./problem-sets";
 import { Publications } from "./publications";
 import { TeamMembers } from "./team-members";
 import { Courses } from "./courses";
+import { ContactForm } from "./contact-form";
 
 export const Home = () => {
   return (
-    <div className="flex flex-col items-center bg-black/[.06] gap-y-[100px] ">
+    <div className="flex flex-col items-center bg-black/[.06] gap-y-28 md:gap-y-[100px]">
       <Hero />
       <Courses />
       <EpisodesSection />
@@ -19,6 +20,7 @@ export const Home = () => {
       <PosterSection />
       <Publications />
       <Downloads />
+      <ContactForm />
       <AboutUs />
       <TeamMembers />
     </div>

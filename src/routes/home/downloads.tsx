@@ -21,7 +21,10 @@ export const Downloads: React.FC = () => {
   ));
 
   return (
-    <section className="my-[100px] mx-10 max-w-[1200px] min-w-[311px] flex flex-col w-11/12">
+    <section
+      className="mx-10 flex flex-col w-full max-w-smPageContent lg:max-w-lgPageContent md:max-w-mdPageContent xl:max-w-xlPageContent"
+      id="downloads"
+    >
       <h2 className="mb-9 font-title text-3xl text-primary">Downloads</h2>
 
       {loading || !downloads ? (
