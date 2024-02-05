@@ -1,4 +1,5 @@
 import { useQuery } from "@apollo/client";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import cx from "classnames";
 import { useState } from "react";
 import { useMediaQuery } from "react-responsive";
@@ -8,7 +9,9 @@ import { Button, EpisodeCard, Loading } from "../../components";
 import Menu from "../../components/drop-down-menu/drop-down-menu";
 import { GET_EPISODES } from "../../graphql";
 import { useNavigate } from "react-router-dom";
-
+import { SearchBar } from "../../components/form/search-bar";
+import { useForm } from "react-hook-form";
+import youtubeIcon from "../../images/image 10.svg"; // Adjust with the correct path
 const CategoryList = [
   {
     name: "All",
@@ -19,7 +22,6 @@ const CategoryList = [
       "Culture of Chemistry",
     ],
   },
-
   { name: "Research Spotlight", value: ["Research Spotlight"] },
   { name: "Total Synthesis", value: ["Total Synthesis"] },
   { name: "Named Reaction", value: ["Named Reaction"] },
@@ -34,17 +36,18 @@ const SortList = [
 export const EpisodesSection = () => {
   const [category, setCategory] = useState<string[]>(CategoryList[0].value);
   const [sorting, setSorting] = useState<OrderDirection[]>(SortList[0].value);
-  const [searchTerm, setSearchTerm] = useState(""); // State for search term
-
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
-  const handleSearch = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    navigate(`/episodes?search=${encodeURIComponent(searchTerm)}`);
-  };
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const handleSearch = handleSubmit((data) => {
+    navigate(`/episodes?search=${encodeURIComponent(data.searchInput)}`);
+  });
 
   const changeCategory = (newState: string[]) => {
     setCategory(newState);
   };
+
   const changeSort = (newState: OrderDirection[]) => {
     setSorting(newState);
   };
@@ -54,13 +57,11 @@ export const EpisodesSection = () => {
     variables: {
       orderBy: [
         {
-          // TODO: This needs to be a state variable based on the sorting dropdown
           publishedAt: sorting[0],
         },
       ],
       where: {
         category: {
-          // TODO: This needs to be a state variable based on the category dropdown
           in: category,
         },
         status: {
@@ -72,17 +73,13 @@ export const EpisodesSection = () => {
   });
 
   return (
-    <div className="flex flex-col max-w-[1280px] mx-4 md:mx-5">
-      <div
-        className={cx(
-          "w-full flex flex-col justify-between items-center pb-8 gap-5",
-          "md:flex-row md:items-start md:gap-0",
-        )}
-      >
+    <div className="flex flex-col items-center mx-4 md:mx-auto">
+      {/* Explore our episodes section */}
+      <div className="w-full flex flex-col justify-between items-center pb-8 gap-5 md:flex-row md:items-start md:gap-0">
         <h2 className="font-title text-primary text-3xl">
           Explore our episodes
         </h2>
-        <div className="font-text flex md:flex-row gap-4 sm:flex-col">
+        <div className="font-text flex flex-col md:flex-row gap-4">
           <Menu
             title={"Category"}
             list={CategoryList}
@@ -91,39 +88,108 @@ export const EpisodesSection = () => {
           <Menu title={"Sort"} list={SortList} changeMenu={changeSort} />
         </div>
       </div>
-      {/* Search Component */}
-      <div className="mt-4 mb-8">
-        <form onSubmit={handleSearch} className="flex gap-4">
-          <input
-            type="text"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="Search episodes"
-            className="w-[1180px] h-13 px-4 py-2 border border-gray-300 rounded-md"
-          />
-          <Button variant="primary" type="submit" className="h-13 px-4">
-            Search
-          </Button>
-        </form>
-      </div>
+
+      {/* Episodes grid or loading state */}
       {loading ? (
-        <div className="mt-12">
-          <Loading />
-        </div>
+        <Loading />
       ) : (
         <>
-          <div
-            className={`grid lg:grid-cols-3 lg:gap-5 auto-rows-[360px] gap-5 md:grid-cols-2 md:gap-3 sm:grid-cols-1`}
-          >
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-3 lg:gap-5 auto-rows-[360px]">
             {data?.episodes?.map((episode) => (
               <EpisodeCard key={episode.id} {...episode} />
             ))}
           </div>
-          <Link to="/episodes" className="mt-10 mx-auto">
-            <Button>Show All Episodes</Button>
-          </Link>
+          <div className="mt-10 mx-auto mb-24">
+            {" "}
+            {/* Added bottom margin here */}
+            <Link to="/episodes">
+              <Button>Show All Episodes</Button>
+            </Link>
+          </div>
         </>
       )}
+
+      {/* Follow us on YouTube banner */}
+      <div className="w-full flex justify-center my-8">
+        <div
+          className="bg-primary rounded-md h-[156px] flex items-center justify-between px-10"
+          style={{ width: "1200px", maxWidth: "100%" }}
+        >
+          <div className="flex gap-4">
+            <span
+              className="text-white text-opacity-80 font-title"
+              style={{ fontSize: "32px", lineHeight: "110%" }}
+            >
+              Follow us on
+            </span>
+            <span
+              className="text-white font-title"
+              style={{ fontSize: "32px", lineHeight: "110%" }}
+            >
+              YouTube
+            </span>
+          </div>
+          <a
+            href="https://www.youtube.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center"
+          >
+            <img
+              src={youtubeIcon}
+              alt="YouTube"
+              style={{ height: "35px", width: "auto" }}
+            />
+          </a>
+        </div>
+      </div>
     </div>
   );
 };
+
+{
+  /* Search section */
+}
+<div className="w-full flex justify-center my-8">
+  <div
+    className="bg-white rounded-md flex flex-col items-center justify-center"
+    style={{ width: "1200px", maxWidth: "100%", height: "262px" }}
+  >
+    {/* Title container */}
+    <div
+      className="w-full flex justify-center items-center px-4"
+      style={{ marginBottom: "40px" }}
+    >
+      <h1
+        className="font-title text-primary text-3xl text-center"
+        style={{ width: "452px" }}
+      >
+        Search for any organic chemistry related topic
+      </h1>
+    </div>
+
+    {/* Search form */}
+    <div className="w-full px-4 flex justify-center items-center">
+      <form
+        onSubmit={handleSearch}
+        className="w-full flex flex-col md:flex-row items-center justify-center gap-5"
+      >
+        <SearchBar
+          className="w-full md:w-4/5 rounded-lg border-2 border-formBorder p-3"
+          placeholder="Search for any topic"
+          inputId="searchInput"
+          ariaLabel="Search for episodes"
+          name="searchInput"
+          register={register}
+          rules={{}}
+        />
+        <Button
+          type="submit"
+          className="w-full md:w-auto rounded-lg border-2 border-formBorder p-3 md:px-8"
+        >
+          Search
+        </Button>
+      </form>
+    </div>
+  </div>
+</div>;
