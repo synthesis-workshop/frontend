@@ -33,20 +33,20 @@ export const PublicationCard = ({
             </a>
           </div>
         </div>
-        <div className="flex flex-wrap gap-x-3 gap-y-1 text-primary/80 mb-4 w-full">
+        <div className="flex sm:flex-col md:flex-row flex-wrap sm:gap-x-1 md:gap-x-3 gap-y-1 text-primary/80 mb-4 w-full">
           <p>By: {author}</p>
-          <span>|</span>
+          <span className="sm:invisible md:visible">|</span>
           {publishedDate && (
             <>
               <p>
                 Published:{" "}
                 {dayjs(publishedDate, "YYYY-DD-MM").format("D MMMM YYYY")}
               </p>
-              <span>|</span>
+              <span className="sm:invisible md:visible">|</span>
             </>
           )}
           <p>In: {publisher}</p>
-          <span>|</span>
+          <span className="sm:invisible md:visible">|</span>
           <p>DOI: {doi}</p>
         </div>
         <div className="md:hidden">
