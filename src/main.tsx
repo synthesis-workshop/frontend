@@ -10,7 +10,7 @@ import {
   Home,
   ProblemSetsPage,
   PublicationsPage,
-  Course
+  Course,
 } from "./routes";
 import { Header } from "./components/header";
 import { ScrollToAnchor, ScrollToTop } from "./utils/scroll";
