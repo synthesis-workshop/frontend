@@ -20,7 +20,7 @@ export const PublicationsPage: React.FC = () => {
   });
 
   return (
-    <div className="bg-black/[.06] w-full pt-28">
+    <div className="w-full pt-28">
       <div className="mx-auto md:w-11/12 px-4 xl:max-w-xlPageContent flex flex-col">
         <h2 className="font-title text-[32px] text-primary mb-3">
           Our Publications
