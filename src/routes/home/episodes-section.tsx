@@ -64,7 +64,7 @@ export const EpisodesSection = () => {
   });
 
   return (
-    <div className="flex flex-col mx-4 md:mx-5 max-w-smPageContent lg:max-w-lgPageContent md:max-w-mdPageContent xl:max-w-xlPageContent">
+    <div className="flex flex-col w-full sm:max-w-smPageContent lg:max-w-lgPageContent md:max-w-mdPageContent xl:max-w-xlPageContent">
       <div
         className={cx(
           "w-full flex flex-col justify-between items-center pb-8 gap-5",
