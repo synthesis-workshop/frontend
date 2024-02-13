@@ -3,9 +3,12 @@ import { useQuery } from "@apollo/client";
 import { useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import { OrderDirection } from "../../__generated__/graphql";
-import { Button, EpisodeCard } from "../../components";
+import { Form, Button, EpisodeCard } from "../../components";
 import Menu from "../../components/drop-down-menu/drop-down-menu";
 import { GET_EPISODES } from "../../graphql";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+import { useForm } from "react-hook-form";
 
 const CategoryList = [
   {
@@ -29,10 +32,13 @@ const SortList = [
   { name: "Date added descending", value: [OrderDirection.Desc] },
 ];
 
+interface FormValues {
+  searchInput: string;
+}
+
 export const Episodes = () => {
   const [category, setCategory] = useState<string[]>(CategoryList[0].value);
   const [sorting, setSorting] = useState<OrderDirection[]>(SortList[0].value);
-  // const [search, setSearch] = useState<string>("");
 
   const changeCategory = (newState: string[]) => {
     setCategory(newState);
@@ -42,42 +48,76 @@ export const Episodes = () => {
   };
 
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 450px)" });
-  const { loading, data, fetchMore } = useQuery(GET_EPISODES, {
+  const { data, fetchMore, refetch } = useQuery(GET_EPISODES, {
     variables: {
       orderBy: [
         {
-          // TODO: This needs to be a state variable based on the sorting dropdown
           publishedAt: sorting[0],
         },
       ],
       where: {
         category: {
-          // TODO: This needs to be a state variable based on the category dropdown
           in: category,
         },
         status: {
           equals: "published",
         },
         title: {
-          // contains: search,
+          contains: "",
         },
       },
       take: isTabletOrMobile ? 9 : 18,
     },
   });
 
+  // This is a custom hook that we will use to show the content after a certain time while the loading skeletons are being shown
+
+  const [showContent, setShowContent] = React.useState(false);
+
+  React.useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setShowContent(true);
+    }, 1500);
+
+    return () => clearTimeout(timeoutId);
+  }, []);
+
+  const { handleSubmit, register } = useForm<FormValues>();
+  const searchInputRules = {
+    required: "This field is required",
+  };
+
+  // This is the function that will be called when the form is submitted
+
+  const onSubmit = handleSubmit((data) => {
+    refetch({
+      orderBy: [
+        {
+          publishedAt: sorting[0],
+        },
+      ],
+      where: {
+        category: {
+          in: category,
+        },
+        status: {
+          equals: "published",
+        },
+        title: {
+          contains: data.searchInput,
+        },
+      },
+      take: isTabletOrMobile ? 9 : 18,
+    });
+  });
+
   return (
-    <div className="bg-grey flex flex-col max-w-[1280px]">
-      <div
-        className={cx(
-          "w-full flex flex-col justify-between items-center pb-8 gap-5",
-          "md:flex-row md:items-start md:gap-0 mt-[238px] md:mt-[167px] ",
-        )}
-      >
+    <div className="bg-grey px-4">
+      <div className="flex md:flex-row gap-4 sm:flex-col pt-32 pb-8 justify-between">
         <h2 className="font-title text-primary text-3xl">
           Explore our episodes
         </h2>
-        <div className="font-text flex md:flex-row gap-4 sm:flex-col">
+        <div className="flex sm:flex-col md:flex-row gap-4">
           <Menu
             title={"Category"}
             list={CategoryList}
@@ -86,41 +126,60 @@ export const Episodes = () => {
           <Menu title={"Sort"} list={SortList} changeMenu={changeSort} />
         </div>
       </div>
-      <div>
-        <p>Search Bar</p>
-      </div>
-      {loading ? (
-        <div className="mt-12">
-          <Loading />
-        </div>
-      ) : (
-        <>
-          <div
-            className={`grid lg:grid-cols-3 lg:gap-5 auto-rows-[360px] gap-5 md:grid-cols-2 md:gap-3 sm:grid-cols-1`}
-          >
-            {data?.episodes?.map((episode) => (
-              <EpisodeCard key={episode.id} {...episode} />
-            ))}
-          </div>
-        </>
-      )}
-      {data?.episodesCount &&
-        data.episodes &&
-        data.episodesCount > data.episodes.length && (
+      <div className="h-0 md:h-auto invisible md:visible">
+        <Form className="invisible md:visible w-full pb-8" onSubmit={onSubmit}>
+          <Form.SearchBar
+            className="invisible md:visible w-full"
+            placeholder="Search episodes"
+            inputId="searchInput"
+            ariaLabel="Search episodes"
+            name="searchInput"
+            rules={searchInputRules}
+            register={register}
+          />
           <Button
-            className="mt-10"
+            className="invisible md:visible"
+            type="submit"
             variant="primary"
-            onClick={() => {
-              fetchMore({
-                variables: {
-                  skip: data?.episodes?.length,
-                },
-              });
-            }}
           >
-            Load More
+            Search
           </Button>
+        </Form>
+      </div>
+      <div
+        className={`grid lg:grid-cols-3 lg:gap-5 auto-rows-[360px] gap-5 md:grid-cols-2 md:gap-3 sm:grid-cols-1`}
+      >
+        {showContent ? (
+          data?.episodes?.map((episode) => (
+            <EpisodeCard key={episode.id} {...episode} />
+          ))
+        ) : (
+          <>
+            <Skeleton height={319} />
+            <Skeleton height={319} />
+            <Skeleton height={319} />
+          </>
         )}
+      </div>
+      <div className="flex justify-center">
+        {data?.episodesCount &&
+          data.episodes &&
+          data.episodesCount > data.episodes.length && (
+            <Button
+              className="my-10"
+              variant="primary"
+              onClick={() => {
+                fetchMore({
+                  variables: {
+                    skip: data?.episodes?.length,
+                  },
+                });
+              }}
+            >
+              Load More
+            </Button>
+          )}
+      </div>
     </div>
   );
 };
