@@ -10,7 +10,7 @@ import {
   Home,
   ProblemSetsPage,
   PublicationsPage,
-  Course
+  Course,
 } from "./routes";
 import { Header } from "./components/header";
 import { ScrollToAnchor, ScrollToTop } from "./utils/scroll";
@@ -50,16 +50,20 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       <BrowserRouter>
         <ScrollToAnchor />
         <ScrollToTop />
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/episodes" element={<Episodes />} />
-          <Route path="/courses" element={<Courses />} />
-          <Route path="/courses/:courseId" element={<Course />} />
-          <Route path="/problem-sets" element={<ProblemSetsPage />} />
-          <Route path="/publications" element={<PublicationsPage />} />
-        </Routes>
-        <Footer />
+        <div className="min-h-screen flex flex-col">
+          <div className="bg-black/[.06] grow">
+            <Header />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/episodes" element={<Episodes />} />
+              <Route path="/courses" element={<Courses />} />
+              <Route path="/courses/:courseId" element={<Course />} />
+              <Route path="/problem-sets" element={<ProblemSetsPage />} />
+              <Route path="/publications" element={<PublicationsPage />} />
+            </Routes>
+          </div>
+          <Footer />
+        </div>
       </BrowserRouter>
     </ApolloProvider>
   </React.StrictMode>,
