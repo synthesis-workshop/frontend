@@ -46,13 +46,13 @@ export const AboutUs: React.FC = () => {
         <h2 className="text-primary text-section-title font-title font-normal leading-9">
           Subscribe to Our Socials
         </h2>
-        <div className="flex flex-row gap-3 sm:flex-row sm:flex-wrap sm:justify-center">
+        <div className="flex flex-row gap-3 flex-wrap justify-center">
           <a
             href="https://www.instagram.com/synthesis.workshop/"
             target="_blank"
           >
             <Button
-              className="px-4 py-2.5 sm:w-[155px] flex flex-row justify-center"
+              className="px-4 py-2.5 w-[155px] flex flex-row justify-center"
               variant="social"
             >
               <span className=" flex flex-row justify-center gap-2">
@@ -66,18 +66,18 @@ export const AboutUs: React.FC = () => {
             target="_blank"
           >
             <Button
-              className="px-4 py-2.5 sm:w-[155px] flex items-center"
+              className="px-4 py-2.5 w-[155px] flex items-center"
               variant="social"
             >
               <span className=" flex flex-row justify-center gap-2">
                 <img src={Linkedin} />
-                Linked In
+                LinkedIn
               </span>
             </Button>
           </a>
           <a href="https://twitter.com/MatthewHorwitz1" target="_blank">
             <Button
-              className="px-4 py-2.5 sm:w-[155px] flex items-center"
+              className="px-4 py-2.5 w-[155px] flex items-center"
               variant="social"
             >
               <span className=" flex flex-row justify-center gap-2">
@@ -91,7 +91,7 @@ export const AboutUs: React.FC = () => {
             target="_blank"
           >
             <Button
-              className="px-4 py-2.5 sm:w-[155px] flex items-center"
+              className="px-4 py-2.5 w-[155px] flex items-center"
               variant="social"
             >
               <span className=" flex flex-row justify-center gap-2">

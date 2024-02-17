@@ -98,7 +98,7 @@ export const EpisodesSection = () => {
         <Loading />
       ) : (
         <>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-3 lg:gap-5 auto-rows-[360px]">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-3 lg:gap-5 auto-rows-[360px]">
             {data?.episodes?.map((episode) => (
               <EpisodeCard key={episode.id} {...episode} />
             ))}

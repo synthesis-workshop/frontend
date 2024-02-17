@@ -39,7 +39,7 @@ export const Hero: React.FC = () => {
       <div className="flex flex-col items-center py-40 text-center relative z-10">
         <h1 className="flex flex-col text-white/60 text-4xl md:text-5xl font-medium font-title">
           Explore the art
-          <div className="flex items-center gap-2">
+          <div className="flex items-center justify-center gap-x-2 gap-y-1 flex-wrap">
             of <span className="text-white/90">organic</span>
             <img
               src={flaskBlue}
