@@ -1,4 +1,4 @@
-import { gql } from "../__generated__/gql"; 
+import { gql } from "../__generated__/gql";
 
 export const GET_EPISODES = gql(`
   query GetEpisodes(
@@ -18,6 +18,6 @@ export const GET_EPISODES = gql(`
       runtime
       publishedAt
     }
-    episodesCount
+    episodesCount(where: $where)
   }
 `);

@@ -39,7 +39,7 @@ export const EpisodesSection = () => {
   const [category, setCategory] = useState<string[]>(CategoryList[0].value);
   const [sorting, setSorting] = useState<OrderDirection[]>(SortList[0].value);
 
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, watch } = useForm();
   const navigate = useNavigate();
 
   const handleSearch = handleSubmit((data) => {
@@ -71,7 +71,6 @@ export const EpisodesSection = () => {
         },
       },
       take: isTabletOrMobile ? 3 : 6,
-     
     },
   });
 
@@ -170,12 +169,13 @@ export const EpisodesSection = () => {
               className="w-full flex flex-col md:flex-row items-center justify-center gap-5"
             >
               <SearchBar
-                className="w-full md:w-4/5 rounded-lg border-2 border-formBorder p-3"
+                className="w-full md:w-4/5 rounded-lg p-3"
                 placeholder="Search for any topic"
                 inputId="searchInput"
                 ariaLabel="Search for episodes"
                 name="searchInput"
                 register={register}
+                watch={watch}
                 rules={{}}
               />
               <Button

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useQuery } from "@apollo/client";
 import { useState } from "react";
 import { useMediaQuery } from "react-responsive";
@@ -9,6 +9,8 @@ import { GET_EPISODES } from "../../graphql";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { useForm } from "react-hook-form";
+import { useSearchParams } from "react-router-dom";
+import { isEmpty, omitBy } from "lodash";
 
 const CategoryList = [
   {
@@ -37,6 +39,7 @@ interface FormValues {
 }
 
 export const Episodes = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [category, setCategory] = useState<string[]>(CategoryList[0].value);
   const [sorting, setSorting] = useState<OrderDirection[]>(SortList[0].value);
 
@@ -46,6 +49,16 @@ export const Episodes = () => {
   const changeSort = (newState: OrderDirection[]) => {
     setSorting(newState);
   };
+
+  const { handleSubmit, register, watch, setValue } = useForm<FormValues>({
+    defaultValues: {
+      searchInput: searchParams.get("search") || "",
+    },
+  });
+
+  // Want to make the initial query using the search term, but all future queries should be made using 'refetch'
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const searchInput = useMemo(() => searchParams.get("search") || "", []);
 
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 450px)" });
   const { data, fetchMore, refetch } = useQuery(GET_EPISODES, {
@@ -63,11 +76,13 @@ export const Episodes = () => {
           equals: "published",
         },
         title: {
-          contains: "",
+          contains: searchInput,
         },
       },
       take: isTabletOrMobile ? 9 : 18,
     },
+    // This is a custom fetch policy that will overwrite the cache with the new data instead of merging with cached data
+    refetchWritePolicy: "overwrite",
   });
 
   // This is a custom hook that we will use to show the content after a certain time while the loading skeletons are being shown
@@ -81,11 +96,6 @@ export const Episodes = () => {
 
     return () => clearTimeout(timeoutId);
   }, []);
-
-  const { handleSubmit, register } = useForm<FormValues>();
-  const searchInputRules = {
-    required: "This field is required",
-  };
 
   // This is the function that will be called when the form is submitted
 
@@ -109,15 +119,23 @@ export const Episodes = () => {
       },
       take: isTabletOrMobile ? 9 : 18,
     });
+    setSearchParams(
+      omitBy(
+        {
+          search: data.searchInput,
+        },
+        isEmpty,
+      ),
+    );
   });
 
   return (
-    <div className="bg-grey px-4">
-      <div className="flex md:flex-row gap-4 sm:flex-col pt-32 pb-8 justify-between">
+    <div className="mx-auto flex flex-col items-center max-w-xlPageContent px-2 sm:px-4 md:px-8">
+      <div className="flex md:flex-row gap-4 flex-col pt-32 pb-8 justify-between w-full">
         <h2 className="font-title text-primary text-3xl">
           Explore our episodes
         </h2>
-        <div className="flex sm:flex-col md:flex-row gap-4">
+        <div className="flex flex-col md:flex-row gap-4">
           <Menu
             title={"Category"}
             list={CategoryList}
@@ -126,26 +144,27 @@ export const Episodes = () => {
           <Menu title={"Sort"} list={SortList} changeMenu={changeSort} />
         </div>
       </div>
-      <div className="h-0 md:h-auto invisible md:visible">
-        <Form className="invisible md:visible w-full pb-8" onSubmit={onSubmit}>
-          <Form.SearchBar
-            className="invisible md:visible w-full"
-            placeholder="Search episodes"
-            inputId="searchInput"
-            ariaLabel="Search episodes"
-            name="searchInput"
-            rules={searchInputRules}
-            register={register}
-          />
-          <Button
-            className="invisible md:visible"
-            type="submit"
-            variant="primary"
-          >
-            Search
-          </Button>
-        </Form>
-      </div>
+      <Form
+        className="flex flex-col md:flex-row w-full pb-8"
+        onSubmit={onSubmit}
+      >
+        <Form.SearchBar
+          className="grow"
+          placeholder="Search episodes"
+          inputId="searchInput"
+          ariaLabel="Search episodes"
+          name="searchInput"
+          register={register}
+          watch={watch}
+          onClear={() => {
+            setValue("searchInput", "");
+            onSubmit();
+          }}
+        />
+        <Button type="submit" variant="primary">
+          Search
+        </Button>
+      </Form>
       <div
         className={`grid lg:grid-cols-3 lg:gap-5 auto-rows-[360px] gap-5 md:grid-cols-2 md:gap-3 sm:grid-cols-1`}
       >
@@ -161,12 +180,11 @@ export const Episodes = () => {
           </>
         )}
       </div>
-      <div className="flex justify-center">
+      <div className="flex justify-center my-10">
         {data?.episodesCount &&
           data.episodes &&
           data.episodesCount > data.episodes.length && (
             <Button
-              className="my-10"
               variant="primary"
               onClick={() => {
                 fetchMore({

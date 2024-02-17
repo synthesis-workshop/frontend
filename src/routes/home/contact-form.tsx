@@ -90,7 +90,7 @@ export const ContactForm = () => {
     xl:max-w-xlPageContent
     lg:max-w-lgPageContent  
     md:max-w-mdPageContent md:p-10 
-    max-w-smPageContent gap-6 py-6 px-4 `,
+    max-w-smPageContent gap-6 py-6 px-4 mx-auto`,
     formContainer: `flex w-full items-start width-full flex-col gap-6 
       md:gap-10 md:flex-row`,
     formLabelTypeOne:
@@ -108,7 +108,7 @@ export const ContactForm = () => {
 
   return (
     <section
-      className="w-full max-w-smPageContent lg:max-w-lgPageContent md:max-w-mdPageContent xl:max-w-xlPageContent"
+      className="w-full sm:max-w-smPageContent lg:max-w-lgPageContent md:max-w-mdPageContent xl:max-w-xlPageContent flex flex-col"
       id="contact"
     >
       <h1 className="font-title text-primary text-4xl mb-6 | md:mb-8 ">
@@ -133,6 +133,7 @@ export const ContactForm = () => {
             >
               <Form.SingleLineTextInput
                 className={formClasses.formInputTypeOne}
+                wrapperClassName="contents"
                 placeholder="Your Name"
                 inputId="name"
                 ariaLabel="Your name should be inputted here."
@@ -154,6 +155,7 @@ export const ContactForm = () => {
             >
               <Form.SingleLineTextInput
                 className={formClasses.formInputTypeOne}
+                wrapperClassName="contents"
                 placeholder="Your Email"
                 inputId="email"
                 ariaLabel="Your Email address should be inputted here."
@@ -175,6 +177,7 @@ export const ContactForm = () => {
           >
             <Form.SingleLineTextInput
               className={formClasses.formInputTypeTwo}
+              wrapperClassName="contents"
               placeholder="Subject"
               inputId="subject"
               ariaLabel="Your email's subject line should be inputted here."

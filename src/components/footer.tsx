@@ -92,7 +92,7 @@ export const Footer: React.FC = () => {
       </div>
       <div
         className={cx(
-          `text-footerText text-lg no-underline font-normal flex flex-col font-semibold mx-0 
+          `text-footerText text-lg no-underline flex flex-col font-semibold mx-0 
           h-28 w-fit flex-wrap gap-y-3 gap-x-14 my-14
           md:w-32 md:my-14 md:h-48 
           lg:w-32 lg:-my-2
