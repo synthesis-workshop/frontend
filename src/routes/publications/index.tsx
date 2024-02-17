@@ -25,7 +25,7 @@ export const PublicationsPage: React.FC = () => {
         <h2 className="font-title text-[32px] text-primary mb-3">
           Our Publications
         </h2>
-        <div className="flex flex-col items-center mb-10 w-full">
+        <div className="flex flex-col gap-5 items-center mb-10 w-full">
           {loading ? (
             <Loading />
           ) : (
