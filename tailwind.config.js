@@ -33,7 +33,7 @@ export default {
         xlPageContent: "1200px",
         lgPageContent: "944px",
         mdPageContent: "728px",
-        smPageContent: "343px",
+        smPageContent: "320px",
       },
     },
   },

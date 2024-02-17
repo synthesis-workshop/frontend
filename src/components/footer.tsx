@@ -44,7 +44,7 @@ export const Footer: React.FC = () => {
     <footer
       className={cx(
         `bg-primary mx-auto my-0  
-        h-fit pt-8 pr-9 pb-20 pl-4 flex-col justify-start max-w-full py-10
+        h-fit pt-8 pr-9 pb-20 pl-4 flex-col justify-start max-w-full w-full py-10
         flex relative overflow-hidden font-text z-0 text-white/80
         md:h-fit md:pt-10 md:pr-36 md:pb-12 md:pl-4 md:justify-between md:flex-row
         lg:pt-10 lg:pr-16 lg:pb-16 lg:pl-10 lg:h-72 
@@ -53,7 +53,7 @@ export const Footer: React.FC = () => {
     >
       <div
         className={cx(
-          `h-5/6 flex flex-col justify-between w-80 m-0 
+          `h-5/6 flex flex-col justify-between m-0 
           md:absolute
           lg:h-48 lg:relative `,
         )}
@@ -61,7 +61,7 @@ export const Footer: React.FC = () => {
         <h1 className="text-white text-lg font-medium ">
           Synthesis Workshop ©, 2023
         </h1>
-        <div className="text-footerText text-lg flex flex-col ">
+        <div className="text-footerText text-md sm:text-lg flex flex-col ">
           <a href="" target="_blank" className="whitespace-nowrap">
             Terms of Service
           </a>
@@ -73,8 +73,8 @@ export const Footer: React.FC = () => {
       <div
         className={cx(
           `text-footerText text-lg no-underline font-normal 
-            w-80 flex flex-col h-32 flex-wrap content-between gap-1 m-0 
-            sm:mx-0 sm:mt-14 sm:w-fit sm:gap-x-16
+            flex flex-col h-32 flex-wrap content-between gap-1 m-0 
+            mt-14 sm:w-fit sm:gap-x-16
             md:mx-0 md:my-16 md:gap-1 md:w-80
             lg:w-64 lg:m-0
             xl:w-80 xl:m-0`,

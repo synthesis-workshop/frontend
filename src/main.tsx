@@ -21,7 +21,7 @@ const client = new ApolloClient({
     import.meta.env.MODE === "production"
       ? //created environment variables must be prefixed by VITE
         "https://synthesis-workshop-backend-97f537f332bd.herokuapp.com/api/graphql"
-      : "http://localhost:8080/api/graphql",
+      : "https://synthesis-workshop-backend-97f537f332bd.herokuapp.com/api/graphql",
   cache: new InMemoryCache({
     typePolicies: {
       Query: {
@@ -56,16 +56,20 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       <BrowserRouter>
         <ScrollToAnchor />
         <ScrollToTop />
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/episodes" element={<Episodes />} />
-          <Route path="/courses" element={<Courses />} />
-          <Route path="/courses/:courseId" element={<Course />} />
-          <Route path="/problem-sets" element={<ProblemSetsPage />} />
-          <Route path="/publications" element={<PublicationsPage />} />
-        </Routes>
-        <Footer />
+        <div className="min-h-screen flex flex-col">
+          <div className="bg-black/[.06] grow">
+            <Header />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/episodes" element={<Episodes />} />
+              <Route path="/courses" element={<Courses />} />
+              <Route path="/courses/:courseId" element={<Course />} />
+              <Route path="/problem-sets" element={<ProblemSetsPage />} />
+              <Route path="/publications" element={<PublicationsPage />} />
+            </Routes>
+          </div>
+          <Footer />
+        </div>
       </BrowserRouter>
     </ApolloProvider>
   </React.StrictMode>,
