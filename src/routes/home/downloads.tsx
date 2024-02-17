@@ -1,11 +1,14 @@
+import React from "react";
 import { useQuery } from "@apollo/client";
-import { DownloadItem, Loading } from "../../components";
+import { DownloadItem } from "../../components";
 import { GET_DOWNLOADS } from "../../graphql";
 import { OrderDirection } from "../../__generated__/graphql";
 import { ExpandableSection } from "../../components";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 export const Downloads: React.FC = () => {
-  const { loading, data } = useQuery(GET_DOWNLOADS, {
+  const { data } = useQuery(GET_DOWNLOADS, {
     variables: {
       orderBy: [{ lastUpdated: OrderDirection.Desc }],
     },
@@ -20,6 +23,16 @@ export const Downloads: React.FC = () => {
     />
   ));
 
+  const [showContent, setShowContent] = React.useState(false);
+
+  React.useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setShowContent(true);
+    }, 1500);
+
+    return () => clearTimeout(timeoutId);
+  }, []);
+
   return (
     <section
       className="flex flex-col w-full sm:max-w-smPageContent lg:max-w-lgPageContent md:max-w-mdPageContent xl:max-w-xlPageContent"
@@ -27,11 +40,7 @@ export const Downloads: React.FC = () => {
     >
       <h2 className="mb-9 font-title text-3xl text-primary">Downloads</h2>
 
-      {loading || !downloads ? (
-        <div className="my-4 mx-auto">
-          <Loading />
-        </div>
-      ) : (
+      {showContent && downloads ? (
         <div className="w-full">
           <ExpandableSection
             expandText="More Downloads"
@@ -42,6 +51,8 @@ export const Downloads: React.FC = () => {
             {downloads.length > 3 && downloads.slice(3)}
           </ExpandableSection>
         </div>
+      ) : (
+        <Skeleton height={100} borderRadius={12} />
       )}
     </section>
   );

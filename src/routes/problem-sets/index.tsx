@@ -1,14 +1,16 @@
 import { useQuery } from "@apollo/client";
 import React from "react";
 import { useMediaQuery } from "react-responsive";
-import { Loading, Button, ProblemSetCard } from "../../components";
+import { Button, ProblemSetCard } from "../../components";
 import { GET_PROBLEM_SETS } from "../../graphql";
 import { OrderDirection } from "../../__generated__/graphql";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 export const ProblemSetsPage: React.FC = () => {
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 450px)" });
 
-  const { loading, data, fetchMore } = useQuery(GET_PROBLEM_SETS, {
+  const { data, fetchMore } = useQuery(GET_PROBLEM_SETS, {
     variables: {
       orderBy: {
         downloadCount: OrderDirection.Desc,
@@ -16,6 +18,16 @@ export const ProblemSetsPage: React.FC = () => {
       take: isTabletOrMobile ? 6 : 18,
     },
   });
+
+  const [showContent, setShowContent] = React.useState(false);
+
+  React.useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setShowContent(true);
+    }, 1500);
+
+    return () => clearTimeout(timeoutId);
+  }, []);
 
   return (
     <div className="w-full pt-28 pb-[84px]">
@@ -28,34 +40,38 @@ export const ProblemSetsPage: React.FC = () => {
             Problem sets are small tasks in PDF format that will help you to
             practice and understand concepts of our episodes
           </p>
-        </div>
-        <div className="flex flex-col items-center">
-          {loading ? (
-            <Loading />
-          ) : (
+          <div className="items-center">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-              {data?.problemSets?.map((problemSet) => (
-                <ProblemSetCard key={problemSet.id} problemSet={problemSet} />
-              ))}
+              {showContent ? (
+                data?.problemSets?.map((problemSet) => (
+                  <ProblemSetCard key={problemSet.id} problemSet={problemSet} />
+                ))
+              ) : (
+                <>
+                  <Skeleton height={316} />
+                  <Skeleton height={316} />
+                  <Skeleton height={316} />
+                </>
+              )}
             </div>
-          )}
-          {data?.problemSetsCount &&
-            data.problemSets &&
-            data.problemSetsCount > data.problemSets.length && (
-              <Button
-                className="mt-10"
-                variant="primary"
-                onClick={() => {
-                  fetchMore({
-                    variables: {
-                      skip: data?.problemSets?.length,
-                    },
-                  });
-                }}
-              >
-                Load More
-              </Button>
-            )}
+            {data?.problemSetsCount &&
+              data.problemSets &&
+              data.problemSetsCount > data.problemSets.length && (
+                <Button
+                  className="mt-10"
+                  variant="primary"
+                  onClick={() => {
+                    fetchMore({
+                      variables: {
+                        skip: data?.problemSets?.length,
+                      },
+                    });
+                  }}
+                >
+                  Load More
+                </Button>
+              )}
+          </div>
         </div>
       </div>
     </div>

@@ -1,16 +1,29 @@
+import * as React from "react";
 import { GET_COURSES } from "../../graphql";
 import { useQuery } from "@apollo/client";
 import { OrderDirection } from "../../__generated__/graphql";
-import { Loading, CourseCard } from "../../components";
+import { CourseCard } from "../../components";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 export const Courses = () => {
-  const { loading, data } = useQuery(GET_COURSES, {
+  const { data } = useQuery(GET_COURSES, {
     variables: {
       orderBy: {
         publishedAt: OrderDirection.Desc,
       },
     },
   });
+
+  const [showContent, setShowContent] = React.useState(false);
+
+  React.useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setShowContent(true);
+    }, 1500);
+
+    return () => clearTimeout(timeoutId);
+  }, []);
 
   return (
     <div className="pt-28">
@@ -34,18 +47,14 @@ export const Courses = () => {
             to discuss the possibilities.
           </p>
         </div>
-        {loading ? (
-          <div className="mt-12">
-            <Loading />
+        {showContent ? (
+          <div className="gap-6 w-full">
+            {data?.courses?.map((course) => (
+              <CourseCard key={course.id} {...course} />
+            ))}
           </div>
         ) : (
-          <>
-            <div className="mb-16 flex flex-col gap-6 w-full">
-              {data?.courses?.map((course) => (
-                <CourseCard key={course.id} {...course} />
-              ))}
-            </div>
-          </>
+          <Skeleton height={360} borderRadius={12} />
         )}
       </div>
     </div>

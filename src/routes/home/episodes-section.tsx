@@ -1,12 +1,15 @@
+import React from "react";
 import { useQuery } from "@apollo/client";
 import cx from "classnames";
 import { useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import { Link, useNavigate } from "react-router-dom";
 import { OrderDirection } from "../../__generated__/graphql";
-import { Button, EpisodeCard, Loading } from "../../components";
+import { Button, EpisodeCard } from "../../components";
 import Menu from "../../components/drop-down-menu/drop-down-menu";
 import { GET_EPISODES } from "../../graphql";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import { SearchBar } from "../../components/form/search-bar";
 import { useForm } from "react-hook-form";
 import youtubeIcon from "../../images/image 10.svg";
@@ -52,8 +55,7 @@ export const EpisodesSection = () => {
   };
 
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 450px)" });
-
-  const { loading, data } = useQuery(GET_EPISODES, {
+  const { data } = useQuery(GET_EPISODES, {
     variables: {
       orderBy: [
         {
@@ -72,8 +74,18 @@ export const EpisodesSection = () => {
     },
   });
 
+  const [showContent, setShowContent] = React.useState(false);
+
+  React.useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setShowContent(true);
+    }, 1500);
+
+    return () => clearTimeout(timeoutId);
+  }, []);
+
   return (
-    <div className="flex flex-col w-full sm:max-w-smPageContent lg:max-w-lgPageContent md:max-w-mdPageContent xl:max-w-xlPageContent">
+    <div className="flex flex-col w-full max-w-xlPageContent px-2 sm:px-4 md:px-8">
       <div
         className={cx(
           "w-full flex flex-col justify-between items-center pb-8 gap-5",
@@ -92,24 +104,20 @@ export const EpisodesSection = () => {
           <Menu title={"Sort"} list={SortList} changeMenu={changeSort} />
         </div>
       </div>
-
-      {/* Episodes grid or loading state */}
-      {loading ? (
-        <Loading />
-      ) : (
-        <>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-3 lg:gap-5 auto-rows-[360px]">
-            {data?.episodes?.map((episode) => (
-              <EpisodeCard key={episode.id} {...episode} />
-            ))}
-          </div>
-          <div className="mt-10 mx-auto mb-24">
-            <Link to="/episodes">
-              <Button>Show All Episodes</Button>
-            </Link>
-          </div>
-        </>
-      )}
+      <div
+        className={`grid lg:grid-cols-3 lg:gap-5 auto-rows-[360px] gap-5 md:grid-cols-2 md:gap-3 grid-cols-1`}
+      >
+        {data?.episodes?.map((episode) =>
+          showContent ? (
+            <EpisodeCard key={episode.id} {...episode} />
+          ) : (
+            <Skeleton height={360} borderRadius={12} width={360} />
+          ),
+        )}
+      </div>
+      <Link to="/episodes" className="mt-10 mb-[100px] flex justify-center">
+        <Button>Show All Episodes</Button>
+      </Link>
 
       {/* Follow us on YouTube banner */}
       <div className="w-full mb-8 bg-primary rounded-xl flex items-center justify-between gap-4 p-8 md:p-16">
