@@ -13,8 +13,8 @@ export const Courses = () => {
   });
 
   return (
-    <div className="pt-28 bg-black/[.06]">
-      <div className="mx-auto flex flex-col items-center px-4 xl:max-w-xlPageContent">
+    <div className="pt-28">
+      <div className="mx-auto flex flex-col items-center xl:max-w-xlPageContent sm:max-w-smPageContent lg:max-w-lgPageContent md:max-w-mdPageContent xl:max-w-xlPageContent">
         <h1 className="font-title text-[32px] text-primary mb-3 w-full">
           Courses on Organic Chemistry
         </h1>
