@@ -53,7 +53,7 @@ export const Footer: React.FC = () => {
     >
       <div
         className={cx(
-          `h-5/6 flex flex-col justify-between w-80 m-0 
+          `h-5/6 flex flex-col justify-between m-0 
           md:absolute
           lg:h-48 lg:relative `,
         )}
@@ -61,7 +61,7 @@ export const Footer: React.FC = () => {
         <h1 className="text-white text-lg font-medium ">
           Synthesis Workshop ©, 2023
         </h1>
-        <div className="text-footerText text-lg flex flex-col ">
+        <div className="text-footerText text-md sm:text-lg flex flex-col ">
           <a href="" target="_blank" className="whitespace-nowrap">
             Terms of Service
           </a>
@@ -73,8 +73,8 @@ export const Footer: React.FC = () => {
       <div
         className={cx(
           `text-footerText text-lg no-underline font-normal 
-            w-80 flex flex-col h-32 flex-wrap content-between gap-1 m-0 
-            sm:mx-0 sm:mt-14 sm:w-fit sm:gap-x-16
+            flex flex-col h-32 flex-wrap content-between gap-1 m-0 
+            mt-14 sm:w-fit sm:gap-x-16
             md:mx-0 md:my-16 md:gap-1 md:w-80
             lg:w-64 lg:m-0
             xl:w-80 xl:m-0`,
