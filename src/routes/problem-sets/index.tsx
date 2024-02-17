@@ -19,7 +19,7 @@ export const ProblemSetsPage: React.FC = () => {
 
   return (
     <div className="w-full pt-28 pb-[84px]">
-      <div className="mx-auto w-[343px] md:w-11/12 px-4 xl:max-w-xlPageContent flex flex-col items-center">
+      <div className="mx-auto md:w-11/12 px-4 xl:max-w-xlPageContent flex flex-col items-center">
         <div className="w-full">
           <h2 className="font-title text-[32px] text-primary mb-3">
             Problem Sets

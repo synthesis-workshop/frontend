@@ -14,7 +14,7 @@ export const Courses = () => {
 
   return (
     <div className="pt-28">
-      <div className="mx-auto flex flex-col items-center xl:max-w-xlPageContent sm:max-w-smPageContent lg:max-w-lgPageContent md:max-w-mdPageContent xl:max-w-xlPageContent">
+      <div className="mx-auto flex flex-col items-center max-w-xlPageContent px-2 sm:px-4 md:px-8">
         <h1 className="font-title text-[32px] text-primary mb-3 w-full">
           Courses on Organic Chemistry
         </h1>
@@ -25,7 +25,10 @@ export const Courses = () => {
           <p className="font-text pt-3 max-w-[659px]">
             If you would like to contribute to our next course, feel free to
             reach out via email at{" "}
-            <a href="mailto:synthesisworkshopvideos@gmail.com">
+            <a
+              href="mailto:synthesisworkshopvideos@gmail.com"
+              className="break-words"
+            >
               synthesisworkshopvideos@gmail.com
             </a>{" "}
             to discuss the possibilities.

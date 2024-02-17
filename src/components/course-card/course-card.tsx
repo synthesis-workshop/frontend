@@ -29,7 +29,7 @@ export const CourseCard = ({
           <DocumentRenderer document={description?.document} />
         </div>
 
-        <div className="flex sm:flex-col md:flex-row justify-between mt-10 md:mt-24">
+        <div className="flex flex-col md:flex-row justify-between mt-10 md:mt-24">
           <div className="grid grid-cols-2 col-auto items-end gap-1 mb-5 md:grid-cols-4 md:gap-3">
             <div className="bg-[#F6C825] rounded-md justify-center items-center">
               <p className="text-sm p-2 text-center">
