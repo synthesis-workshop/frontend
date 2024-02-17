@@ -112,46 +112,35 @@ export const EpisodesSection = () => {
       )}
 
       {/* Follow us on YouTube banner */}
-      <div className="w-full flex justify-center my-8">
-        <div
-          className="bg-primary rounded-md h-[156px] flex items-center justify-between px-10"
-          style={{ width: "1200px", maxWidth: "100%" }}
-        >
-          <div className="flex gap-4">
-            <span
-              className="text-white text-opacity-80 font-title"
-              style={{ fontSize: "32px", lineHeight: "110%" }}
-            >
-              Follow us on
-            </span>
-            <span
-              className="text-white font-title"
-              style={{ fontSize: "32px", lineHeight: "110%" }}
-            >
-              YouTube
-            </span>
-          </div>
+      <div className="w-full mb-8 bg-primary rounded-xl flex items-center justify-between gap-4 p-8 md:p-16">
+        <div className="flex gap-4 text-white/60 font-title text-2xl md:text-[32px] font-normal md:flex-row flex-col md:gap-2">
+          Follow us on
           <a
-            href="https://www.youtube.com"
+            className="text-white"
+            href="https://www.youtube.com/c/SynthesisWorkshopVideos"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center"
           >
-            <img
-              src={youtubeIcon}
-              alt="YouTube"
-              style={{ height: "35px", width: "auto" }}
-            />
+            YouTube
           </a>
         </div>
+        <a
+          href="https://www.youtube.com/c/SynthesisWorkshopVideos"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center"
+        >
+          <img
+            src={youtubeIcon}
+            alt="YouTube"
+            style={{ height: "35px", width: "auto" }}
+          />
+        </a>
       </div>
 
       {/* Search section */}
-      <div className="w-full flex justify-center my-8">
-        <div
-          className="bg-white rounded-md flex flex-col items-center justify-center"
-          style={{ width: "1200px", maxWidth: "100%", height: "262px" }}
-        >
+      <div className="w-full flex justify-center">
+        <div className="bg-white rounded-xl flex flex-col items-center justify-center w-full py-10">
           {/* Title container */}
           <div
             className="w-full flex justify-center items-center px-4"
@@ -166,7 +155,7 @@ export const EpisodesSection = () => {
           </div>
 
           {/* Search form */}
-          <div className="w-full px-4 flex justify-center items-center">
+          <div className="w-full px-4 flex justify-center items-center max-w-[794px]">
             <form
               onSubmit={handleSearch}
               className="w-full flex flex-col md:flex-row items-center justify-center gap-5"
