@@ -90,9 +90,9 @@ export const ContactForm = () => {
     xl:max-w-xlPageContent
     lg:max-w-lgPageContent  
     md:max-w-mdPageContent md:p-10 
-    sm:max-w-smPageContent sm:w-full sm:gap-6 sm:py-6 sm:px-4 `,
+    max-w-smPageContent gap-6 py-6 px-4 `,
     formContainer: `flex w-full items-start width-full flex-col gap-6 
-      md:gap-10 md:flex-row `,
+      md:gap-10 md:flex-row`,
     formLabelTypeOne:
       "w-full flex flex-col justify-center items-start gap-2 text-base tracking-tight text-white ",
     formInputTypeOne: `w-auto px-5 py-4 justify-center items-start gap-2.5 self-stretch 

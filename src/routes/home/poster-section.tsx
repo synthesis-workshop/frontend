@@ -21,7 +21,7 @@ export const PosterSection = () => {
 
   return (
     <>
-      <section className="mx-10 max-[375px]:px-4 max-[768px]:mx-4">
+      <section className="w-full sm:max-w-smPageContent lg:max-w-lgPageContent md:max-w-mdPageContent xl:max-w-xlPageContent">
         <div
           className="bg-primary px-8 pt-10 pb-[12px] rounded-t-xl m-0 max-[768px]:px-4"
           id="posters"

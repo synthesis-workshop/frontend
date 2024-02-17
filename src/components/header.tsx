@@ -103,7 +103,7 @@ export const Header: React.FC = () => {
             </div>
           </div>
         ) : null}
-        <div className="sm:hidden lg:flex text-primary text-lg font-medium gap-3 font-lg xl:gap-6">
+        <div className="hidden lg:flex text-primary text-lg font-medium gap-3 font-lg xl:gap-6">
           {linksMiddle.map(({ label, link }) => (
             <NavLink
               key={uniqueId(label)}
@@ -114,7 +114,7 @@ export const Header: React.FC = () => {
             />
           ))}
         </div>
-        <div className="sm:hidden lg:flex text-primary text-lg font-medium gap-3 font-lg mr-5">
+        <div className="hidden lg:flex text-primary text-lg font-medium gap-3 font-lg mr-5">
           {linksRight.map(({ label, link }) => (
             <NavLink
               key={uniqueId(label)}

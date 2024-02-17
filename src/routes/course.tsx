@@ -33,8 +33,8 @@ export const Course = () => {
   }, []);
 
   return (
-    <div className="bg-black/[.06] flex flex-col items-center">
-      <div className="max-w-xlPageContent w-11/12 mt-[152px] mb-20" id="header">
+    <div className="flex flex-col items-center">
+      <div className="w-full mt-[152px] mb-20 sm:max-w-smPageContent lg:max-w-lgPageContent md:max-w-mdPageContent xl:max-w-xlPageContent" id="header">
         <div className="flex mb-8 gap-2 lg:justify-between lg:items-center flex-wrap">
           <h1 className="text-[50px] text-primary font-title">
             {showContent ? course?.title : <Skeleton width={300} />}
@@ -69,7 +69,7 @@ export const Course = () => {
           )}
         </div>
       </div>
-      <div className="max-w-xlPageContent w-11/12" id="body">
+      <div className="w-full sm:max-w-smPageContent lg:max-w-lgPageContent md:max-w-mdPageContent xl:max-w-xlPageContent" id="body">
         <h2 className="text-[32px] text-primary font-title mb-8">
           Course episodes & tasks
         </h2>

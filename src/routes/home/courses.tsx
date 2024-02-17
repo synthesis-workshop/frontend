@@ -28,7 +28,7 @@ export const Courses: React.FC = () => {
   }, []);
 
   return (
-    <div className="w-full mt-20 max-w-smPageContent lg:max-w-lgPageContent md:max-w-mdPageContent xl:max-w-xlPageContent">
+    <div className="flex flex-col w-full mt-20 max-w-xlPageContent px-2 sm:px-4 md:px-8">
       <h2 className="font-title text-primary text-section-title">
         Courses on Organic Chemistry
       </h2>
@@ -41,14 +41,17 @@ export const Courses: React.FC = () => {
           ),
         )}
       </div>
-      <div className="mt-7 border rounded-md border-2 border-black p-7">
+      <div className="mt-7 rounded-md border-2 border-black p-7">
         <h3 className="font-title text-card-title">
           Contribute to our next course!
         </h3>
         <p className="font-text pt-3 max-w-[659px]">
           If you would like to contribute to our next course, feel free to reach
           out via email at{" "}
-          <a href="mailto:synthesisworkshopvideos@gmail.com">
+          <a
+            href="mailto:synthesisworkshopvideos@gmail.com"
+            className="break-words"
+          >
             synthesisworkshopvideos@gmail.com
           </a>{" "}
           to discuss the possibilities.
