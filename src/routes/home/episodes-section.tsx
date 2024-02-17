@@ -1,4 +1,5 @@
 import { useQuery } from "@apollo/client";
+import cx from "classnames";
 import { useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import { Link, useNavigate } from "react-router-dom";
@@ -72,9 +73,13 @@ export const EpisodesSection = () => {
   });
 
   return (
-    <div className="flex flex-col items-center mx-4 md:mx-auto">
-      {/* Explore our episodes section */}
-      <div className="w-full flex flex-col justify-between items-center pb-8 gap-5 md:flex-row md:items-start md:gap-0">
+    <div className="flex flex-col w-full sm:max-w-smPageContent lg:max-w-lgPageContent md:max-w-mdPageContent xl:max-w-xlPageContent">
+      <div
+        className={cx(
+          "w-full flex flex-col justify-between items-center pb-8 gap-5",
+          "md:flex-row md:items-start md:gap-0",
+        )}
+      >
         <h2 className="font-title text-primary text-3xl">
           Explore our episodes
         </h2>
