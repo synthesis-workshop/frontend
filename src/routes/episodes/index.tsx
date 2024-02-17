@@ -75,9 +75,22 @@ export const Episodes = () => {
         status: {
           equals: "published",
         },
-        title: {
-          contains: searchInput,
-        },
+        OR: [
+          {
+            title: {
+              contains: searchInput,
+            },
+          },
+          {
+            keywords: {
+              some: {
+                name: {
+                  contains: searchInput,
+                },
+              },
+            },
+          },
+        ],
       },
       take: isTabletOrMobile ? 9 : 18,
     },
@@ -113,9 +126,22 @@ export const Episodes = () => {
         status: {
           equals: "published",
         },
-        title: {
-          contains: data.searchInput,
-        },
+        OR: [
+          {
+            title: {
+              contains: data.searchInput,
+            },
+          },
+          {
+            keywords: {
+              some: {
+                name: {
+                  contains: data.searchInput,
+                },
+              },
+            },
+          },
+        ],
       },
       take: isTabletOrMobile ? 9 : 18,
     });
