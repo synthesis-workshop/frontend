@@ -34,13 +34,16 @@ export const Course = () => {
 
   return (
     <div className="flex flex-col items-center">
-      <div className="w-full mt-[152px] mb-20 sm:max-w-smPageContent lg:max-w-lgPageContent md:max-w-mdPageContent xl:max-w-xlPageContent" id="header">
+      <div
+        className="w-full mt-[152px] mb-20 max-w-xlPageContent px-2 sm:px-4 md:px-8"
+        id="header"
+      >
         <div className="flex mb-8 gap-2 lg:justify-between lg:items-center flex-wrap">
           <h1 className="text-[50px] text-primary font-title">
             {showContent ? course?.title : <Skeleton width={300} />}
           </h1>
           {showContent ? (
-            <div className="flex gap-3">
+            <div className="flex gap-3 flex-wrap">
               <div className="p-2 bg-accent rounded">
                 {course?.price === 0 ? "Free!" : `$${course?.price}`}
               </div>
@@ -69,7 +72,7 @@ export const Course = () => {
           )}
         </div>
       </div>
-      <div className="w-full sm:max-w-smPageContent lg:max-w-lgPageContent md:max-w-mdPageContent xl:max-w-xlPageContent" id="body">
+      <div className="w-full max-w-xlPageContent px-2 sm:px-4 md:px-8">
         <h2 className="text-[32px] text-primary font-title mb-8">
           Course episodes & tasks
         </h2>

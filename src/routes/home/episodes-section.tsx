@@ -85,7 +85,7 @@ export const EpisodesSection = () => {
   }, []);
 
   return (
-    <div className="flex flex-col w-full sm:max-w-smPageContent lg:max-w-lgPageContent md:max-w-mdPageContent xl:max-w-xlPageContent">
+    <div className="flex flex-col w-full max-w-xlPageContent px-2 sm:px-4 md:px-8">
       <div
         className={cx(
           "w-full flex flex-col justify-between items-center pb-8 gap-5",
@@ -115,7 +115,7 @@ export const EpisodesSection = () => {
           ),
         )}
       </div>
-      <Link to="/episodes" className="mt-10 flex justify-center">
+      <Link to="/episodes" className="mt-10 mb-[100px] flex justify-center">
         <Button>Show All Episodes</Button>
       </Link>
 
