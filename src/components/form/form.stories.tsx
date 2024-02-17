@@ -108,6 +108,7 @@ const Template = () => {
         >
           <Form.SingleLineTextInput
             className={formClasses.formInputTypeOne}
+            wrapperClassName="contents"
             placeholder="Your Name"
             inputId="name"
             ariaLabel="Your name should be inputted here."
@@ -129,6 +130,7 @@ const Template = () => {
         >
           <Form.SingleLineTextInput
             className={formClasses.formInputTypeOne}
+            wrapperClassName="contents"
             placeholder="Your Email"
             inputId="email"
             ariaLabel="Your Email address should be inputted here."
@@ -150,6 +152,7 @@ const Template = () => {
       >
         <Form.SingleLineTextInput
           className={formClasses.formInputTypeTwo}
+          wrapperClassName="contents"
           placeholder="Subject"
           inputId="subject"
           ariaLabel="Your email's subject line should be inputted here."

@@ -19,6 +19,7 @@ export default {
         red: "#ff0000",
         formBackground: "#4d4f58",
         formBorder: "#83848a",
+        grey: "#F0F0F0",
       },
       fontSize: {
         "card-title": "28px",

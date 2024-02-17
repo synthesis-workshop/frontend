@@ -29,7 +29,7 @@ const Template = () => {
       md:w-4/5 md:mr-5 md:mb-0`,
   };
 
-  const { handleSubmit, register } = useForm<FormFields>();
+  const { handleSubmit, register, watch } = useForm<FormFields>();
 
   //This onSubmit will need to be changed by the person who is doing the episode view
   const onSubmit = handleSubmit((data) => console.log(data));
@@ -41,6 +41,7 @@ const Template = () => {
         inputId="searchInput"
         name="searchInput"
         register={register}
+        watch={watch}
         rules={searchInputRules}
       />
       <Button type="submit">Search</Button>

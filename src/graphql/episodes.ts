@@ -5,8 +5,9 @@ export const GET_EPISODES = gql(`
     $orderBy: [EpisodeOrderByInput!]!
     $where: EpisodeWhereInput!
     $take: Int
+    $skip: Int
   ) {
-    episodes(orderBy: $orderBy, where: $where, take: $take) {
+    episodes(orderBy: $orderBy, where: $where, take: $take, skip: $skip) {
       id
       title
       description {
@@ -17,5 +18,6 @@ export const GET_EPISODES = gql(`
       runtime
       publishedAt
     }
+    episodesCount(where: $where)
   }
 `);

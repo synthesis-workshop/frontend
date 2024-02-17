@@ -30,11 +30,11 @@ export const TeamMembers = () => {
 
   return (
     <div
-      className={`md:mx-10 max-w-smPageContent lg:max-w-lgPageContent md:max-w-mdPageContent xl:max-w-xlPageContent pb-24 xl:pb-44 lg:pb-32 `}
+      className={`md:mx-10 max-w-full xl:max-w-xlPageContent pb-24 xl:pb-44 lg:pb-32 px-2 sm:px-4 md:px-8`}
     >
       <div className="md:items-start sm:items-center pb-14">
         <p className="font-title text-3xl pb-8 ">Who We Are</p>
-        <div className="md:gap-14 sm:gap-5">
+        <div className="flex flex-col md:gap-14 gap-5">
           {showContent && data?.teamMembers ? (
             <>
               <TeamMemberGroup
