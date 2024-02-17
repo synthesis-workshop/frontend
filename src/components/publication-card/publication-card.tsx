@@ -3,6 +3,7 @@ import { Card } from "../card";
 import { Publication } from "../../__generated__/graphql";
 import { DocumentRenderer } from "@keystone-6/document-renderer";
 import dayjs from "dayjs";
+import { isEmpty } from "lodash";
 
 export const PublicationCard = ({
   title,
@@ -13,6 +14,13 @@ export const PublicationCard = ({
   doi,
   author,
 }: Publication) => {
+  const descriptors = [
+    author && `By: ${author}`,
+    publishedDate &&
+      `Published: ${dayjs(publishedDate, "YYYY-DD-MM").format("D MMMM YYYY")}`,
+    publisher && `In: ${publisher}`,
+    doi && `DOI: ${doi}`,
+  ];
   return (
     <Card variant="light" className="w-full">
       <div className="flex flex-col">
@@ -27,27 +35,25 @@ export const PublicationCard = ({
             <a
               href={link || "#"}
               target="_blank"
-              className="hidden md:block w-full"
+              className="hidden md:block min-w-[264px]"
             >
               <Button>Read the Full Article ↗</Button>
             </a>
           </div>
         </div>
-        <div className="flex sm:flex-col md:flex-row flex-wrap sm:gap-x-1 md:gap-x-3 gap-y-1 text-primary/80 mb-4 w-full">
-          <p>By: {author}</p>
-          <span className="sm:invisible md:visible">|</span>
-          {publishedDate && (
-            <>
-              <p>
-                Published:{" "}
-                {dayjs(publishedDate, "YYYY-DD-MM").format("D MMMM YYYY")}
-              </p>
-              <span className="sm:invisible md:visible">|</span>
-            </>
-          )}
-          <p>In: {publisher}</p>
-          <span className="sm:invisible md:visible">|</span>
-          <p>DOI: {doi}</p>
+        <div className="flex sm:flex-col md:flex-row flex-wrap sm:gap-x-1 md:gap-x-3 sm:gap-y-3 md:gap-y-1 text-primary/80 mb-4 w-full">
+          {descriptors
+            .map(
+              (descriptor) =>
+                descriptor && <p key={descriptor}>{descriptor}</p>,
+            )
+            .filter((descriptor) => !isEmpty(descriptor))
+            // Add a pipe between each descriptor
+            .reduce((prev, cur) => [
+              prev,
+              <span className="sm:hidden md:block">|</span>,
+              cur,
+            ])}
         </div>
         <div className="md:hidden">
           <a href={link || "#"} target="_blank">

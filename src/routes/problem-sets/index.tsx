@@ -57,32 +57,6 @@ export const ProblemSetsPage: React.FC = () => {
               </Button>
             )}
         </div>
-        {loading ? (
-          <Loading />
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {data?.problemSets?.map((problemSet) => (
-              <ProblemSetCard key={problemSet.id} problemSet={problemSet} />
-            ))}
-          </div>
-        )}
-        {data?.problemSetsCount &&
-          data.problemSets &&
-          data.problemSetsCount > data.problemSets.length && (
-            <Button
-              className="mt-10"
-              variant="primary"
-              onClick={() => {
-                fetchMore({
-                  variables: {
-                    skip: data?.problemSets?.length,
-                  },
-                });
-              }}
-            >
-              Load More
-            </Button>
-          )}
       </div>
     </div>
   );
