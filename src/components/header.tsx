@@ -41,11 +41,13 @@ export const Header: React.FC = () => {
         ${
           mobileClicked
             ? "h-full items-start flex-col mt-4"
-            : "h-16 flex-row items-center mt-5 justify-between"
+            : "h-16 flex-row items-center mt-2 justify-between"
         }
         `}
       >
-        <div className={`flex w-full justify-between lg:w-fit `}>
+        <div
+          className={`flex w-full justify-between lg:w-[236px] xl:w-[284px] `}
+        >
           <Link to="/" reloadDocument className="flex">
             <img
               src={headerLogo}
@@ -76,8 +78,8 @@ export const Header: React.FC = () => {
           </button>
         </div>
         {mobileClicked ? (
-          <div className="flex flex-col gap-20 items-center mx-auto my-10 text-center">
-            <div className="flex flex-col text-primary text-lg font-medium gap-3 font-lg">
+          <div className="flex flex-col gap-20 items-center mx-auto my-10 text-center h-full justify-center">
+            <div className="flex flex-col text-primary font-text text-lg font-medium gap-3 font-lg">
               {linksMiddle.map(({ label, link }) => (
                 <button onClick={handleMobileClick} key={uniqueId(label)}>
                   <NavLink
@@ -89,7 +91,7 @@ export const Header: React.FC = () => {
                 </button>
               ))}
             </div>
-            <div className="flex flex-col text-primary text-lg font-medium gap-3 text-center font-lg xl:gap-6">
+            <div className="flex flex-col text-primary font-text text-lg font-medium gap-3 text-center font-lg xl:gap-6">
               {linksRight.map(({ label, link }) => (
                 <button onClick={handleMobileClick} key={uniqueId(label)}>
                   <NavLink
@@ -103,7 +105,7 @@ export const Header: React.FC = () => {
             </div>
           </div>
         ) : null}
-        <div className="hidden lg:flex text-primary text-lg font-medium gap-3 font-lg xl:gap-6">
+        <div className="font-text hidden lg:flex text-primary text-lg lg:text-base xl:text-lg font-medium gap-3 font-lg xl:gap-6">
           {linksMiddle.map(({ label, link }) => (
             <NavLink
               key={uniqueId(label)}
@@ -114,7 +116,7 @@ export const Header: React.FC = () => {
             />
           ))}
         </div>
-        <div className="hidden lg:flex text-primary text-lg font-medium gap-3 font-lg mr-5">
+        <div className="hidden font-text lg:flex text-primary text-lg lg:text-base xl:text-lg font-medium gap-3 xl:gap-6 font-lg mr-5">
           {linksRight.map(({ label, link }) => (
             <NavLink
               key={uniqueId(label)}

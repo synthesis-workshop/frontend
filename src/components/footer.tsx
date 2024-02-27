@@ -1,4 +1,5 @@
 import {
+  faInstagram,
   faLinkedin,
   faTwitterSquare,
   faYoutubeSquare,
@@ -20,8 +21,11 @@ const links = [
 ];
 
 const socials = [
-  // Commenting out until we have an instagram link
-  // { label: "Instagram", link: "", icon: faInstagram },
+  {
+    label: "Instagram",
+    link: "https://www.instagram.com/synthesis.workshop/",
+    icon: faInstagram,
+  },
   {
     label: "LinkedIn",
     link: "https://www.linkedin.com/company/synthesis-workshop/",

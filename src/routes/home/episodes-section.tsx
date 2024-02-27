@@ -95,7 +95,7 @@ export const EpisodesSection = () => {
         <h2 className="font-title text-primary text-3xl">
           Explore our episodes
         </h2>
-        <div className="font-text flex flex-col md:flex-row gap-4">
+        <div className="font-text flex flex-col md:flex-row gap-4 w-full">
           <Menu
             title={"Category"}
             list={CategoryList}
