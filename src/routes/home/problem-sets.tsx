@@ -3,7 +3,7 @@ import React from "react";
 import { useMediaQuery } from "react-responsive";
 import { Link } from "react-router-dom";
 import { Loading, Button, ProblemSetCard } from "../../components";
-import { GET_PROBLEM_SETS } from "../../graphql";
+import { GET_PROBLEM_SETS } from "../../graphql/problem-sets";
 import { OrderDirection } from "../../__generated__/graphql";
 
 export const ProblemSets: React.FC = () => {
@@ -12,7 +12,7 @@ export const ProblemSets: React.FC = () => {
   const { loading, data } = useQuery(GET_PROBLEM_SETS, {
     variables: {
       orderBy: {
-        downloadCount: OrderDirection.Desc,
+        title: OrderDirection.Asc,
       },
       take: isTabletOrMobile ? 3 : 6,
     },

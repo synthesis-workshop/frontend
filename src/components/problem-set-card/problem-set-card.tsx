@@ -1,21 +1,14 @@
-import pluralize from "pluralize";
 import { PropsWithChildren } from "react";
 import ellipses from "../../images/ellipses.svg";
 import { Button } from "../button";
 import { Card } from "../card";
 import type { ProblemSet } from "../../__generated__/graphql";
-import { GET_DOWNLOAD_COUNT } from "../../graphql/problem-set-download-count";
-import { useQuery } from "@apollo/client";
 
 interface Props {
   problemSet: ProblemSet;
 }
 
 export const ProblemSetCard = ({ problemSet }: PropsWithChildren<Props>) => {
-  const { data } = useQuery(GET_DOWNLOAD_COUNT, {
-    variables: { problemSetId: problemSet.id },
-  });
-
   return (
     <Card>
       <img className="mx-auto" src={ellipses} alt="Ellipses" />
@@ -46,9 +39,9 @@ export const ProblemSetCard = ({ problemSet }: PropsWithChildren<Props>) => {
           </a>
         )}
 
-        {data && (
+        {problemSet.downloadCount && (
           <p className="text-white/80 font-text text-base ml-auto mr-5">
-            Downloaded {data} {pluralize("time", data.getDownloadCount, true)}
+            Downloaded {problemSet.downloadCount} times
           </p>
         )}
       </div>

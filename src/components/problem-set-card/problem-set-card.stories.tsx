@@ -19,9 +19,6 @@ const meta: Meta<typeof ProblemSetCard> = {
       episodeLink: {
         control: { type: "text" },
       },
-      downloadCount: {
-        control: { type: "integer" },
-      },
     },
   },
 };
