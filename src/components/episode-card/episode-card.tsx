@@ -1,4 +1,3 @@
-import { PlayIcon } from "@heroicons/react/24/solid";
 import { DocumentRenderer } from "@keystone-6/document-renderer";
 import cx from "classnames";
 import flaskBlue from "../../images/flask-blue.svg";

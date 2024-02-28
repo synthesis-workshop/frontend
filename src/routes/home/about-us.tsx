@@ -6,10 +6,6 @@ import {
 } from "@keystone-6/document-renderer";
 import { GET_ABOUT_US } from "../../graphql/about-us";
 import { Button } from "../../components";
-import Instagram from "../../images/instagram_ico.svg";
-import Linkedin from "../../images/linkedin_ico.svg";
-import Twitter from "../../images/twitter_ico.svg";
-import Youtube from "../../images/youtube_ico.svg";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import {
