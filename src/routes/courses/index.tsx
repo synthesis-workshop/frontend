@@ -26,7 +26,7 @@ export const Courses = () => {
   }, []);
 
   return (
-    <div className="pt-28">
+    <div className="pt-28 mb-20">
       <div className="mx-auto flex flex-col items-center max-w-xlPageContent px-2 sm:px-4 md:px-8">
         <h1 className="font-title text-[32px] text-primary mb-3 w-full">
           Courses on Organic Chemistry
