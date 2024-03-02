@@ -13,6 +13,11 @@ import "react-loading-skeleton/dist/skeleton.css";
 import { SearchBar } from "../../components/form/search-bar";
 import { useForm } from "react-hook-form";
 import youtubeIcon from "../../images/image 10.svg";
+import { VideoPlayerModal } from "../../components/video-player-modal";
+import {
+  CurrentVideoIdContextType,
+  CurrentVideoIdContext,
+} from "../../store/current-video-id";
 
 const CategoryList = [
   {
@@ -38,6 +43,9 @@ const SortList = [
 export const EpisodesSection = () => {
   const [category, setCategory] = useState<string[]>(CategoryList[0].value);
   const [sorting, setSorting] = useState<OrderDirection[]>(SortList[0].value);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [videoModalState, setVideoModalState] =
+    useState<CurrentVideoIdContextType>({});
 
   const { register, handleSubmit, watch } = useForm();
   const navigate = useNavigate();
@@ -45,7 +53,10 @@ export const EpisodesSection = () => {
   const handleSearch = handleSubmit((data) => {
     navigate(`/episodes?search=${encodeURIComponent(data.searchInput)}`);
   });
-
+  const handleOpenDialog = (videoId: string) => {
+    setIsModalOpen(true);
+    setVideoModalState({ videoId });
+  };
   const changeCategory = (newState: string[]) => {
     setCategory(newState);
   };
@@ -107,9 +118,26 @@ export const EpisodesSection = () => {
       <div
         className={`grid lg:grid-cols-3 lg:gap-5 auto-rows-[360px] gap-5 md:grid-cols-2 md:gap-3 grid-cols-1`}
       >
+        {isModalOpen && (
+          <CurrentVideoIdContext.Provider
+            value={{
+              videoId: videoModalState.videoId,
+              setVideoId: (videoId: string) => setVideoModalState({ videoId }),
+            }}
+          >
+            <VideoPlayerModal
+              open={isModalOpen}
+              onClose={() => setIsModalOpen(false)}
+            />
+          </CurrentVideoIdContext.Provider>
+        )}
         {data?.episodes?.map((episode) =>
           showContent ? (
-            <EpisodeCard key={episode.id} {...episode} />
+            <EpisodeCard
+              key={episode.id}
+              {...episode}
+              onClick={() => handleOpenDialog(episode.id)}
+            />
           ) : (
             <Skeleton height={360} borderRadius={12} width={360} />
           ),
