@@ -37,5 +37,17 @@ export default {
       },
     },
   },
-  plugins: [HeadlessTailwindPlugin({ prefix: "ui" })],
+  plugins: [HeadlessTailwindPlugin({ prefix: "ui" }),
+  function ({ addUtilities }) {
+    addUtilities({
+      '.scrollbar-none': {
+        '-ms-overflow-style': 'none',
+        'scrollbar-width': 'none',
+        '&::-webkit-scrollbar': {
+          'display': 'none'
+        }
+      }
+    });
+  }
+  ],
 };

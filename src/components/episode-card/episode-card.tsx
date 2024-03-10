@@ -8,16 +8,18 @@ import playWCircle from "../../images/playWCircle.svg";
 import { EpisodeCategory } from "../../types";
 import { Card } from "../card";
 import { Episode } from "../../__generated__/graphql";
-
+type Props = Episode & { onClick: () => void };
 export const EpisodeCard = ({
   title,
   description,
   episodeNumber,
   category,
   runtime,
-}: Episode) => {
+  onClick,
+}: Props) => {
   return (
     <Card
+      onClick={onClick}
       className={cx(
         category === EpisodeCategory.RESEARCH_SPOTLIGHT &&
           "bg-gradient-to-r hover:from-primary hover:to-green",
@@ -30,7 +32,7 @@ export const EpisodeCard = ({
         "pb-0 pr-0 pt-5 pl-5 cursor-pointer",
       )}
     >
-      <h1 className="text-white text-card-title leading-8 font-title font-normal h-2/6">
+      <h1 className="text-white text-card-title leading-8 font-title font-normal h-[142px] overflow-hidden sm:line-clamp-5">
         {title}
       </h1>
       <div className="flex flex-col gap-6 bg-white rounded-tl-xl rounded-br-xl px-3 py-4 h-4/6 justify-between font-text">

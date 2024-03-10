@@ -5,15 +5,18 @@ import { twMerge } from "tailwind-merge";
 interface Props {
   variant?: "dark" | "light";
   className?: string;
+  onClick?: () => void;
 }
 
 export const Card = ({
   variant = "dark",
   className,
   children,
+  onClick,
 }: PropsWithChildren<Props>) => {
   return (
     <article
+      onClick={onClick}
       className={twMerge(
         cx(
           variant === "dark" ? "bg-primary" : "bg-white",

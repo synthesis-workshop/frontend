@@ -44,7 +44,7 @@ export const ProblemSets: React.FC = () => {
               showContent ? (
                 <ProblemSetCard key={problemSet.id} problemSet={problemSet} />
               ) : (
-                <Skeleton height={360} borderRadius={12} />
+                <Skeleton key={problemSet.id} height={360} borderRadius={12} />
               ),
             )}
           </div>

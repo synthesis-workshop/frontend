@@ -3,8 +3,8 @@ import ReactPlayer from "react-player";
 interface Props {
   className?: string;
   url: string;
-  width: string;
-  height: string;
+  width?: string;
+  height?: string;
   controls: boolean;
   light: boolean;
 }

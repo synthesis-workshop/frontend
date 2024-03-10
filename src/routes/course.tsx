@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useQuery } from "@apollo/client";
 import { DocumentRenderer } from "@keystone-6/document-renderer";
 import pluralize from "pluralize";
@@ -7,9 +7,17 @@ import { GET_COURSE } from "../graphql/course";
 import { ProblemSetCard, EpisodeCard } from "../components";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import {
+  CurrentVideoIdContext,
+  CurrentVideoIdContextType,
+} from "../store/current-video-id";
+import { VideoPlayerModal } from "../components/video-player-modal";
 
 export const Course = () => {
   const { courseId } = useParams<{ courseId: string }>();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [videoModalState, setVideoModalState] =
+    useState<CurrentVideoIdContextType>({});
   const { data } = useQuery(GET_COURSE, {
     variables: {
       where: {
@@ -17,6 +25,11 @@ export const Course = () => {
       },
     },
   });
+
+  const handleOpenDialog = (videoId: string) => {
+    setIsModalOpen(true);
+    setVideoModalState({ videoId });
+  };
 
   const course = data?.course;
   const episodes = course?.episodes;
@@ -34,6 +47,19 @@ export const Course = () => {
 
   return (
     <div className="flex flex-col items-center">
+      {isModalOpen && (
+        <CurrentVideoIdContext.Provider
+          value={{
+            videoId: videoModalState.videoId,
+            setVideoId: (videoId: string) => setVideoModalState({ videoId }),
+          }}
+        >
+          <VideoPlayerModal
+            open={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+          />
+        </CurrentVideoIdContext.Provider>
+      )}
       <div
         className="w-full mt-[152px] mb-20 max-w-xlPageContent px-2 sm:px-4 md:px-8"
         id="header"
@@ -80,7 +106,13 @@ export const Course = () => {
           {showContent ? (
             <>
               {episodes?.map((episode) => {
-                return <EpisodeCard key={episode.id} {...episode} />;
+                return (
+                  <EpisodeCard
+                    key={episode.id}
+                    {...episode}
+                    onClick={() => handleOpenDialog(episode.id)}
+                  />
+                );
               })}
               {problemSets?.map((problemSet) => {
                 return (
