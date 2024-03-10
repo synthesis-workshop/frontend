@@ -80,7 +80,7 @@ export const VideoPlayerModal = ({ open, onClose }: Props) => {
         {/* The backdrop, rendered as a fixed sibling to the panel container */}
         <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
         <div className="fixed inset-0 flex w-screen items-center justify-center p-4 overflow-y-auto scrollbar-none sm:p-0">
-          <Dialog.Panel className="md:rounded-xl lg:rounded-xl xl:rounded-xl relative bg-white flex flex-row md:flex-row lg:flex-row xl:flex-row overflow-hidden h-[601px] md:w-[728px] md:h-[741px] xl:w-[996px] lg:w-[996px] xl:h-[601px] lg:h-[601px] sm:rounded-none sm:w-full sm:flex-col sm:h-full">
+          <Dialog.Panel className="md:rounded-xl lg:rounded-xl xl:rounded-xl relative bg-white flex flex-row md:flex-row lg:flex-row xl:flex-row overflow-hidden md:w-[728px] xl:w-[996px] lg:w-[996px] max-h-[90vh] sm:rounded-none sm:w-full sm:flex-col">
             <XMarkIcon
               className="w-5 cursor-pointer absolute top-3 right-3"
               onClick={onClose}
@@ -92,17 +92,14 @@ export const VideoPlayerModal = ({ open, onClose }: Props) => {
             )}
             {/* left side video modal */}
 
-            <div className="leftSightModal w-[793px] md:w-[526px] lg:w-[793px] xl:w-[793px] overflow-y-auto scrollbar-none sm:w-full sm:mt-[50px] md:mt-0 lg:mt-0 xl:mt-0">
-              <div className="md:h-[326px] lg:h-[493px] xl:h-[493px] sm:h-2/3 w-full">
-                <VideoPlayer
-                  width="100%"
-                  height="100%"
-                  url={`https://www.youtube.com/watch?v=${episodesData?.episode?.youtubeVideoId}`}
-                  light={false}
-                  controls={true}
-                  className="mb-5"
-                />
-              </div>
+            <div className="w-[793px] md:w-[526px] lg:w-[793px] xl:w-[793px] overflow-y-auto scrollbar-none sm:w-full sm:mt-[50px] md:mt-0 lg:mt-0 xl:mt-0">
+              <VideoPlayer
+                width="100%"
+                url={`https://www.youtube.com/watch?v=${episodesData?.episode?.youtubeVideoId}`}
+                light={false}
+                controls={true}
+                className="mb-5"
+              />
               {isTabletOrMobile && (
                 <div className="flex flex-col pl-3">
                   {nextEpisodesLoading ? (
@@ -174,7 +171,10 @@ export const VideoPlayerModal = ({ open, onClose }: Props) => {
                   </Dialog.Title>
                 )}
 
-                <Dialog.Description className="text-primary sm:mt-5">
+                <Dialog.Description
+                  className="text-primary sm:mt-5 pb-8"
+                  as="div"
+                >
                   <DocumentRenderer
                     document={
                       episodesData?.episode?.description?.document || []
