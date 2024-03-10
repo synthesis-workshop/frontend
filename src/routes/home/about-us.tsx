@@ -6,12 +6,17 @@ import {
 } from "@keystone-6/document-renderer";
 import { GET_ABOUT_US } from "../../graphql/about-us";
 import { Button } from "../../components";
-import Instagram from "../../images/instagram_ico.svg";
-import Linkedin from "../../images/linkedin_ico.svg";
-import Twitter from "../../images/twitter_ico.svg";
-import Youtube from "../../images/youtube_ico.svg";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import {
+  faInstagram,
+  faLinkedin,
+  faTwitterSquare,
+  faYoutubeSquare,
+} from "@fortawesome/free-brands-svg-icons";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { uniqueId } from "lodash";
 
 const renderers: DocumentRendererProps["renderers"] = {
   inline: {
@@ -40,6 +45,29 @@ const renderers: DocumentRendererProps["renderers"] = {
   },
 };
 
+const socials = [
+  {
+    label: "Instagram",
+    link: "https://www.instagram.com/synthesis.workshop/",
+    icon: faInstagram,
+  },
+  {
+    label: "LinkedIn",
+    link: "https://www.linkedin.com/company/synthesis-workshop/",
+    icon: faLinkedin,
+  },
+  {
+    label: "Twitter",
+    link: "https://twitter.com/MatthewHorwitz1",
+    icon: faTwitterSquare,
+  },
+  {
+    label: "YouTube",
+    link: "https://www.youtube.com/@SynthesisWorkshopVideos",
+    icon: faYoutubeSquare,
+  },
+];
+
 export const AboutUs: React.FC = () => {
   const { data } = useQuery(GET_ABOUT_US, {
     variables: {},
@@ -62,61 +90,27 @@ export const AboutUs: React.FC = () => {
           Subscribe to Our Socials
         </h2>
         <div className="flex flex-row gap-3 flex-wrap justify-center">
-          <a
-            href="https://www.instagram.com/synthesis.workshop/"
-            target="_blank"
-          >
-            <Button
-              className="px-4 py-2.5 w-[155px] flex flex-row justify-center"
-              variant="social"
+          {socials.map(({ label, link, icon }) => (
+            <Link
+              key={uniqueId(label)}
+              to={link}
+              className="h-11 text-left flex items-center w-fit"
+              target="_blank"
             >
-              <span className=" flex flex-row justify-center gap-2">
-                <img src={Instagram} alt="instagram" />
-                <span>Instgram</span>
-              </span>
-            </Button>
-          </a>
-          <a
-            href="https://www.linkedin.com/in/matthew-horwitz-8a00861a4/"
-            target="_blank"
-          >
-            <Button
-              className="px-4 py-2.5 w-[155px] flex items-center"
-              variant="social"
-            >
-              <span className=" flex flex-row justify-center gap-2">
-                <img src={Linkedin} alt="linkedin" />
-                LinkedIn
-              </span>
-            </Button>
-          </a>
-          <a href="https://twitter.com/MatthewHorwitz1" target="_blank">
-            <Button
-              className="px-4 py-2.5 w-[155px] flex items-center"
-              variant="social"
-            >
-              <span className=" flex flex-row justify-center gap-2">
-                <img src={Twitter} alt="twitter" />
-                Twitter
-              </span>
-            </Button>
-          </a>
-          <a
-            href="https://www.youtube.com/c/SynthesisWorkshopVideos/featured"
-            target="_blank"
-          >
-            <Button
-              className="px-4 py-2.5 w-[155px] flex items-center"
-              variant="social"
-            >
-              <span className=" flex flex-row justify-center gap-2">
-                <img src={Youtube} alt="youtube" />
-                YouTube
-              </span>
-            </Button>
-          </a>
+              <Button
+                className="px-4 py-2.5 w-fit flex flex-row justify-center"
+                variant="social"
+              >
+                <FontAwesomeIcon
+                  icon={icon}
+                  className="text-white w-7 h-7 ml-0 mr-2.5 my-0 opacity-80"
+                />
+                <p className="opacity-80">{label}</p>
+              </Button>
+            </Link>
+          ))}
         </div>
-        <p className="text-primary sm:text-lg  md:h-auto text-center">
+        <p className="text-primary sm:text-lg font-text md:h-auto text-center">
           <a href="mailto:synthesisworkshopvideos@gmail.com">
             Email: synthesisworkshopvideos@gmail.com
           </a>

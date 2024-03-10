@@ -16,21 +16,21 @@ export const CourseCard = ({
   problemSetsCount,
 }: Course) => {
   return (
-    <Card className={cx("w-full relative overflow-hidden")}>
+    <Card className={cx("w-full relative overflow-hidden px-8 py-8")}>
       <img
-        className="absolute h-[0px] lg:h-[366px] md:h-[0px] w-[0px] lg:w-[520px] md:w-[0px] -top-[150px] -right-[129px] transform rotate-[-157deg]"
+        className="absolute h-0 lg:h-[366px] md:h-0 w-0 lg:w-[520px] md:w-0 -top-[150px] -right-[129px] transform rotate-[-157deg]"
         src={purpleBlur}
         alt="left accent blur"
       />
 
-      <div className="flex flex-col p-3">
+      <div className="flex flex-col">
         <h2 className="font-title text-card-title text-white">{title}</h2>
         <div className="text-white/80 mt-2 max-w-[659px]">
           <DocumentRenderer document={description?.document} />
         </div>
 
-        <div className="flex flex-col md:flex-row justify-between mt-10 md:mt-24">
-          <div className="grid grid-cols-2 col-auto items-end gap-1 mb-5 md:grid-cols-4 md:gap-3">
+        <div className="flex flex-col md:flex-row justify-between font-text mt-10 md:mt-24 select-none">
+          <div className="grid grid-cols-2 col-auto items-end gap-1 md:grid-cols-4 md:gap-3">
             <div className="bg-[#F6C825] rounded-md justify-center items-center">
               <p className="text-sm p-2 text-center">
                 {price === 0 ? "Free!" : `$${price}`}
