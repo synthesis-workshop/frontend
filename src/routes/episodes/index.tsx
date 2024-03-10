@@ -11,6 +11,11 @@ import "react-loading-skeleton/dist/skeleton.css";
 import { useForm } from "react-hook-form";
 import { useSearchParams } from "react-router-dom";
 import { isEmpty, omitBy } from "lodash";
+import {
+  CurrentVideoIdContext,
+  CurrentVideoIdContextType,
+} from "../../store/current-video-id";
+import { VideoPlayerModal } from "../../components/video-player-modal";
 
 const CategoryList = [
   {
@@ -42,6 +47,9 @@ export const Episodes = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [category, setCategory] = useState<string[]>(CategoryList[0].value);
   const [sorting, setSorting] = useState<OrderDirection[]>(SortList[0].value);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [videoModalState, setVideoModalState] =
+    useState<CurrentVideoIdContextType>({});
 
   const changeCategory = (newState: string[]) => {
     setCategory(newState);
@@ -110,6 +118,11 @@ export const Episodes = () => {
     return () => clearTimeout(timeoutId);
   }, []);
 
+  const handleOpenDialog = (videoId: string) => {
+    setIsModalOpen(true);
+    setVideoModalState({ videoId });
+  };
+
   // This is the function that will be called when the form is submitted
 
   const onSubmit = handleSubmit((data) => {
@@ -157,6 +170,19 @@ export const Episodes = () => {
 
   return (
     <div className="mx-auto flex flex-col items-center max-w-xlPageContent px-2 sm:px-4 md:px-8">
+      {isModalOpen && (
+        <CurrentVideoIdContext.Provider
+          value={{
+            videoId: videoModalState.videoId,
+            setVideoId: (videoId: string) => setVideoModalState({ videoId }),
+          }}
+        >
+          <VideoPlayerModal
+            open={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+          />
+        </CurrentVideoIdContext.Provider>
+      )}
       <div className="flex md:flex-row gap-4 flex-col pt-32 pb-8 justify-between w-full">
         <h2 className="font-title text-primary text-3xl">
           Explore our episodes
@@ -196,7 +222,11 @@ export const Episodes = () => {
       >
         {showContent ? (
           data?.episodes?.map((episode) => (
-            <EpisodeCard key={episode.id} {...episode} />
+            <EpisodeCard
+              key={episode.id}
+              {...episode}
+              onClick={() => handleOpenDialog(episode.id)}
+            />
           ))
         ) : (
           <>

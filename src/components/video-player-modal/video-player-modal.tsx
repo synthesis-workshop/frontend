@@ -1,4 +1,4 @@
-import React, { Fragment, useContext } from "react";
+import React, { Fragment, useContext, useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
 import { Dialog, Transition } from "@headlessui/react";
 import {
@@ -42,24 +42,30 @@ export const VideoPlayerModal = ({ open, onClose }: Props) => {
       },
     },
   );
-  const { loading: nextEpisodesLoading, data: nextEpisodesData } = useQuery(
-    GET_NEXT_EPISODES,
-    {
-      variables: {
-        where: {
-          episodeNumber: {
-            gt: episodesData?.episode?.episodeNumber,
-          },
+
+  const {
+    loading: nextEpisodesLoading,
+    data: nextEpisodesData,
+    refetch: refetchNextEpisodes,
+  } = useQuery(GET_NEXT_EPISODES, {
+    variables: {
+      where: {
+        episodeNumber: {
+          gt: episodesData?.episode?.episodeNumber,
         },
-        take: 5,
-        orderBy: [
-          {
-            episodeNumber: OrderDirection.Asc,
-          },
-        ],
       },
+      take: 5,
+      orderBy: [
+        {
+          episodeNumber: OrderDirection.Asc,
+        },
+      ],
     },
-  );
+  });
+
+  useEffect(() => {
+    refetchNextEpisodes();
+  }, [refetchNextEpisodes, episodesData]);
 
   return (
     <Transition

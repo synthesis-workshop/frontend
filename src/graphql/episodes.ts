@@ -19,6 +19,7 @@ export const GET_EPISODES = gql(`
       publishedAt
       youtubeVideoId
     }
+    episodesCount(where: $where)
   }
 `);
 
@@ -59,5 +60,6 @@ query getNextEpisode($take: Int, $where: EpisodeWhereInput!, $orderBy: [EpisodeO
     runtime
     episodeNumber
   }
+  episodesCount(where: $where)
 }
 `);
