@@ -1,4 +1,5 @@
 import {
+  faInstagram,
   faLinkedin,
   faTwitterSquare,
   faYoutubeSquare,
@@ -20,8 +21,11 @@ const links = [
 ];
 
 const socials = [
-  // Commenting out until we have an instagram link
-  // { label: "Instagram", link: "", icon: faInstagram },
+  {
+    label: "Instagram",
+    link: "https://www.instagram.com/synthesis.workshop/",
+    icon: faInstagram,
+  },
   {
     label: "LinkedIn",
     link: "https://www.linkedin.com/company/synthesis-workshop/",
@@ -94,7 +98,7 @@ export const Footer: React.FC = () => {
         className={cx(
           `text-footerText text-lg no-underline flex flex-col font-semibold mx-0 
           h-28 w-fit flex-wrap gap-y-3 gap-x-14 my-14
-          md:w-32 md:my-14 md:h-48 
+          md:w-32 md:my-14 md:h-56 
           lg:w-32 lg:-my-2
           xl:w-48`,
         )}

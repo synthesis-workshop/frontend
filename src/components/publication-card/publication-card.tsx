@@ -35,9 +35,11 @@ export const PublicationCard = ({
             <a
               href={link || "#"}
               target="_blank"
-              className="hidden md:block min-w-[264px]"
+              className="hidden md:block min-w-[264px] md:flex justify-end "
             >
-              <Button>Read the Full Article ↗</Button>
+              <Button className="md:px-4 lg:px-8">
+                Read the Full Article ↗
+              </Button>
             </a>
           </div>
         </div>

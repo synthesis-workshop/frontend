@@ -53,7 +53,7 @@ export const TeamMembers = () => {
         </div>
       </div>
       {/* paragraph */}
-      <div className="md:min-h-60 bg-white flex md:flex-row md:items-start md:justify-evenly md:py-8 sm:flex-col sm:px-4 sm:py-4 sm:max-w-80 sm:gap-4 ">
+      <div className="md:min-h-60 bg-white flex rounded-xl md:flex-row md:items-start md:justify-evenly md:py-8 sm:flex-col sm:px-4 sm:py-4 sm:max-w-80 sm:gap-4 ">
         <div
           className={`md:w-24 md:h-24 sm:h-20 sm:w-20 bg-primary rounded-full flex items-center justify-center `}
         >

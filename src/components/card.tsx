@@ -20,7 +20,7 @@ export const Card = ({
       className={twMerge(
         cx(
           variant === "dark" ? "bg-primary" : "bg-white",
-          "flex flex-col p-5 rounded-xl relative",
+          "flex flex-col p-3 rounded-xl relative",
           className,
         ),
       )}

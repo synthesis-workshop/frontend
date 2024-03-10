@@ -100,13 +100,13 @@ export const EpisodesSection = () => {
       <div
         className={cx(
           "w-full flex flex-col justify-between items-center pb-8 gap-5",
-          "md:flex-row md:items-start md:gap-0",
+          "md:flex-row md:gap-0",
         )}
       >
         <h2 className="font-title text-primary text-3xl">
           Explore our episodes
         </h2>
-        <div className="font-text flex flex-col md:flex-row gap-4">
+        <div className="font-text flex flex-col md:flex-row gap-4 w-fit">
           <Menu
             title={"Category"}
             list={CategoryList}
