@@ -1,10 +1,11 @@
 import { PlayCircleIcon } from "@heroicons/react/24/outline";
 import { Card } from "../card";
+import { EpisodeCategory } from "../../types";
 
 interface Props {
   title: string;
   episodeNumber: number;
-  category: string;
+  category: EpisodeCategory;
   runtime: string;
   onClick: () => void;
 }

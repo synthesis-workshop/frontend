@@ -3,7 +3,7 @@ import { Card } from "../card";
 import { Publication } from "../../__generated__/graphql";
 import { DocumentRenderer } from "@keystone-6/document-renderer";
 import dayjs from "dayjs";
-import { isEmpty } from "lodash";
+import { isEmpty, uniqueId } from "lodash";
 
 export const PublicationCard = ({
   title,
@@ -35,7 +35,7 @@ export const PublicationCard = ({
             <a
               href={link || "#"}
               target="_blank"
-              className="hidden md:block min-w-[264px] md:flex justify-end "
+              className="hidden min-w-[264px] md:flex justify-end "
             >
               <Button className="md:px-4 lg:px-8">
                 Read the Full Article ↗
@@ -53,7 +53,9 @@ export const PublicationCard = ({
             // Add a pipe between each descriptor
             .reduce((prev, cur) => [
               prev,
-              <span className="sm:hidden md:block">|</span>,
+              <span className="sm:hidden md:block" key={uniqueId("separator")}>
+                |
+              </span>,
               cur,
             ])}
         </div>

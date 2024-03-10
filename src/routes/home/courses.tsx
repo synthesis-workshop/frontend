@@ -37,7 +37,7 @@ export const Courses: React.FC = () => {
           showContent ? (
             <CourseCard key={course.id} {...course} />
           ) : (
-            <Skeleton height={360} borderRadius={12} />
+            <Skeleton key={course.id} height={360} borderRadius={12} />
           ),
         )}
       </div>

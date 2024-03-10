@@ -139,7 +139,12 @@ export const EpisodesSection = () => {
               onClick={() => handleOpenDialog(episode.id)}
             />
           ) : (
-            <Skeleton height={360} borderRadius={12} width={360} />
+            <Skeleton
+              height={360}
+              borderRadius={12}
+              width={360}
+              key={episode.id}
+            />
           ),
         )}
       </div>

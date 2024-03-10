@@ -13,6 +13,7 @@ import { useQuery } from "@apollo/client";
 import { GET_EPISODE, GET_NEXT_EPISODES } from "../../graphql";
 import { OrderDirection } from "../../__generated__/graphql";
 import { Loading } from "../loading";
+import { EpisodeCategory } from "../../types";
 interface Props {
   open: boolean;
   onClose: () => void;
@@ -79,9 +80,9 @@ export const VideoPlayerModal = ({ open, onClose }: Props) => {
         {/* The backdrop, rendered as a fixed sibling to the panel container */}
         <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
         <div className="fixed inset-0 flex w-screen items-center justify-center p-4 overflow-y-auto scrollbar-none sm:p-0">
-          <Dialog.Panel className="md:rounded-xl lg:rounded-xl xl:rounded-xl relative bg-white flex flex-row md:flex-row lg:flex-row xl:flex-row overflow-hidden gap-3 h-[601px] md:w-[728px] md:h-[741px] xl:w-[996px] lg:w-[996px] xl:h-[601px] lg:h-[601px] sm:w-full sm:rounded-none sm:w-full sm:flex-col sm:h-full">
+          <Dialog.Panel className="md:rounded-xl lg:rounded-xl xl:rounded-xl relative bg-white flex flex-row md:flex-row lg:flex-row xl:flex-row overflow-hidden h-[601px] md:w-[728px] md:h-[741px] xl:w-[996px] lg:w-[996px] xl:h-[601px] lg:h-[601px] sm:rounded-none sm:w-full sm:flex-col sm:h-full">
             <XMarkIcon
-              className="w-[20px] cursor-pointer absolute top-3 right-3"
+              className="w-5 cursor-pointer absolute top-3 right-3"
               onClick={onClose}
             />
             {isTabletOrMobile && (
@@ -99,8 +100,7 @@ export const VideoPlayerModal = ({ open, onClose }: Props) => {
                   url={`https://www.youtube.com/watch?v=${episodesData?.episode?.youtubeVideoId}`}
                   light={false}
                   controls={true}
-                  className="mb-[20px]"
-                  key={episodesData?.episode?.id}
+                  className="mb-5"
                 />
               </div>
               {isTabletOrMobile && (
@@ -109,24 +109,21 @@ export const VideoPlayerModal = ({ open, onClose }: Props) => {
                     <div className="mt-12">
                       <Loading />
                     </div>
-                  ) : (
+                  ) : nextEpisodesData?.episodes &&
+                    nextEpisodesData.episodes.length > 0 ? (
                     <>
-                      <h6 className="text-[16px] text-primary font-text font-bold my-5 mr-auto mb-[10px]">
-                        {!nextEpisodesData?.episodes?.length ? (
-                          <span>No Next videos available</span>
-                        ) : (
-                          <span>Next videos</span>
-                        )}
+                      <h6 className="text-primary font-text font-medium my-5 mr-auto mb-5">
+                        Next videos
                       </h6>
-                      <div className="flex flex-row justify-between gap-3 pr-[10px] py-4 overflow-x-auto scrollbar-none">
+                      <div className="flex flex-row justify-between gap-3 py-4 overflow-x-auto scrollbar-none">
                         {nextEpisodesData?.episodes?.map((nextEpisode) => (
-                          <div className="">
+                          <div key={nextEpisode.id}>
                             <VideoCard
-                              key={nextEpisode.id}
                               title={`${nextEpisode.title}`}
                               episodeNumber={nextEpisode.episodeNumber ?? 0}
                               category={
-                                nextEpisode.category ?? "Research Spotlight"
+                                (nextEpisode.category ??
+                                  EpisodeCategory.RESEARCH_SPOTLIGHT) as EpisodeCategory
                               }
                               runtime={`${nextEpisode.runtime}`}
                               onClick={() => setVideoId?.(nextEpisode.id)}
@@ -135,33 +132,29 @@ export const VideoPlayerModal = ({ open, onClose }: Props) => {
                         ))}
                       </div>
                     </>
-                  )}
+                  ) : null}
                   {episodesLoading ? (
                     <div className="mt-12">
                       <Loading />
                     </div>
-                  ) : (
+                  ) : episodesData?.episode?.relatedEpisodes &&
+                    episodesData.episode.relatedEpisodes.length > 0 ? (
                     <>
-                      <h6 className="text-[16px] text-primary font-text font-bold my-5 mr-auto mb-[10px]">
-                        {!episodesData?.episode?.relatedEpisodes?.length ? (
-                          <span>No Related videos available</span>
-                        ) : (
-                          <span>Related videos</span>
-                        )}
+                      <h6 className="text-primary font-text font-medium my-5 mr-auto mb-5">
+                        Related videos
                       </h6>
-                      <div className="flex flex-row justify-between gap-3 pr-[10px] py-4 overflow-x-auto scrollbar-none">
+                      <div className="flex flex-row justify-between gap-3 px-3 py-4 overflow-x-auto scrollbar-none">
                         {episodesData?.episode?.relatedEpisodes?.map(
                           (relatedEpisode) => (
-                            <div className="">
+                            <div key={relatedEpisode.id}>
                               <VideoCard
-                                key={relatedEpisode.id}
                                 title={`${relatedEpisode.title}`}
                                 episodeNumber={
                                   relatedEpisode.episodeNumber ?? 0
                                 }
                                 category={
-                                  relatedEpisode.category ??
-                                  "Research Spotlight"
+                                  (relatedEpisode.category ??
+                                    EpisodeCategory.RESEARCH_SPOTLIGHT) as EpisodeCategory
                                 }
                                 runtime={`${relatedEpisode.runtime}`}
                                 onClick={() => setVideoId?.(relatedEpisode.id)}
@@ -171,19 +164,18 @@ export const VideoPlayerModal = ({ open, onClose }: Props) => {
                         )}
                       </div>
                     </>
-                  )}
+                  ) : null}
                 </div>
               )}
-              <div className="px-[32px]">
+              <div className="px-8">
                 {!isTabletOrMobile && (
                   <Dialog.Title className="text-card-title text-primary mt-4">
                     {episodesData?.episode?.title}
                   </Dialog.Title>
                 )}
 
-                <Dialog.Description className="text-primary sm:mt-[20px]">
+                <Dialog.Description className="text-primary sm:mt-5">
                   <DocumentRenderer
-                    key={episodesData?.episode?.id}
                     document={
                       episodesData?.episode?.description?.document || []
                     }
@@ -194,29 +186,27 @@ export const VideoPlayerModal = ({ open, onClose }: Props) => {
             </div>
             {/* Right side video modal */}
             {!isTabletOrMobile && (
-              <div className="RightSighModal overflow-y-auto scrollbar-none pb-2   justify-between mt-[30px] ">
-                <div className="flex flex-col mb-[20px]  pr-[16px] ">
+              <div className="overflow-y-auto scrollbar-none pb-2 justify-between mt-[30px] ">
+                <div className="flex flex-col mb-5 px-3">
                   {nextEpisodesLoading ? (
                     <div className="mt-12">
                       <Loading />
                     </div>
-                  ) : (
+                  ) : nextEpisodesData?.episodes &&
+                    nextEpisodesData.episodes.length > 0 ? (
                     <>
-                      <h6 className="text-[16px] text-primary font-text font-bold mr-auto mb-[10px]">
-                        {!nextEpisodesData?.episodes?.length ? (
-                          <span>No Next videos available</span>
-                        ) : (
-                          <span>Next videos</span>
-                        )}
+                      <h6 className="text-primary font-text font-medium mr-auto mb-5">
+                        Next videos
                       </h6>
-                      <div className="flex flex-col gap-4 pr-[10px] ">
+                      <div className="flex flex-col gap-4">
                         {nextEpisodesData?.episodes?.map((nextEpisode) => (
                           <VideoCard
                             key={nextEpisode.id}
                             title={`${nextEpisode.title}`}
                             episodeNumber={nextEpisode.episodeNumber ?? 0}
                             category={
-                              nextEpisode.category ?? "Research Spotlight"
+                              (nextEpisode.category ??
+                                EpisodeCategory.RESEARCH_SPOTLIGHT) as EpisodeCategory
                             }
                             runtime={`${nextEpisode.runtime}`}
                             onClick={() => setVideoId?.(nextEpisode.id)}
@@ -224,23 +214,20 @@ export const VideoPlayerModal = ({ open, onClose }: Props) => {
                         ))}
                       </div>
                     </>
-                  )}
+                  ) : null}
                 </div>
-                <div className="flex flex-col mb-[20px]  pr-[16px] ">
+                <div className="flex flex-col mb-5 px-3">
                   {episodesLoading ? (
                     <div className="mt-12">
                       <Loading />
                     </div>
-                  ) : (
+                  ) : episodesData?.episode?.relatedEpisodes &&
+                    episodesData.episode.relatedEpisodes.length > 0 ? (
                     <>
-                      <h6 className="text-[16px] text-primary font-text font-bold mr-auto my-5">
-                        {!episodesData?.episode?.relatedEpisodes?.length ? (
-                          <span>No Related videos available</span>
-                        ) : (
-                          <span>Related videos</span>
-                        )}
+                      <h6 className="text-primary font-text font-medium mr-auto my-5">
+                        Related videos
                       </h6>
-                      <div className="flex flex-col gap-3 pr-[10px] ">
+                      <div className="flex flex-col gap-3">
                         {episodesData?.episode?.relatedEpisodes?.map(
                           (relatedEpisode) => (
                             <VideoCard
@@ -248,7 +235,8 @@ export const VideoPlayerModal = ({ open, onClose }: Props) => {
                               title={`${relatedEpisode.title}`}
                               episodeNumber={relatedEpisode.episodeNumber ?? 0}
                               category={
-                                relatedEpisode.category ?? "Research Spotlight"
+                                (relatedEpisode.category ??
+                                  EpisodeCategory.RESEARCH_SPOTLIGHT) as EpisodeCategory
                               }
                               runtime={`${relatedEpisode.runtime}`}
                               onClick={() => setVideoId?.(relatedEpisode.id)}
@@ -257,7 +245,7 @@ export const VideoPlayerModal = ({ open, onClose }: Props) => {
                         )}
                       </div>
                     </>
-                  )}
+                  ) : null}
                 </div>
               </div>
             )}
