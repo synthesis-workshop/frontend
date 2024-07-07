@@ -224,7 +224,7 @@ export const Episodes = () => {
               {...episode}
               onClick={() => handleOpenDialog(episode.id)}
             />
-          ))
+          )) || null
         ) : (
           <>
             <Skeleton height={319} />
