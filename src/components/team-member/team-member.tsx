@@ -12,15 +12,15 @@ export const TeamMember: React.FC<TeamMemberProps> = ({
   name,
   title,
   image,
-  onClick,
+  // onClick,
 }) => {
   return (
     <div
       className={cx(
-        "flex items-center gap-5 box-border p-2 cursor-pointer rounded-xl hover:bg-white",
+        "flex items-center gap-5 box-border p-2 rounded-xl ",
         className,
       )}
-      onClick={onClick}
+    // onClick={onClick}
     >
       <img
         className="w-20 h-20 rounded-full object-cover"

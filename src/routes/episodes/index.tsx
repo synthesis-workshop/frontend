@@ -35,8 +35,8 @@ const CategoryList = [
 ];
 
 const SortList = [
-  { name: "Date added ascending", value: [OrderDirection.Asc] },
-  { name: "Date added descending", value: [OrderDirection.Desc] },
+  { name: "Date added descending", value: [OrderDirection.Desc] as string[] },
+  { name: "Date added ascending", value: [OrderDirection.Asc] as string[] },
 ];
 
 interface FormValues {
@@ -46,16 +46,16 @@ interface FormValues {
 export const Episodes = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [category, setCategory] = useState<string[]>(CategoryList[0].value);
-  const [sorting, setSorting] = useState<OrderDirection[]>(SortList[0].value);
+  const [sorting, setSorting] = useState<string[]>(SortList[0].value);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [videoModalState, setVideoModalState] =
     useState<CurrentVideoIdContextType>({});
 
-  const changeCategory = (newState: string[]) => {
-    setCategory(newState);
+  const changeCategory = (newState: string[] | undefined) => {
+    setCategory(newState ?? CategoryList[0].value);
   };
-  const changeSort = (newState: OrderDirection[]) => {
-    setSorting(newState);
+  const changeSort = (newState: string[] | undefined) => {
+    setSorting(newState ?? SortList[0].value);
   };
 
   const { handleSubmit, register, watch, setValue } = useForm<FormValues>({
@@ -73,7 +73,7 @@ export const Episodes = () => {
     variables: {
       orderBy: [
         {
-          publishedAt: sorting[0],
+          publishedAt: sorting[0] as OrderDirection,
         },
       ],
       where: {
@@ -102,11 +102,8 @@ export const Episodes = () => {
       },
       take: isTabletOrMobile ? 9 : 18,
     },
-    // This is a custom fetch policy that will overwrite the cache with the new data instead of merging with cached data
     refetchWritePolicy: "overwrite",
   });
-
-  // This is a custom hook that we will use to show the content after a certain time while the loading skeletons are being shown
 
   const [showContent, setShowContent] = React.useState(false);
 
@@ -129,7 +126,7 @@ export const Episodes = () => {
     refetch({
       orderBy: [
         {
-          publishedAt: sorting[0],
+          publishedAt: sorting[0] as OrderDirection,
         },
       ],
       where: {

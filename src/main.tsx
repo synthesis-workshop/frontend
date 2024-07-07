@@ -1,4 +1,6 @@
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+import { createBrowserHistory } from "history";
+import ReactGA from "react-ga";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -15,31 +17,45 @@ import {
 import { Header } from "./components/header";
 import { ScrollToAnchor, ScrollToTop } from "./utils/scroll";
 
+const history = createBrowserHistory();
+
+ReactGA.initialize("UA-177211479-1");
+
+// Log the current page we're on since history.listen only listens for changes
+ReactGA.set({ page: history.location.pathname, anonymizeIp: true });
+ReactGA.pageview(history.location.pathname);
+
+// https://stackoverflow.com/a/34837445/11646872
+history.listen((update) => {
+  ReactGA.set({ page: update.location.pathname });
+  ReactGA.pageview(update.location.pathname);
+});
+
 const client = new ApolloClient({
   uri:
     //in Vite, use special object `import.meta.env` to access enviroment variables
     import.meta.env.MODE === "production"
       ? //created environment variables must be prefixed by VITE
-        "https://synthesis-workshop-backend-97f537f332bd.herokuapp.com/api/graphql"
+      "https://synthesis-workshop-backend-97f537f332bd.herokuapp.com/api/graphql"
       : "https://synthesis-workshop-backend-97f537f332bd.herokuapp.com/api/graphql",
   cache: new InMemoryCache({
     typePolicies: {
       Query: {
         fields: {
           episodes: {
-            keyArgs: ["orderBy", "take"],
+            keyArgs: ["orderBy", "where", "take"],
             merge(existing = [], incoming) {
               return [...existing, ...incoming];
             },
           },
           problemSets: {
-            keyArgs: ["orderBy", "take"],
+            keyArgs: ["orderBy", "where", "take"],
             merge(existing = [], incoming) {
               return [...existing, ...incoming];
             },
           },
           publications: {
-            keyArgs: ["orderBy", "take"],
+            keyArgs: ["orderBy", "where", "take"],
             merge(existing = [], incoming) {
               return [...existing, ...incoming];
             },

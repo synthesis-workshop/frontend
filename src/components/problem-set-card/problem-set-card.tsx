@@ -45,12 +45,12 @@ export const ProblemSetCard = ({ problemSet }: PropsWithChildren<Props>) => {
           </a>
         )}
 
-        {problemSet.downloadCount && (
+        {/* {problemSet.downloadCount && (
           <p className="text-white/80 font-text text-base ml-auto mr-5">
             Downloaded {problemSet.downloadCount}{" "}
             {pluralize("time", problemSet.downloadCount)}
           </p>
-        )}
+        )} */}
       </div>
     </Card>
   );
