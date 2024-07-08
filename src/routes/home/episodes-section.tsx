@@ -36,13 +36,13 @@ const CategoryList = [
 ];
 
 const SortList = [
-  { name: "Date added ascending", value: [OrderDirection.Asc] },
-  { name: "Date added descending", value: [OrderDirection.Desc] },
+  { name: "Date added descending", value: [OrderDirection.Desc] as string[] },
+  { name: "Date added ascending", value: [OrderDirection.Asc] as string[] },
 ];
 
 export const EpisodesSection = () => {
   const [category, setCategory] = useState<string[]>(CategoryList[0].value);
-  const [sorting, setSorting] = useState<OrderDirection[]>(SortList[0].value);
+  const [sorting, setSorting] = useState<string[]>(SortList[0].value);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [videoModalState, setVideoModalState] =
     useState<CurrentVideoIdContextType>({});
@@ -57,12 +57,12 @@ export const EpisodesSection = () => {
     setIsModalOpen(true);
     setVideoModalState({ videoId });
   };
-  const changeCategory = (newState: string[]) => {
-    setCategory(newState);
+  const changeCategory = (newState: string[] | undefined) => {
+    setCategory(newState ?? CategoryList[0].value);
   };
 
-  const changeSort = (newState: OrderDirection[]) => {
-    setSorting(newState);
+  const changeSort = (newState: string[] | undefined) => {
+    setSorting(newState ?? SortList[0].value);
   };
 
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 450px)" });
@@ -70,7 +70,7 @@ export const EpisodesSection = () => {
     variables: {
       orderBy: [
         {
-          publishedAt: sorting[0],
+          publishedAt: sorting[0] as OrderDirection,
         },
       ],
       where: {
