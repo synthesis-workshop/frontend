@@ -19,7 +19,7 @@
     "build-storybook": "storybook build",
     "compile": "graphql-codegen",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "-": "^0.0.1",
