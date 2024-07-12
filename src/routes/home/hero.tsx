@@ -62,8 +62,8 @@ export const Hero: React.FC = () => {
         </h1>
 
         <div className="text-white/80 font-text text-lg pt-6 max-w-[650px]">
-          Synthesis Workshop was started as a series of YouTube podcasts on
-          organic chemistry and is growing into an educational online project
+          Synthesis Workshop started as a video podcast about organic synthesis
+          and has grown into a broader collaborative educational initiative
         </div>
 
         <div
