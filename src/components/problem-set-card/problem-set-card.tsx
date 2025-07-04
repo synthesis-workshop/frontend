@@ -14,7 +14,7 @@ export const ProblemSetCard = ({ problemSet }: PropsWithChildren<Props>) => {
     <Card>
       <img className="mx-auto" src={ellipses} alt="Ellipses" />
 
-      <h1 className="text-white font-title text-card-title text-center mx-auto mb-6 mt-4 h-[84px] line-clamp-2">
+      <h1 className="text-white font-title text-card-title text-center mx-auto mb-6 mt-4 flex-grow">
         {problemSet.title}
       </h1>
       <div className="flex flex-col gap-3">
