@@ -7,7 +7,7 @@
   "scripts": {
     "prepare": "husky install",
     "dev": "vite",
-    "build": "tsc && vite build --base=./",
+    "build": "tsc && vite build --base=./ && cp ./dist/index.html ./dist/404.html",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "test": "vitest run --passWithNoTests",
